@@ -111,7 +111,7 @@ CREATE TABLE `menu_info` (
   `price` decimal(6,0) DEFAULT NULL,
   `availability` tinyint(1) DEFAULT NULL,
   `photo` mediumblob DEFAULT NULL,
-  `catregory` varchar(30) DEFAULT NULL
+  `category` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
