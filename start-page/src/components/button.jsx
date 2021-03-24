@@ -25,10 +25,6 @@ class Buttons extends Component {
         isClicked: true
     }; 
 
-    buttonClickAlert(){
-       alert("You just clicked a button!");
-    };
-
     render() { 
         return ( 
             <Container fluid>
@@ -46,7 +42,7 @@ class Buttons extends Component {
                 <Row sm md lg="auto">
                     <Col sm md lg="auto" className="m-auto">
                         <Button //regular
-                            onClick={() => {this.changeColor(0); this.buttonClickAlert()}}
+                            onClick={() => {this.changeColor(0)}}
                             variant = {this.state.blueButtonId === 0 ? "primary": "secondary"}
                             size="lg"
                             style={{marginTop: 50}}
@@ -54,7 +50,7 @@ class Buttons extends Component {
                              Regular
                         </Button>{' '}
                         <Button //priority
-                            onClick={() => {this.changeColor(1); this.buttonClickAlert()} }
+                            onClick={() => {this.changeColor(1)} }
                             variant = {this.state.blueButtonId === 1 ? "primary": "secondary"}
                             size="lg"
                             style={{marginTop: 50, width: 110}}
@@ -69,7 +65,7 @@ class Buttons extends Component {
                     <Col sm md lg="auto" className="m-auto">
                         <Button
                             //onClick={this.buttonClickAlert}
-                            onClick={() =>{this.changeColor(3); this.buttonClickAlert()}}
+                            onClick={() =>{this.changeColor(3)}}
                             //variant="secondary"
                             variant = {this.state.blueButtonId === 3 ? "primary": "secondary"}
                             size="lg"
@@ -79,7 +75,7 @@ class Buttons extends Component {
                         </Button>{' '}
                         <Button
                            // onClick={this.buttonClickAlert}
-                            onClick={() =>{this.changeColor(0); this.buttonClickAlert()}}
+                            onClick={() =>{this.changeColor(4)}}
                            // variant="secondary"
                             variant = {this.state.blueButtonId === 4 ? "primary": "secondary"}
                             size="lg"
