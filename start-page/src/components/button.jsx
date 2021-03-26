@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { FiArrowRightCircle } from "react-icons/fi";
 
 class Buttons extends Component {
     constructor(){
@@ -82,6 +83,14 @@ class Buttons extends Component {
                             className="m-5">
                                 Take Out
                         </Button>{' '}
+                    </Col>
+                </Row>
+                <Row sm md lg="auto">
+                    <Col sm md lg="auto" className="m-auto">
+                    <a href="https://github.com/CMSC-129A-Projects/MinimaLine"
+                       style={{color: '#D28A7C'}}>
+                        <FiArrowRightCircle size='50px'/>
+                    </a>
                     </Col>
                 </Row>
             </Container>
