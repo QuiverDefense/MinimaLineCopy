@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FiArrowRightCircle } from "react-icons/fi";
+import logo from './MINIMALINE.png';
 
 class Buttons extends Component {
     constructor(){
@@ -19,31 +20,36 @@ class Buttons extends Component {
     changeColor(id){
         this.setState({
             blueButtonId: this.state.blueButtonId === id ? null : id
-            
         })
     }
 
     render() { 
         return ( 
-            <div className="btns-white-box">
+            <div className="white-box shadow-lg p-3 mb-5 bg-white rounded">
                 <Container>
+                    {/* LOGO */}
+                    <Row sm md lg="auto">
+                        <Col sm md lg ="auto" className="m-auto">
+                            <img className="logo" src={logo} alt="MinimaLine logo"/>
+                        </Col>
+                    </Row>
                     {/* REGULAR OR PRIORITY? */}
                     <Row sm md lg="auto">
                         <Col sm md lg="auto" className="m-auto">
-                            <Button //regular
+                            <Button
                                 onClick={() => {this.changeColor(0)}}
                                 variant = {this.state.blueButtonId === 0 ? "warning": "outline-secondary"}
                                 size="lg"
-                                // style={{marginTop: 70}}
-                                className= "mx-5">
+                                style={{width: 120, marginTop: 20}}
+                                className="mx-3 mb-5">
                                 Regular
                             </Button>{' '}
-                            <Button //priority
+                            <Button
                                 onClick={() => {this.changeColor(1)} }
                                 variant = {this.state.blueButtonId === 1 ? "warning": "outline-secondary"}
                                 size="lg"
-                                style={{width: 110}}
-                                className="mx-5">
+                                style={{width: 120, marginTop: 20}}
+                                className="mx-3 mb-5">
                                     Priority
                             </Button>{' '}
                         </Col>
@@ -55,16 +61,16 @@ class Buttons extends Component {
                                 onClick={() =>{this.changeColor(3)}}
                                 variant = {this.state.blueButtonId === 3 ? "warning": "outline-secondary"}
                                 size="lg"
-                                style={{marginRight:5, width:100}}
-                                className="m-5">
+                                style={{width: 120}}
+                                className="mx-3 mb-5">
                                     Dine In
                             </Button>{' '}
                             <Button
                                 onClick={() =>{this.changeColor(4)}}
                                 variant = {this.state.blueButtonId === 4 ? "warning": "outline-secondary"}
                                 size="lg"
-                                style={{marginRight: 2}}
-                                className="m-5">
+                                style={{width: 120}}
+                                className="mx-3 mb-5">
                                     Take Out
                             </Button>{' '}
                         </Col>
