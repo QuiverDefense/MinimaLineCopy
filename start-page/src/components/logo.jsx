@@ -7,13 +7,15 @@ import logo from './MINIMALINE.png';
 class Logo extends Component {
     render() { 
         return ( 
-            <Container fluid>
-                <Row sm md lg="auto">
-                    <Col sm md lg ="auto" className="m-auto">
-                        <img className="logo" src={logo} alt="MinimaLine logo"/>
-                    </Col>
-                </Row>
-            </Container>
+            <div className="logo-white-box">
+                <Container>
+                    <Row sm md lg="auto">
+                        <Col sm md lg ="auto" className="m-auto">
+                            <img className="logo" src={logo} alt="MinimaLine logo"/>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
          );
     }
 }
