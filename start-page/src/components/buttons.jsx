@@ -22,21 +22,18 @@ class Buttons extends Component {
         })
     }
 
-    state = {
-        isClicked: true
-    }; 
+    // state = {
+    //     isClicked: true
+    // }; 
 
     render() { 
         return ( 
             <Container fluid>
-
-                {/* insert logo here */}
-
                 <Row sm md lg="auto">
-                    <Col sm md lg="auto" className="mx-auto mt-5">
-                        <h4 style={{marginTop:110}}> 
+                    <Col sm md lg="auto" className="mx-auto">
+                        <h5 style={{marginTop: 20}}> 
                             Select customer type:
-                        </h4>
+                        </h5>
                     </Col>
                 </Row>
                 {/* REGULAR OR PRIORITY? */}
@@ -46,7 +43,7 @@ class Buttons extends Component {
                             onClick={() => {this.changeColor(0)}}
                             variant = {this.state.blueButtonId === 0 ? "primary": "secondary"}
                             size="lg"
-                            style={{marginTop: 50}}
+                            style={{marginTop: 20}}
                             className= "mx-5">
                              Regular
                         </Button>{' '}
@@ -54,7 +51,7 @@ class Buttons extends Component {
                             onClick={() => {this.changeColor(1)} }
                             variant = {this.state.blueButtonId === 1 ? "primary": "secondary"}
                             size="lg"
-                            style={{marginTop: 50, width: 110}}
+                            style={{marginTop: 20, width: 110}}
                             className="mx-5">
                                 Priority
                         </Button>{' '}
@@ -65,9 +62,7 @@ class Buttons extends Component {
                 <Row sm md lg="auto">
                     <Col sm md lg="auto" className="m-auto">
                         <Button
-                            //onClick={this.buttonClickAlert}
                             onClick={() =>{this.changeColor(3)}}
-                            //variant="secondary"
                             variant = {this.state.blueButtonId === 3 ? "primary": "secondary"}
                             size="lg"
                             style={{marginRight:5, width:100}}
@@ -75,9 +70,7 @@ class Buttons extends Component {
                                 Dine In
                         </Button>{' '}
                         <Button
-                           // onClick={this.buttonClickAlert}
                             onClick={() =>{this.changeColor(4)}}
-                           // variant="secondary"
                             variant = {this.state.blueButtonId === 4 ? "primary": "secondary"}
                             size="lg"
                             className="m-5">
@@ -88,7 +81,7 @@ class Buttons extends Component {
                 <Row sm md lg="auto">
                     <Col sm md lg="auto" className="m-auto">
                     <a href="https://github.com/CMSC-129A-Projects/MinimaLine"
-                       style={{color: '#D28A7C'}}>
+                       style={{color: '#C59C6C'}}>
                         <FiArrowRightCircle size='50px'/>
                     </a>
                     </Col>
