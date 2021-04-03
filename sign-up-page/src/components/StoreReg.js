@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import logo from "../assets/logo.svg";
+import UploadLogo from "./UploadLogo";
 import Input from "./Input";
 import {Link} from 'react-router-dom';
 import { BiArrowBack } from "react-icons/bi";
@@ -12,22 +12,14 @@ const StoreReg = () => {
         <BiArrowBack size="40px" color="#000000"/>
       </Link>
       <Form>
-        <h3>Store Registration</h3>
-        <h6>Enter the store details associated with this account.</h6>
+        <h2>Store Registration</h2>
         <Input placeholder="Store Name" />
-        <Input placeholder="Branch/Location" />
+        <Input placeholder="Branch" />
         <Input placeholder="Manager" />
+        <p>Store Logo</p>
+        <UploadLogo placeholder="Logo" />
         <button>Submit</button>
       </Form>
-      {/* <div>
-        <Terms>
-          By signing up, I agree to the Privacy Policy <br /> and Terms of
-          Service
-        </Terms>
-        <h4>
-          Already have an account? <span>Sign In</span>
-        </h4>
-      </div> */}
     </Container>
   );
 };
@@ -45,10 +37,11 @@ const Form = styled.form`
     flex-direction: column;
     align-items: center;
     margin-top: 200px;
+    margin-right: 50px;
 
-    h3{
+    h2{
         color: #666666;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
     }
 
     button{
@@ -70,6 +63,16 @@ const Form = styled.form`
             transform: translateY(-3px);
         }
     }
+
+    input{
+      margin: 0.7rem 0;
+    }
+
+    p{
+      margin-top: 5px;
+      color: #757575;
+      font-weight: bold; 
+   }
 `;
 
 const LogoWrapper = styled.div`

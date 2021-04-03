@@ -17,8 +17,8 @@ const Input = ({type, placeholder}) => {
 
 const StyledInput = styled.input`
     width: 80%;
-    max-width: 350px;
-    min-width: 250px;
+    max-width: 400px;
+    min-width: 300px;
     height: 40px;
     border: none;
     margin: 0.5rem 0;
@@ -31,6 +31,7 @@ const StyledInput = styled.input`
     &:hover {
         transform: translateY(-3px);
     }
+
 `;
 
 const Container  = styled.div`
