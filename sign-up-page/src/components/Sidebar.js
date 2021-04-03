@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import logo from "../assets/logo.svg";
 import Input from "./Input";
+import {Link} from 'react-router-dom';
 
 const Sidebar = () => {
   return (
@@ -17,7 +18,9 @@ const Sidebar = () => {
         <Input placeholder="Username" />
         <Input type="email" placeholder="Email" />
         <Input type="password" placeholder="Password" />
-        <button>Sign Up</button>
+        <Link to='/store-reg'>
+          <button>Sign Up</button>
+        </Link>
       </Form>
       <div>
         <Terms>

@@ -2,15 +2,22 @@ import styled from "styled-components";
 import bgImg from '../assets/min.png'
 import Sidebar from "./Sidebar";
 import Main from "./Main";
+import StoreReg from "./StoreReg";
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 const App = () => {
   return (
-    <Container>
+    <Router>
+      <Container>
       <Wrapper>
-        <Sidebar />
+        <Switch>
+          <Route path="/" exact component={Sidebar} />
+          <Route path="/store-reg" exact component={StoreReg} />
+        </Switch>
         <Main />
       </Wrapper>
     </Container>
+    </Router>
   );
 };
 

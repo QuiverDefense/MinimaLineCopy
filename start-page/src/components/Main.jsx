@@ -78,6 +78,7 @@ class Main extends Component {
                             target="_blank">
                             <FiArrowRightCircle size='50px'color='#C59C6C'/>
                         </a>
+                        {/* change this part to a button */}
                         </Col>
                     </Row>
                 </Container>
