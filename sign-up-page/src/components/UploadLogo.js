@@ -30,7 +30,7 @@ const Status = styled.div`
   width: 10px;
   background: #9d9d9d;
   border-radius: 10px;
-  margin-left: 5.7rem;
+  margin-left: 8.8rem;
 
   ${StyledUpload}:focus + & {
     background: #ffa689;

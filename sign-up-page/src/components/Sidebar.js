@@ -18,7 +18,8 @@ const Sidebar = () => {
         <Input placeholder="Username" />
         <Input type="email" placeholder="Email" />
         <Input type="password" placeholder="Password" />
-        <Link to='/store-reg'>
+        <Link to={{
+          pathname: '/store-reg'}}>
           <button >
             Sign Up
           </button>

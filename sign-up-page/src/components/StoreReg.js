@@ -8,9 +8,11 @@ import { BiArrowBack } from "react-icons/bi";
 const StoreReg = () => {
   return (
     <Container>
-      <Link to="/sidebar" className="back">
-        <BiArrowBack size="40px" color="#000000"/>
-      </Link>
+      <ArrowWrapper>
+        <Link to="/sidebar" className="back">
+          <BiArrowBack size="40px" color="black"/>
+        </Link>
+      </ArrowWrapper>
       <Form>
         <h2>Store Registration</h2>
         <Input placeholder="Store Name" />
@@ -24,13 +26,6 @@ const StoreReg = () => {
   );
 };
 
-const Terms = styled.p`
-    padding: 0 1rem;
-    text-align: center;
-    font-size: 10px;
-    color: #808080;
-    font-wegith: 300;
-`;
 const Form = styled.form`
     width: 100%;
     display: flex;
@@ -75,23 +70,13 @@ const Form = styled.form`
    }
 `;
 
-const LogoWrapper = styled.div`
-    img{
-        height: 6rem;
-    }
+const ArrowWrapper = styled.div`
+  margin-top: 50px;
+  margin-left: 30px;
 
-    h3{
-        text-align:center;
-        color: #ff8d8d;
-        font-size: 22px;
-    }
-
-    span{
-        color: #5dc399;
-        font-weight: 300;
-        font-size: 18px;
-    }
-
+  .back:hover{
+    transform: translateY(-3px);
+  }
 `;
 
 const Container = styled.div`
@@ -109,11 +94,6 @@ const Container = styled.div`
       width: 100vw;
       position: absolute;
       padding 0;
-  }
-
-  .back{
-    margin-top: 50px;
-    margin-left: 30px;
   }
 `;
 

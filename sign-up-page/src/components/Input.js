@@ -17,8 +17,8 @@ const Input = ({type, placeholder}) => {
 
 const StyledInput = styled.input`
     width: 80%;
-    max-width: 400px;
-    min-width: 300px;
+    max-width: 450px;
+    min-width: 350px;
     height: 40px;
     border: none;
     margin: 0.5rem 0;
