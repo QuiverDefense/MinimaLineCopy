@@ -4,7 +4,7 @@ import logo from "../assets/logo.svg";
 import Input from "./Input";
 import {Link} from 'react-router-dom';
 
-const Sidebar = () => {
+const SignIn = () => {
   return (
     <Container>
       <LogoWrapper>
@@ -14,26 +14,17 @@ const Sidebar = () => {
         </h3>
       </LogoWrapper>
       <Form>
-        <h3>Sign Up</h3>
+        <h3>Sign In</h3>
         <Input placeholder="Username" />
-        <Input type="email" placeholder="Email" />
         <Input type="password" placeholder="Password" />
-        <Link to='/store-reg'>
-          <button >
-            Sign Up
-          </button>
-        </Link>
-        
+
+        <button>Sign In</button>
       </Form>
       <div>
-        <Terms>
-          By signing up, I agree to the Privacy Policy <br /> and Terms of
-          Service
-        </Terms>
         <h4>
-          Already have an account? 
-            <Link to='/' style={{textDecoration:'none'}}>
-              <span>  Sign In</span>
+         Don't have an account?  
+            <Link to='/sidebar' style={{textDecoration:'none'}}>
+            <span>  Sign Up</span>
             </Link>
         </h4>
       </div>
@@ -130,4 +121,4 @@ const Container = styled.div`
   }
 `;
 
-export default Sidebar;
+export default SignIn;

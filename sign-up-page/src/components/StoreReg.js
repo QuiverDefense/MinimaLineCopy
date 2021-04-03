@@ -8,7 +8,7 @@ import { BiArrowBack } from "react-icons/bi";
 const StoreReg = () => {
   return (
     <Container>
-      <Link to="/" className="back">
+      <Link to="/sidebar" className="back">
         <BiArrowBack size="40px" color="#000000"/>
       </Link>
       <Form>
