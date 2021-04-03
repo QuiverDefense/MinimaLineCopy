@@ -19,8 +19,11 @@ const Sidebar = () => {
         <Input type="email" placeholder="Email" />
         <Input type="password" placeholder="Password" />
         <Link to='/store-reg'>
-          <button>Sign Up</button>
+          <button >
+            Sign Up
+          </button>
         </Link>
+        
       </Form>
       <div>
         <Terms>
@@ -28,7 +31,10 @@ const Sidebar = () => {
           Service
         </Terms>
         <h4>
-          Already have an account? <span>Sign In</span>
+          Already have an account? 
+            <Link to='/' style={{textDecoration:'none'}}>
+              <span>  Sign In</span>
+            </Link>
         </h4>
       </div>
     </Container>

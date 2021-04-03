@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import bgImg from '../assets/min.png'
+import SignIn from "./SignIn";
 import Sidebar from "./Sidebar";
 import Main from "./Main";
 import StoreReg from "./StoreReg";
@@ -11,7 +12,8 @@ const App = () => {
       <Container>
       <Wrapper>
         <Switch>
-          <Route path="/" exact component={Sidebar} />
+          <Route path="/" exact component={SignIn} />
+          <Route path="/sidebar" exact component={Sidebar} />
           <Route path="/store-reg" exact component={StoreReg} />
         </Switch>
         <Main />
