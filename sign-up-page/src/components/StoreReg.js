@@ -10,7 +10,7 @@ const StoreReg = () => {
     <Container>
       <ArrowWrapper>
         <Link to="/sidebar" className="back">
-          <BiArrowBack size="40px" color="black"/>
+          <BiArrowBack size="40px" color="#676666"/>
         </Link>
       </ArrowWrapper>
       <Form>

@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import NewMain from "./NewMain";
+import Main from "./Main";
 
 const App = () => {
   return (
       <Container>
       <Wrapper>
-        <NewMain />
+        <Main />
       </Wrapper>
     </Container>
   );
@@ -21,10 +21,10 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  background: #C59C6C;
-  background-position: center;
-  background-size: cover;
-  bacground-repeat: no-repeat;
+  background: #FAF0E0;
+  // background-position: center;
+  // background-size: cover;
+  // background-repeat: no-repeat;
   width: 100%;
   height: 100%;
   display: flex;

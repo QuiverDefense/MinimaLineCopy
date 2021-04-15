@@ -1,90 +1,68 @@
-import React, { Component } from 'react';
-import './style.css'
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { FiArrowRightCircle } from "react-icons/fi";
-import logo from './MINIMALINE.png';
+import React from 'react';
+import styled from 'styled-components';
+import logo from '../assets/MINIMALINE.png';
+import {FiArrowRightCircle} from 'react-icons/fi';
+// import CustomerInput from './CustomerInput'
 
-class Main extends Component {
-    // constructor(){
-    //     super();
-    //     this.state = {
-    //         bgColor: 'outline-secondary',  
-    //         blueButtonId: null
-    //     }
-    //    this.changeColor = this.changeColor.bind (this);
-    // }
-    // changeColor(id){
-    //     this.setState({
-    //         blueButtonId: this.state.blueButtonId === id ? null : id
-    //     })
-    // }
-    // variant = {this.state.blueButtonId === 0 ? "warning": "outline-secondary"}
-    render() { 
-        return ( 
-            <div className="white-box shadow-lg p-3 mb-5 bg-white rounded">
-                <Container>
-                    {/* LOGO */}
-                    <Row sm md lg="auto">
-                        <Col sm md lg ="auto" className="m-auto">
-                            <img className="logo" src={logo} alt="MinimaLine logo"/>
-                        </Col>
-                    </Row>
+const Main = () => {
+    return (
+      <Container>
+        <Box>
+          <LogoWrapper>
+            <img src={logo} alt="MinimaLine logo"/>
+          </LogoWrapper>
+          {/* <CustomerInput/> */}
+          <NextButtonWrapper>
+            <FiArrowRightCircle size='50px'color='#808080'/>
+          </NextButtonWrapper>
+        </Box>
+      </Container>
+    );
+  };
+  
+  const Container = styled.div`
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  `;
 
-                    {/* REGULAR OR PRIORITY? */}
-                    <Row sm md lg="auto">
-                        <Col sm md lg="auto" className="m-auto">
-                            <Button
-                                variant = "outline-secondary"
-                                size="lg"
-                                style={{width: 120}}
-                                className="mx-3 mb-5">
-                                Regular
-                            </Button>{' '}
-                            <Button
-                                variant = "outline-secondary"
-                                size="lg"
-                                style={{width: 120}}
-                                className="mx-3 mb-5">
-                                    Priority
-                            </Button>{' '}
-                        </Col>
-                    </Row>
-                    
-                    {/* DINE IN OR TAKE OUT? */}
-                    <Row sm md lg="auto">
-                        <Col sm md lg="auto" className="m-auto">
-                            <Button
-                                variant = "outline-secondary"
-                                size="lg"
-                                style={{width: 120}}
-                                className="mx-3 mb-5">
-                                    Dine In
-                            </Button>{' '}
-                            <Button
-                                variant = "outline-secondary"
-                                size="lg"
-                                style={{width: 120}}
-                                className="mx-3 mb-5">
-                                    Take Out
-                            </Button>{' '}
-                        </Col>
-                    </Row>
-                    <Row sm md lg="auto">
-                        <Col sm md lg="auto" className="m-auto">
-                        <a href="https://github.com/CMSC-129A-Projects/MinimaLine"
-                            target="_blank">
-                            <FiArrowRightCircle size='50px'color='#C59C6C'/>
-                        </a>
-                        {/* change this part to a button */}
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
-        );
+  const Box = styled.div`
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 10px 2px #858585;
+    width: 450px;
+    height: 550px;
+
+    @media (max-width: 900px) {
+        width: 350px;
     }
-}
- 
-export default Main;
+  `;
+
+  const LogoWrapper = styled.div`
+    width: 450px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+
+    img{
+      margin: 30px;
+    }
+
+    @media (max-width: 900px) {
+      width: 350px;
+    }
+  `;
+  
+  const NextButtonWrapper = styled.div`
+    width: 450px;
+    height: 300px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+
+    @media (max-width: 900px) {
+      width: 350px;
+    }
+  `;
+  export default Main;

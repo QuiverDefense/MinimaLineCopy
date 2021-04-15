@@ -31,7 +31,6 @@ const StyledInput = styled.input`
     &:hover {
         transform: translateY(-3px);
     }
-
 `;
 
 const Container  = styled.div`
