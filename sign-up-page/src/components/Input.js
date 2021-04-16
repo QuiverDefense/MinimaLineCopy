@@ -26,7 +26,7 @@ const StyledInput = styled.input`
     box-shadow: 0px 14px 9px -15px rbga(0,0,0,0.25);
     border-radius: 8px;
     padding: 0 1rem;
-    trasition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
 
     &:hover {
         transform: translateY(-3px);

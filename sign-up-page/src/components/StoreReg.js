@@ -9,7 +9,7 @@ const StoreReg = () => {
   return (
     <Container>
       <ArrowWrapper>
-        <Link to="/sidebar" className="back">
+        <Link to="/sidebar">
           <BiArrowBack size="40px" color="#676666"/>
         </Link>
       </ArrowWrapper>
@@ -73,10 +73,6 @@ const Form = styled.form`
 const ArrowWrapper = styled.div`
   margin-top: 50px;
   margin-left: 30px;
-
-  .back:hover{
-    transform: translateY(-3px);
-  }
 `;
 
 const Container = styled.div`
