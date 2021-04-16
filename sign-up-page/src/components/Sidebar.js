@@ -28,8 +28,10 @@ const Sidebar = () => {
       </Form>
       <div>
         <Terms>
-          By signing up, I agree to the Privacy Policy <br /> and Terms of
-          Service
+          By signing up, I agree to the
+            <Link to='/terms' style={{textDecoration:'none'}}>
+              <span> Privacy Policy <br /> and Terms of Service</span>
+            </Link>
         </Terms>
         <h4>
           Already have an account? 

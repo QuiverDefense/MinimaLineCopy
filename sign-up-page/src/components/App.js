@@ -4,6 +4,7 @@ import SignIn from "./SignIn";
 import Sidebar from "./Sidebar";
 import Main from "./Main";
 import StoreReg from "./StoreReg";
+import Terms from "./Terms";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={SignIn} />
           <Route path="/sidebar" exact component={Sidebar} />
+          <Route path="/terms" exact component={Terms} />
           <Route path="/store-reg" exact component={StoreReg} />
         </Switch>
         <Main />
