@@ -128,6 +128,7 @@ const Container = styled.div`
   justify-content: space-evenly;
   // align-items: center;
   // padding: 0 2rem;
+  overflow: auto; 
 
   @media (max-width: 900px){
       width: 100vw;
