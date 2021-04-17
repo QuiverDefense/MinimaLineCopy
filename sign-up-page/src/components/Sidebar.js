@@ -10,7 +10,7 @@ const Sidebar = () => {
       <LogoWrapper>
         <img src={logo} alt="" />
         <h3>
-          Minima <span>Line</span>
+          Minima<span>Line</span>
         </h3>
       </LogoWrapper>
       <Form>
@@ -20,7 +20,7 @@ const Sidebar = () => {
         <Input type="password" placeholder="Password" />
         <Link to={{
           pathname: '/store-reg'}}>
-          <button >
+          <button>
             Sign Up
           </button>
         </Link>
@@ -50,7 +50,7 @@ const Terms = styled.p`
     text-align: center;
     font-size: 10px;
     color: #808080;
-    font-wegith: 300;
+    font-weight: 300;
 `;
 const Form = styled.form`
     width: 100%;
@@ -117,7 +117,7 @@ const Container = styled.div`
   @media (max-width: 900px){
       width: 100vw;
       position: absolute;
-      padding 0;
+      padding: 0;
   }
 
   h4 {

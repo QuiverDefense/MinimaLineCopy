@@ -39,7 +39,7 @@ const Wrapper = styled.div`
   background-image: url(${bgImg});
   background-position: center;
   background-size: cover;
-  bacground-repeat: no-repeat;
+  background-repeat: no-repeat;
   width: 100%;
   height: 100%;
   display: flex;
