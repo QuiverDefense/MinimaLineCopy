@@ -21,10 +21,8 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  background: #FAF0E0;
-  // background-position: center;
-  // background-size: cover;
-  // background-repeat: no-repeat;
+  background: rgb(255,140,140);
+  background: linear-gradient(63deg, rgba(255,140,140,1) 0%, rgba(250,240,224,1) 60%, rgba(113,237,184,1) 100%);
   width: 100%;
   height: 100%;
   display: flex;

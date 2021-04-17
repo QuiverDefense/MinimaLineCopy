@@ -57,6 +57,7 @@ const StyledButtons = styled.input`
         background-color: ${props => props.selected ? '#FF8C8C' : 'transparent'};
         border: 2px solid #FF8C8C;
         color: ${props => props.selected ? 'white' : '#FF8C8C'};
+        transform: translateY(3px);
     }
 
     @media (max-width: 900px) {

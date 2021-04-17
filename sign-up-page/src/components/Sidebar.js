@@ -10,7 +10,7 @@ const Sidebar = () => {
       <LogoWrapper>
         <img src={logo} alt="" />
         <h3>
-          Minima <span>Line</span>
+          Minima<span>Line</span>
         </h3>
       </LogoWrapper>
       <Form>
