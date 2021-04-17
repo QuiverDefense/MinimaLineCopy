@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import bgImg from '../assets/min.png'
+import bgImg from '../assets/food.png'
 import SignIn from "./SignIn";
 import Sidebar from "./Sidebar";
 import Main from "./Main";
@@ -26,8 +26,9 @@ const App = () => {
 };
 
 const Container = styled.div`
-  background: #eefcff;
+  background: #fd8d8c;
   position: absolute;
+  overflow: auto;
   top: 0;
   left: 0;
   bottom: 0;
