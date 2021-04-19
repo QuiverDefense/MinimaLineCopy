@@ -16,8 +16,6 @@
 
     <?php endforeach; ?>
 
-    <p><a href="/store/create">Register a store</a></p>
-
 <?php else : ?>
 
     <h3>No Stores</h3>
@@ -25,3 +23,5 @@
     <p>Unable to find any stores for you.</p>
 
 <?php endif ?>
+
+<p><a href="/store/create">Register a store</a></p>
