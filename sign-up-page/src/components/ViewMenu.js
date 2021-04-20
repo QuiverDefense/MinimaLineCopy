@@ -105,7 +105,7 @@ function ViewMenu () {
 const Product = (props) => {
     const {product_img, product_name, product_price} = props.product;
     return (
-        <article className='product'>
+        <article className='product_box'>
             <h3><img className='image' src={product_img} alt="" /></h3>
             <h1>{product_name}</h1>
             <h2>{product_price}</h2>
@@ -121,51 +121,57 @@ const ArrowWrapper = styled.div`
 const Container = styled.div`
   background: #eefcff;
   position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
 `;
 
 const ProdGrid = styled.div`
     .productlist {
-        width:90vw;
-        max-width: 1170px;
+        position: absolute;
+        width: 70%;
+        height: 100%;
+        display: flex;
         margin: 5 rem auto;
         display: grid;
         gap: 2rem;
+
+
     }
     @media screen and (min-width: 768px) {
         .productlist {
-            grid-template-columns: repeat(4, 1fr);
+            // grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(177px, 1fr));
         }
     }
-    .product{
+    .product_box{
         background: #fff;
         border-radius: 1rem;
         padding: 1rem 2rem;
+
+        transition: all 0.2s ease-in;
+
+        &:hover {
+            transform: translateY(-4px);
+        }
     }
     
-    .product h1{
+    .product_box h1{
         margin-top: 0.5rem;
     }
-    .product h2{
+    .product_box h2{
         color: #617d98;
         font-size: 0.9rem;
         margin-top: 0.25;
     }
 
     .image{
-        // height: auto;
-        // max-height: 250px;
-        // width: auto;
-        // max-width: 250px;
-        height: 200px;
-        width: 200px;
+        height: 150px;
+        width: 150px;
+        resizeMode: 'contain'
     }
 
 `;
-
 
 const Wrapper = styled.div`
   background: rgb(255,140,140);
@@ -174,6 +180,5 @@ const Wrapper = styled.div`
   height: 100%;
   display: flex;
 `;
-
 
 export default ViewMenu;
