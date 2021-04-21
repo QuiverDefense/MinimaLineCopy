@@ -4,6 +4,7 @@ import burger_img from "../assets/burger.png";
 import fries_img from "../assets/fries.png";
 import {Link} from 'react-router-dom';
 import { BiArrowBack } from "react-icons/bi";
+import Categ from "./Categ";
 
 const products = [
     {
@@ -87,7 +88,9 @@ function ViewMenu () {
                 <BiArrowBack size="40px" color="#676666"/>
                 </Link>
             </ArrowWrapper>
+            
             <ProdGrid>
+            <Categ/>    
                 <section className='productlist'> 
                     {products.map((product)=>{
                         const {product_img, product_name, product_price} = product;
@@ -130,7 +133,8 @@ const ProdGrid = styled.div`
     .productlist {
         position: absolute;
         width: 70%;
-        height: 100%;
+        margin-top: 140px;
+        //height: 100%;
         display: flex;
         margin: 5 rem auto;
         display: grid;
