@@ -3,10 +3,7 @@ import styled from "styled-components";
 import ViewMenu from "./ViewMenu";
 
 class ProdDesc extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {  }
-    // }
+    
     render() { 
         return ( 
             <Container>

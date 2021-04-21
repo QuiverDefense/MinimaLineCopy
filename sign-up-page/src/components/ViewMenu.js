@@ -134,28 +134,21 @@ class ViewMenu extends Component {
                         </ArrowWrapper>
                         <Categ/> 
                     </Nav>
-
-                <ProdGrid>
-                    <section className='productlist'> 
-                        {products.map((product,index)=>{
-                            // const {product_img, product_name, product_price} = this.state.productInfo;
-                            // this.state.productInfo = {product.product_img,product;
-                            return (
-                                <div
-                                    onClick={()=>this.changeColor(index)}
-                                    className={(this.state.clicked && (this.state.current===index)) ? 'clicked' : 'unclicked'}>
-                                    <Product key={index} product={product}></Product>
-                                
-                                </div>
-                    
-                            )
-                        })}
-
-                        {this.state.clicked ? <ProdDesc {...products[this.state.current]}/> : null }
-                    </section>
-                    
-                </ProdGrid>
-            </Wrapper>
+                    <ProdGrid>
+                        <section className='productlist'> 
+                            {products.map((product,index)=>{
+                                return (
+                                    <div
+                                        onClick={()=>this.changeColor(index)}
+                                        className={(this.state.clicked && (this.state.current===index)) ? 'clicked' : 'unclicked'}>
+                                        <Product key={index} product={product}></Product>
+                                    </div>
+                                )
+                            })}
+                            {this.state.clicked ? <ProdDesc {...products[this.state.current]}/> : null }
+                        </section>
+                    </ProdGrid>
+                </Wrapper>
             </Container>
          );
     }
@@ -169,6 +162,7 @@ const Nav = styled.div`
   width: 100%;
   align-items: center;
   background: white;
+  z-index: 1;
 `;
 
 const ArrowWrapper = styled.div`
@@ -180,8 +174,6 @@ const ArrowWrapper = styled.div`
 
 const Container = styled.div`
   background: #faf0e0;
-  /* background: linear-gradient(63deg, rgba(255,140,140,1) 0%, rgba(250,240,224,1) 60%, rgba(113,237,184,1) 100%);
-  background-size: cover; */
   position: absolute;
   width: 100%;
   height: 100%;
@@ -192,12 +184,13 @@ const ProdGrid = styled.div`
     .productlist {
         position: absolute;
         width: 70%;
-        margin-top: 140px;
+        margin-top: 160px;
         //height: 100%;
         display: flex;
         margin-left: 50px;
         display: grid;
         gap: 2rem;
+        z-index: 0;
 
         @media screen and (min-width: 768px) {
             grid-template-columns: repeat(auto-fit, minmax(177px, 1fr));
@@ -266,7 +259,6 @@ const ProdGrid = styled.div`
     .image{
         height: 150px;
         width: 150px;
-        resizeMode: 'contain';
     }
 
 `;
