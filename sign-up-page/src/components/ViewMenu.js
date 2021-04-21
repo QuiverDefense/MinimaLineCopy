@@ -123,6 +123,8 @@ const ArrowWrapper = styled.div`
 
 const Container = styled.div`
   background: #eefcff;
+  /* background: linear-gradient(63deg, rgba(255,140,140,1) 0%, rgba(250,240,224,1) 60%, rgba(113,237,184,1) 100%);
+  background-size: cover; */
   position: absolute;
   width: 100%;
   height: 100%;
