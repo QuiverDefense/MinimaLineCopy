@@ -28,7 +28,7 @@ const App = () => {
 };
 
 const Container = styled.div`
-  background: #fd8d8c;
+  background: #faf0e0;
   position: absolute;
   overflow: auto;
   top: 0;
@@ -39,6 +39,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   background-image: url(${bgImg});
+  background-color: #fd8d8c; 
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

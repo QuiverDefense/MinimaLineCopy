@@ -32,14 +32,13 @@ const SignIn = () => {
   );
 };
 
-
-const Terms = styled.p`
-    padding: 0 1rem;
-    text-align: center;
-    font-size: 10px;
-    color: #808080;
-    font-wegith: 300;
-`;
+// const Terms = styled.p`
+//     padding: 0 1rem;
+//     text-align: center;
+//     font-size: 10px;
+//     color: #808080;
+//     font-weight: 300;
+// `;
 const Form = styled.form`
     width: 100%;
     display: flex;
