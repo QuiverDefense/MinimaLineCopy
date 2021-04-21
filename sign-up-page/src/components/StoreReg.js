@@ -20,7 +20,11 @@ const StoreReg = () => {
         <Input placeholder="Manager" />
         <p>Store Logo</p>
         <UploadLogo placeholder="Logo" />
-        <button>Submit</button>
+        <Link to={{pathname: '/view-menu'}}>
+          <button>
+            Submit
+          </button>
+        </Link>
       </Form>
     </Container>
   );
