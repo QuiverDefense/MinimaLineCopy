@@ -9,8 +9,8 @@ const StoreReg = () => {
   return (
     <Container>
       <ArrowWrapper>
-        <Link to="/sidebar" className="back">
-          <BiArrowBack size="40px" color="black"/>
+        <Link to="/sidebar">
+          <BiArrowBack size="40px" color="#676666"/>
         </Link>
       </ArrowWrapper>
       <Form>
@@ -20,7 +20,11 @@ const StoreReg = () => {
         <Input placeholder="Manager" />
         <p>Store Logo</p>
         <UploadLogo placeholder="Logo" />
-        <button>Submit</button>
+        <Link to={{pathname: '/view-menu'}}>
+          <button>
+            Submit
+          </button>
+        </Link>
       </Form>
     </Container>
   );
@@ -73,10 +77,6 @@ const Form = styled.form`
 const ArrowWrapper = styled.div`
   margin-top: 50px;
   margin-left: 30px;
-
-  .back:hover{
-    transform: translateY(-3px);
-  }
 `;
 
 const Container = styled.div`
