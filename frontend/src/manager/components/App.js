@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import bgImg from '../assets/food.png'
+import bgImg from '../../assets/food.png'
 import SignIn from "./SignIn";
 import Sidebar from "./Sidebar";
 import Main from "./Main";

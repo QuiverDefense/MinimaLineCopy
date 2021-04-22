@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import logo from "../assets/logo.svg";
+import logo from "../../assets/logo.svg";
 import Input from "./Input";
 import {Link} from 'react-router-dom';
 
