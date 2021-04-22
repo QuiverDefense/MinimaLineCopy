@@ -91,23 +91,37 @@ const LogoWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+<<<<<<< HEAD
   padding-top: 10px;
+=======
+>>>>>>> 86f0ee596d11d49bcad1447ef7c3304a9d858776
 
   img{
     margin: 20px 35px 0px;
     width: 50%;
     height: 50%;
+<<<<<<< HEAD
     padding-bottom: 0px;
+=======
+>>>>>>> 86f0ee596d11d49bcad1447ef7c3304a9d858776
   }
 
   h3{
     text-align:center;
+<<<<<<< HEAD
     color: #f9c91e;
+=======
+    color: #ff8d8d;
+>>>>>>> 86f0ee596d11d49bcad1447ef7c3304a9d858776
     font-size: 22px;
   }
 
   span{
+<<<<<<< HEAD
     color: black;
+=======
+    color: #5dc399;
+>>>>>>> 86f0ee596d11d49bcad1447ef7c3304a9d858776
     font-weight: 300;
     font-size: 18px;
   }

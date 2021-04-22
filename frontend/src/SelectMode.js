@@ -19,7 +19,11 @@ class SelectMode extends Component {
   }
   render() { 
     return ( 
+<<<<<<< HEAD
         <>
+=======
+        <div>
+>>>>>>> 86f0ee596d11d49bcad1447ef7c3304a9d858776
           <Link to='/sign-in'>
             <button onClick={()=>this.renderView(1)}>Manager</button>
           </Link>
@@ -29,9 +33,24 @@ class SelectMode extends Component {
           </Link>
           {this.state.clicked===1 ? <Manager.App/> : null}
           {this.state.clicked===3 ? <Customer.App/> : null}
+<<<<<<< HEAD
         </>
      );
   }
 }
+=======
+        </div>
+      
+     );
+  }
+}
+
+// const Container = styled.div`
+//   button{
+//     display: flex;
+//     flex-direction: column;
+//   }
+// `;
+>>>>>>> 86f0ee596d11d49bcad1447ef7c3304a9d858776
  
 export default SelectMode;

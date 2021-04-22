@@ -45,9 +45,19 @@ class Account extends Controller
     	$model = new account_model();
 
     	if ($this->request->getMethod() === 'post' && $this->validate([
-            'username' => 'required|min_length[3]|max_length[255]',
-            'email' => 'required',
+            'username' => [
+				'rules' => 'required|min_length[3]|max_length[255]|is_unique[account_info.username]',
+				'errors' => ['is_unique' => "The username already in use."]
+				],
+            'email' => [
+				'rules' => 'required|valid_email|is_unique[account_info.email]',
+				'errors' => ['is_unique' => "The email address is already in use."]
+				],
 			'password'  => 'required',
+			'pass_confirm' => [
+				'label' => 'confirm password',
+				'rules' => 'required|matches[password]'
+				]
         	]))
     	{
         $model->save([

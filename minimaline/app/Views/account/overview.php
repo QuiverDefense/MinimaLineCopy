@@ -14,12 +14,12 @@
 
     <?php endforeach; ?>
 
-    <p><a href="/account/signup">Sign up</a></p>
-
 <?php else : ?>
 
     <h3>No Accounts</h3>
-
-    <p>Unable to find any user accounts for you.</p>
+    
+    <p>Unable to find any accounts for you</p>
 
 <?php endif ?>
+
+<p><a href="/account/signup">Sign up</a></p>

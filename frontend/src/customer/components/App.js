@@ -12,7 +12,11 @@ const App = () => {
 };
 
 const Container = styled.div`
+<<<<<<< HEAD
   background: white;
+=======
+  background: #eefcff;
+>>>>>>> 86f0ee596d11d49bcad1447ef7c3304a9d858776
   position: absolute;
   top: 0;
   left: 0;
@@ -21,8 +25,13 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
+<<<<<<< HEAD
   background: #faf0e0;
   /* background: linear-gradient(63deg, rgba(255,140,140,1) 0%, rgba(250,240,224,1) 60%, rgba(113,237,184,1) 100%); */
+=======
+  background: rgb(255,140,140);
+  background: linear-gradient(63deg, rgba(255,140,140,1) 0%, rgba(250,240,224,1) 60%, rgba(113,237,184,1) 100%);
+>>>>>>> 86f0ee596d11d49bcad1447ef7c3304a9d858776
   width: 100%;
   height: 100%;
   display: flex;

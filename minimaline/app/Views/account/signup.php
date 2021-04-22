@@ -12,7 +12,10 @@
     <input type="input" name="email" /><br />
 
     <label for="manager_name">Password</label>
-    <input type="input" name="password" /><br />
+    <input type="password" name="password" /><br />
+
+    <label>Confirm Password</label>
+    <input type="password" name="pass_confirm" /><br />
 
     <input type="submit" name="submit" value="Register" />
 </form>
