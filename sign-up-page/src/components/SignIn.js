@@ -32,14 +32,13 @@ const SignIn = () => {
   );
 };
 
-
-const Terms = styled.p`
-    padding: 0 1rem;
-    text-align: center;
-    font-size: 10px;
-    color: #808080;
-    font-wegith: 300;
-`;
+// const Terms = styled.p`
+//     padding: 0 1rem;
+//     text-align: center;
+//     font-size: 10px;
+//     color: #808080;
+//     font-weight: 300;
+// `;
 const Form = styled.form`
     width: 100%;
     display: flex;
@@ -105,7 +104,7 @@ const Container = styled.div`
   @media (max-width: 900px){
       width: 100vw;
       position: absolute;
-      padding 0;
+      padding: 0;
   }
 
   h4 {
