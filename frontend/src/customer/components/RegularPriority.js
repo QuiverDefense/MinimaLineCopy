@@ -48,7 +48,6 @@ const StyledButtons = styled.input`
     margin: 0px 30px 20px;
     padding: 10px 15px;
     width: 120px;
-<<<<<<< HEAD
     background-color: ${props => props.selected ? '#f9c91e' : 'transparent'};
     border-radius: 8px;
     border: ${props => props.selected ? '2px solid #f9c91e' : '2px solid #676666'};
@@ -59,18 +58,6 @@ const StyledButtons = styled.input`
         background-color: ${props => props.selected ? '#f9c91e' : 'transparent'};
         border: 2px solid #f9c91e;
         color: ${props => props.selected ? 'black' : '#f9c91e'};
-=======
-    background-color: ${props => props.selected ? '#FF8C8C' : 'transparent'};
-    border-radius: 8px;
-    border: ${props => props.selected ? '2px solid #FF8C8C' : '2px solid #676666'};
-    font-size: 20px;
-    color: ${props => props.selected ? 'white' : '#676666'};;
-
-    :hover{
-        background-color: ${props => props.selected ? '#FF8C8C' : 'transparent'};
-        border: 2px solid #FF8C8C;
-        color: ${props => props.selected ? 'white' : '#FF8C8C'};
->>>>>>> 86f0ee596d11d49bcad1447ef7c3304a9d858776
         transform: translateY(3px);
     }
 
