@@ -35,6 +35,8 @@ $routes->setAutoRoute(true);
 
 $routes->get('/', 'Pages::index');
 
+$routes->resource('test');
+
 $routes->match(['get', 'post'], 'store/create', 'Store_registration::create');
 $routes->get('store/(:segment)', 'Store_registration::view/$1');
 $routes->get('store', 'Store_registration::index');
@@ -44,6 +46,8 @@ $routes->get('account/(:segment)', 'Account::view/$1');
 $routes->get('account', 'Account::index');
 
 $routes->get('(:any)', 'Pages::view/$1');
+
+
 
 
 /*
