@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import bgImg from '../../assets/food.png'
 import SignIn from "./SignIn";
-import Sidebar from "./Sidebar";
+import SignUp from "./SignUp";
 import Main from "./Main";
 import StoreReg from "./StoreReg";
 import Terms from "./Terms";
@@ -15,7 +15,7 @@ const App = () => {
       <Wrapper>
         <Switch>
           <Route path="/sign-in" exact component={SignIn} />
-          <Route path="/sign-up" exact component={Sidebar} />
+          <Route path="/sign-up" exact component={SignUp} />
           <Route path="/terms" exact component={Terms} />
           <Route path="/store-reg" exact component={StoreReg} />
           <Route path="/view-menu" exact component={ViewMenu} />

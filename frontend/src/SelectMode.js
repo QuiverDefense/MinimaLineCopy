@@ -19,7 +19,7 @@ class SelectMode extends Component {
   }
   render() { 
     return ( 
-        <div>
+        <>
           <Link to='/sign-in'>
             <button onClick={()=>this.renderView(1)}>Manager</button>
           </Link>
@@ -29,17 +29,9 @@ class SelectMode extends Component {
           </Link>
           {this.state.clicked===1 ? <Manager.App/> : null}
           {this.state.clicked===3 ? <Customer.App/> : null}
-        </div>
-      
+        </>
      );
   }
 }
-
-// const Container = styled.div`
-//   button{
-//     display: flex;
-//     flex-direction: column;
-//   }
-// `;
  
 export default SelectMode;
