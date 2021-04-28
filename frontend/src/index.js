@@ -10,15 +10,12 @@ import * as Customer from './customer/components';
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-        <div>
           <Switch>
             <Route path="/" exact component={SelectMode} />
             <Route path="/sign-in" exact component={Manager.App} />
             <Route path="/c" exact component={Customer.App} />
           </Switch>
-        </div>
       </Router>
-    {/* <SelectMode /> */}
   </React.StrictMode>,
   document.getElementById('root')
 );

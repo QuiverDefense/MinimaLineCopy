@@ -14,11 +14,13 @@ const SignIn = () => {
         </h3>
       </LogoWrapper>
       <Form>
-        <h3>Sign In</h3>
-        <Input placeholder="Username" />
-        <Input type="password" placeholder="Password" />
+        <form>
+          <h3>Sign In</h3>
+          <Input placeholder="Username" name="username" />
+          <Input type="password" placeholder="Password" name="password" />
 
-        <button>Sign In</button>
+          <button type="submit"> Sign In </button>
+        </form>
       </Form>
       <div>
         <h4>

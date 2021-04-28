@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from "styled-components";
 
-const UploadLogo = ({type, placeholder}) => {
+const UploadLogo = ({placeholder, name}) => {
     return (
       <Container>
         <StyledUpload
           placeholder={placeholder && placeholder}
           type="file"
+          name={name}
           required
           autocomplete="off"
         />
