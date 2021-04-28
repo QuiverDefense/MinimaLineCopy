@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 class ProdDesc extends Component {
-    
+
     render() { 
         return ( 
             <Container>
                 <img src={this.props.product_img}/>
                 <h1>{this.props.product_name}</h1>
                 <h3>{this.props.product_price}</h3>
-                <h3>{this.props.availability ? "Available" : "Not Available"}</h3>
+                <h3>{this.props.product_availability ? "Available" : "Not Available"}</h3>
             </Container>
          );
     }

@@ -1,98 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import burger_img from "../../assets/burger.png";
-import fries_img from "../../assets/fries.png";
 import {Link} from 'react-router-dom';
 import { BiArrowBack } from "react-icons/bi";
 import Categ from "./Categ";
 import ProdDesc from "./ProdDesc";
-
-const products = [
-    {
-        product_img: burger_img,
-        product_name: 'McBurger',
-        product_price: 'Php 200.00',
-        availability: true
-    },
-    {
-        product_img: fries_img,
-        product_name: 'McFries',
-        product_price: 'Php 50.00',
-        availability: true
-    },
-    {
-        product_img: burger_img,
-        product_name: 'McNugget',
-        product_price: 'Php 100.00',
-        availability: true
-    },
-    {
-        product_img: fries_img,
-        product_name: 'McBurger',
-        product_price: 'Php 200.00',
-        availability: true
-    },
-    {
-        product_img: burger_img,
-        product_name: 'McFries',
-        product_price: 'Php 50.00',
-        availability: true
-    },
-    {
-        product_img: fries_img,
-        product_name: 'McNugget',
-        product_price: 'Php 100.00',
-        availability: true
-    },
-    {
-        product_img: burger_img,
-        product_name: 'McNugget',
-        product_price: 'Php 100.00',
-        availability: false
-    },
-    {
-        product_img: fries_img,
-        product_name: 'McBurger',
-        product_price: 'Php 200.00',
-        availability: false
-    },
-    {
-        product_img: burger_img,
-        product_name: 'McFries',
-        product_price: 'Php 50.00',
-        availability: false
-    },
-    {
-        product_img: fries_img,
-        product_name: 'McNugget',
-        product_price: 'Php 100.00',
-        availability: false
-    },
-    {
-        product_img: burger_img,
-        product_name: 'McNugget',
-        product_price: 'Php 100.00',
-        availability: false
-    },
-    {
-        product_img: fries_img,
-        product_name: 'McBurger',
-        product_price: 'Php 200.00',
-        availability: false
-    },
-    {
-        product_img: burger_img,
-        product_name: 'McFries',
-        product_price: 'Php 50.00',
-        availability: false
-    },
-    {
-        product_img: fries_img,
-        product_name: 'McNugget',
-        product_price: 'Php 100.00',
-        availability: false
-    },
-];
+import Products from "./Products";
 
 class ViewMenu extends Component {
     constructor(){
@@ -111,14 +23,16 @@ class ViewMenu extends Component {
                 clicked: true
             })
     }
+
     render() { 
         const Product = (props) => {
-            const {product_img, product_name, product_price} = props.product;
+            const {product_img, product_name, product_price, product_availability} = props.product;
             return (
                 <article>
                     <h3><img className='image' src={product_img} alt="" /></h3>
                     <h1>{product_name}</h1>
                     <h2>{product_price}</h2>
+                    <h2>{product_availability ? "Available" : "Not Available"}</h2>
                 </article> 
             );
         };
@@ -134,9 +48,12 @@ class ViewMenu extends Component {
                         </ArrowWrapper>
                         <Categ/> 
                     </Nav>
+                    <EditButton>
+                        <h2>Edit Menu</h2>
+                    </EditButton>
                     <ProdGrid>
                         <section className='productlist'> 
-                            {products.map((product,index)=>{
+                        {Products.map((product,index)=>{
                                 return (
                                     <div
                                         onClick={()=>this.changeColor(index)}
@@ -145,7 +62,7 @@ class ViewMenu extends Component {
                                     </div>
                                 )
                             })}
-                            {this.state.clicked ? <ProdDesc {...products[this.state.current]}/> : null }
+                            {this.state.clicked ? <ProdDesc {...Products[this.state.current]}/> : null }
                         </section>
                     </ProdGrid>
                 </Wrapper>
@@ -153,13 +70,45 @@ class ViewMenu extends Component {
          );
     }
 }
+
+const EditButton = styled.div`
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    height: 120px;
+    overflow-x: auto;
+    position: fixed;
+    width: 12%;
+    align-items: center;
+    background: white;
+    z-index: 1;
+
+    h2{ 
+        color: black;
+        padding: 0rem 1rem;
+        margin: 0.1px 10px 0.1px 10px;
+        min-width: 110px;
+        height: 70px;
+        line-height: 70px;
+        text-align: center;
+        background: #F9C91E;
+        border-radius: 1rem;
+        transition: all 0.1s ease-in;
+        /* box-shadow: 0px 0px 10px 2px #858585; */
+
+        &:hover {
+            transform: translateY(-4px);
+        }
+    }
+`
+
 const Nav = styled.div`
   display: flex;
   flex-direction: row;
   height: 120px;
   overflow-x: auto;
   position: fixed;
-  width: 100%;
+  width: 88%;
   align-items: center;
   background: white;
   z-index: 1;
