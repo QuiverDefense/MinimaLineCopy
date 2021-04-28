@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from "styled-components";
 
-const UploadLogo = ({type, placeholder}) => {
+const UploadLogo = ({placeholder}) => {
     return (
       <Container>
         <StyledUpload

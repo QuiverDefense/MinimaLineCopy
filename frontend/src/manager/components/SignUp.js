@@ -4,7 +4,7 @@ import logo from "../../assets/logo.svg";
 import Input from "./Input";
 import {Link} from 'react-router-dom';
 
-const Sidebar = () => {
+const SignUp = () => {
   return (
     <Container>
       <LogoWrapper>
@@ -133,4 +133,4 @@ const Container = styled.div`
   }
 `;
 
-export default Sidebar;
+export default SignUp;

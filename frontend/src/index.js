@@ -10,22 +10,12 @@ import * as Customer from './customer/components';
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-<<<<<<< HEAD
-=======
-        <div>
->>>>>>> 86f0ee596d11d49bcad1447ef7c3304a9d858776
           <Switch>
             <Route path="/" exact component={SelectMode} />
             <Route path="/sign-in" exact component={Manager.App} />
             <Route path="/c" exact component={Customer.App} />
           </Switch>
-<<<<<<< HEAD
       </Router>
-=======
-        </div>
-      </Router>
-    {/* <SelectMode /> */}
->>>>>>> 86f0ee596d11d49bcad1447ef7c3304a9d858776
   </React.StrictMode>,
   document.getElementById('root')
 );
