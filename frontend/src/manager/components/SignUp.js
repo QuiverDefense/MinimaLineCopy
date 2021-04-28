@@ -15,15 +15,15 @@ const SignUp = () => {
       </LogoWrapper>
       <Form>
         <h3>Sign Up</h3>
-        <Input placeholder="Username" />
-        <Input type="email" placeholder="Email" />
-        <Input type="password" placeholder="Password" />
-        <Link to={{
-          pathname: '/store-reg'}}>
-          <button>
-            Sign Up
-          </button>
-        </Link>
+        <form>
+          <Input placeholder="Username" name="username" />
+          <Input type="email" placeholder="Email" name="email" />
+          <Input type="password" placeholder="Password" name="password"/>
+          <Link to={{
+            pathname: '/store-reg'}}>
+            <button type="submit"> Sign Up </button>
+          </Link>
+        </form>
         
       </Form>
       <div>

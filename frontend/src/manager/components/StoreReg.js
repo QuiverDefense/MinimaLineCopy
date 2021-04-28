@@ -14,17 +14,17 @@ const StoreReg = () => {
         </Link>
       </ArrowWrapper>
       <Form>
-        <h2>Store Registration</h2>
-        <Input placeholder="Store Name" />
-        <Input placeholder="Branch" />
-        <Input placeholder="Manager" />
-        <p>Store Logo</p>
-        <UploadLogo placeholder="Logo" />
-        <Link to={{pathname: '/view-menu'}}>
-          <button>
-            Submit
-          </button>
-        </Link>
+        <form>
+          <h2>Store Registration</h2>
+          <Input placeholder="Store Name" name="store-name" />
+          <Input placeholder="Branch" name="branch" />
+          <Input placeholder="Manager" name="manager" />
+          <p>Store Logo</p>
+          <UploadLogo placeholder="Logo" name="store-logo" />
+          <Link to={{pathname: '/view-menu'}}>
+            <button type="submit"> Submit </button>
+          </Link>
+        </form>
       </Form>
     </Container>
   );
