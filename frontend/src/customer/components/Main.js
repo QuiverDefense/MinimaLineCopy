@@ -64,9 +64,10 @@ const Container = styled.div`
 `;
 const Box = styled.div`
   background-color: rgba(255, 255, 255, 1);
-  box-shadow: 0px 0px 10px 2px #858585;
   width: 450px;
   height: 550px;
+  border-radius: 1rem;
+  box-shadow: 0px 5px 10px -2px #858585;
 
   @media (max-width: 900px) {
     width: 350px;
@@ -91,21 +92,23 @@ const LogoWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding-top: 10px;
 
   img{
     margin: 20px 35px 0px;
     width: 50%;
     height: 50%;
+    padding-bottom: 0px;
   }
 
   h3{
     text-align:center;
-    color: #ff8d8d;
+    color: #f9c91e;
     font-size: 22px;
   }
 
   span{
-    color: #5dc399;
+    color: black;
     font-weight: 300;
     font-size: 18px;
   }

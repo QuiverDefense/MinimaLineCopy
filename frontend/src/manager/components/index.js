@@ -3,7 +3,7 @@ export {default as Categ} from './Categ.js';
 export {default as Input} from './Input.js';
 export {default as Main} from './Main.js';
 export {default as ProdDesc} from './ProdDesc.js';
-export {default as Sidebar} from './Sidebar.js';
+export {default as SignUp} from './SignUp.js';
 export {default as SignIn} from './SignIn.js';
 export {default as StoreReg} from './StoreReg.js';
 export {default as Terms} from './Terms.js';
