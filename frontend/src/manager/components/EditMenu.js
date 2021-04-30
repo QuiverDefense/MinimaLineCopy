@@ -5,18 +5,18 @@ import { BiArrowBack } from "react-icons/bi";
 import Categ from "./Categ";
 import ProdDesc from "./ProdDesc";
 import Products from "./Products";
-import EditMenu from "./EditMenu";
+import { TiDeleteOutline } from "react-icons/ti";
+import { IconContext } from "react-icons";
+import { IoIosAddCircleOutline } from "react-icons/io";
 
-class ViewMenu extends Component {
+class EditMenu extends Component {
     constructor(){
         super();
         this.state = {
             clicked: false,
-            current: null
-            // editButtonClicked: false,
+            current: null,
         }
         this.changeColor = this.changeColor.bind(this);
-        // this.editMenu = this.editMenu.bind(this);
     }
     changeColor(index){
         if(this.state.current !== index)
@@ -25,12 +25,9 @@ class ViewMenu extends Component {
                 clicked: true
             })
     }
-
-    // editMenu(){
-    //     this.setState({
-    //         editButtonClicked: true
-    //     })
-    // }
+    deleteAlert(){
+        alert("are you sure?");
+    }
 
     render() { 
         const Product = (props) => {
@@ -55,26 +52,35 @@ class ViewMenu extends Component {
                             </Link>
                         </ArrowWrapper>
                     </Arrow>
+                    <Nav>
+                        <Categ mode={"edit"}/> 
+                        <IconContext.Provider value={{ size: "50px"}}>
+                            <AddCategButton/>
+                        </IconContext.Provider>
+                    </Nav>
                     <EditButton>
-                        <Link to='/edit-menu'>
-                            <button>Edit Menu</button>
+                        <Link to="/view-menu">
+                            <button>Save Changes</button>
                         </Link>
                     </EditButton>
-                    <Nav>
-                        <Categ mode={"view"}/> 
-                    </Nav>
                     <ProdGrid>
                         <section className='productlist'> 
                         {Products.map((product,index)=>{
                                 return (
                                     <div
-                                        onClick={()=>this.changeColor(index)}
-                                        className={(this.state.clicked && (this.state.current===index)) ? 'clicked' : 'unclicked'}>
+                                    onClick={()=>this.changeColor(index)}
+                                    className={(this.state.clicked && (this.state.current===index)) ? 'clicked' : 'unclicked'}>
+                                        <IconContext.Provider value={{ size: "50px"}}>
+                                            <DeleteButton onClick={this.deleteAlert}/>
+                                        </IconContext.Provider>
                                         <Product key={index} product={product}></Product>
                                     </div>
                                 )
                             })}
                             {this.state.clicked ? <ProdDesc {...Products[this.state.current]}/> : null }
+                        <IconContext.Provider value={{ size: "100px"}}>
+                            <AddButton/>
+                        </IconContext.Provider>
                         </section>
                     </ProdGrid>
                 </Wrapper>
@@ -82,6 +88,55 @@ class ViewMenu extends Component {
          );
     }
 }
+
+const AddCategButton = styled(IoIosAddCircleOutline)`
+    // position: relative;
+    padding: 0.5rem 0.5rem;
+    border-radius: 1rem;
+    overflow: visible;
+
+    transition: all 0.2s ease-in;
+    &:hover {
+        transform: translateY(-4px);
+        background: #F3D9A4;
+    }
+` 
+
+const DeleteButton = styled(TiDeleteOutline)`
+    position: absolute;
+    // left: 135px;
+    right: -25px;
+    top: -15px;
+
+    &:hover {
+        color: red;
+    }
+` 
+const AddButton = styled(IoIosAddCircleOutline)`
+    position: relative;
+    left: 50px;
+    top: 90px;
+
+    transition: all 0.2s ease-in;
+    &:hover {
+        transform: translateY(-4px);
+        color: green;
+    }
+` 
+
+const Arrow = styled.div`
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    height: 120px;
+    overflow-x: auto;
+    position: fixed;
+    width: 5%;
+    align-items: center;
+    background: white;
+    z-index: 1;
+    
+`
 
 const EditButton = styled.div`
     right: 0;
@@ -107,7 +162,6 @@ const EditButton = styled.div`
         background: #F9C91E;
         border-radius: 1rem;
         transition: all 0.1s ease-in;
-        /* box-shadow: 0px 0px 10px 2px #858585; */
 
         &:hover {
             transform: translateY(-4px);
@@ -121,8 +175,7 @@ const Nav = styled.div`
   height: 120px;
   overflow-x: auto;
   position: fixed;
-  margin-left: 5%;
-  width: 83%;
+  margin-left: 5%;width: 83%;
   align-items: center;
   background: white;
   z-index: 1;
@@ -132,22 +185,8 @@ const ArrowWrapper = styled.div`
   margin-top: 10px;
   margin-left: 40px;
   margin-right: 40px;
-
+  z-index: 2;
 `;
-
-const Arrow = styled.div`
-    left: 0;
-    display: flex;
-    flex-direction: row;
-    height: 120px;
-    overflow-x: auto;
-    position: fixed;
-    width: 5%;
-    align-items: center;
-    background: white;
-    z-index: 1;
-    
-`
 
 const Container = styled.div`
   background: #faf0e0;
@@ -175,6 +214,7 @@ const ProdGrid = styled.div`
     }
 
     .clicked{
+        position: relative;
         background: #F9C91E;
         border-radius: 1rem;
         padding: 1rem 2rem;
@@ -194,6 +234,7 @@ const ProdGrid = styled.div`
         }
     }
     .unclicked{
+        position: relative;
         background: #fff;
         border-radius: 1rem;
         padding: 1rem 2rem;
@@ -228,4 +269,4 @@ const Wrapper = styled.div`
   display: flex;
 `;
 
-export default ViewMenu;
+export default EditMenu;

@@ -41,15 +41,18 @@ const Form = styled.form`
     h2{
         color: #666666;
         margin-bottom: 1rem;
+        margin-left: 90px;
     }
 
     button{
+        margin-left: 50px;
+        margin-top: 30px;
         width: 75%;
         max-width: 350px;
         min-width: 250px;
         height: 40px;
         border: none;
-        margin: 1rem 0;
+        // margin: 1rem 0;
         box-shadow: 0px 14px 9px -15px rgba(0,0,0,0.25);
         border-radius: 8px;
         background-color: #70edb9;
@@ -69,6 +72,7 @@ const Form = styled.form`
 
     p{
       margin-top: 5px;
+      margin-left: 160px;
       color: #757575;
       font-weight: bold; 
    }

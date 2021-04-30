@@ -9,3 +9,4 @@ export {default as StoreReg} from './StoreReg.js';
 export {default as Terms} from './Terms.js';
 export {default as UploadLogo} from './UploadLogo.js';
 export {default as ViewMenu} from './ViewMenu.js';
+export {default as EditMenu} from './EditMenu.js';

@@ -17,7 +17,7 @@ const UploadLogo = ({placeholder, name}) => {
 };
 
 const StyledUpload = styled.input`
-    padding-top: 5px;
+    // padding-top: 3px;
 `;
 
 const Container  = styled.div`

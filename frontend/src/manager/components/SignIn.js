@@ -10,7 +10,7 @@ const SignIn = () => {
       <LogoWrapper>
         <img src={logo} alt="" />
         <h3>
-          Minima <span>Line</span>
+          Minima<span>Line</span>
         </h3>
       </LogoWrapper>
       <Form>
@@ -50,15 +50,18 @@ const Form = styled.form`
     h3{
         color: #666666;
         margin-bottom: 2rem;
+        margin-left: 165px;
     }
 
     button{
+        margin-left: 45px;
+        margin-top: 10px;
         width: 75%;
         max-width: 350px;
         min-width: 250px;
         height: 40px;
         border: none;
-        margin: 1rem 0;
+        // margin: 1rem 0;
         box-shadow: 0px 14px 9px -15px rgba(0,0,0,0.25);
         border-radius: 8px;
         background-color: #70edb9;

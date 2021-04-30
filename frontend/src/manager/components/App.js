@@ -6,6 +6,7 @@ import Main from "./Main";
 import StoreReg from "./StoreReg";
 import Terms from "./Terms";
 import ViewMenu from "./ViewMenu";
+import EditMenu from "./EditMenu";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/terms" exact component={Terms} />
           <Route path="/store-reg" exact component={StoreReg} />
           <Route path="/view-menu" exact component={ViewMenu} />
+          <Route path="/edit-menu" exact component={EditMenu} />
         </Switch>
         <Main />
       </Wrapper>
