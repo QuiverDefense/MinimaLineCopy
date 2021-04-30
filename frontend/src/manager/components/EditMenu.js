@@ -77,7 +77,7 @@ class EditMenu extends Component {
                                     </div>
                                 )
                             })}
-                            {this.state.clicked ? <ProdDesc {...Products[this.state.current]}/> : null }
+                            {this.state.clicked ? <ProdDesc {...Products[this.state.current]} mode={"edit"}/> : null }
                         <IconContext.Provider value={{ size: "100px"}}>
                             <AddButton/>
                         </IconContext.Provider>

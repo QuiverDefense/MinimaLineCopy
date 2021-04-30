@@ -74,7 +74,7 @@ class ViewMenu extends Component {
                                     </div>
                                 )
                             })}
-                            {this.state.clicked ? <ProdDesc {...Products[this.state.current]}/> : null }
+                            {this.state.clicked ? <ProdDesc {...Products[this.state.current]} mode={"view"}/> : null }
                         </section>
                     </ProdGrid>
                 </Wrapper>
@@ -162,7 +162,6 @@ const ProdGrid = styled.div`
         position: absolute;
         width: 70%;
         margin-top: 160px;
-        //height: 100%;
         display: flex;
         margin-left: 50px;
         display: grid;

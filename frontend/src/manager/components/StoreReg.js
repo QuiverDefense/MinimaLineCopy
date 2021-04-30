@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import UploadLogo from "./UploadLogo";
+import UploadPhoto from "./UploadPhoto";
 import Input from "./Input";
 import {Link} from 'react-router-dom';
 import { BiArrowBack } from "react-icons/bi";
@@ -20,7 +20,7 @@ const StoreReg = () => {
           <Input placeholder="Branch" name="branch" />
           <Input placeholder="Manager" name="manager" />
           <p>Store Logo</p>
-          <UploadLogo placeholder="Logo" name="store-logo" />
+          <UploadPhoto placeholder="Logo" name="store-logo" />
           <Link to={{pathname: '/view-menu'}}>
             <button type="submit"> Submit </button>
           </Link>

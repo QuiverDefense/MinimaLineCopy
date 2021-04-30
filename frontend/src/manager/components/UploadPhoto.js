@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from "styled-components";
 
-const UploadLogo = ({placeholder, name}) => {
+const UploadPhoto = ({placeholder, name, mode}) => {
     return (
       <Container>
         <StyledUpload
@@ -44,4 +44,4 @@ const Status = styled.div`
   }
 `;
 
-export default UploadLogo;
+export default UploadPhoto;
