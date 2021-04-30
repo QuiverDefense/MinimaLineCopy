@@ -14,7 +14,7 @@ ReactDOM.render(
             <Route path="/" exact component={SelectMode} />
             <Route path="/sign-in" exact component={Manager.App} />
             <Route path="/c" exact component={Customer.App} />
-            <Route path="/view-menu" exact component={Manager.ViewMenu} />
+            {/* <Route path="/view-menu" exact component={Manager.ViewMenu} /> */}
           </Switch>
       </Router>
   </React.StrictMode>,

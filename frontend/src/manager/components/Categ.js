@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { TiDeleteOutline } from "react-icons/ti";
+import { IconContext } from "react-icons";
 
 const products = [
     {
@@ -17,6 +19,21 @@ const products = [
       {
         product_name: 'Drinks',
     },
+    {
+        product_name: 'Sides',
+    },
+    {
+        product_name: 'Desserts',
+    },
+      {
+        product_name: 'Drinks',
+    },
+    {
+        product_name: 'Sides',
+    },
+    {
+        product_name: 'Desserts',
+    },
 ];
 
 class Categ extends Component {
@@ -25,7 +42,8 @@ class Categ extends Component {
         this.state = { // initial/default state is the first category on the list
             clicked: false,
             current: 0,
-            default: true
+            default: true,
+            editMode: this.editButtonClicked
         }
         this.changeColor = this.changeColor.bind(this);
     }
@@ -39,6 +57,7 @@ class Categ extends Component {
     }
 
     render() { 
+        console.log(this.state.editMode);
         const Product = (props) => {
             const {product_name} = props.product;
             return (
@@ -55,6 +74,13 @@ class Categ extends Component {
                             className={((this.state.clicked || this.state.default) && (this.state.current===index)) ? 'clicked' : 'unclicked'}
                             onClick={()=>this.changeColor(index)}>
                             <Product key={index} product={product}></Product>
+                            {this.state.editMode ? 
+                                <IconContext.Provider value={{ size: "25px"}}>
+                                    <DeleteButton/>
+                                </IconContext.Provider>
+                            : null
+                            }
+
                         </div>
                     )
                 })}      
@@ -63,11 +89,23 @@ class Categ extends Component {
     }
 }
 
+const DeleteButton = styled(TiDeleteOutline)`
+    position: absolute;
+    // left: 135px;
+    right: -10px;
+    top: -10px;
+
+    &:hover {
+        color: red;
+    }
+` 
+
 const Container = styled.div`
     display: flex;
     flex-direction: row;
 
     .unclicked{
+        position: relative;
         margin-top: 10px;
         min-width: 110px;
         height: 70px;
@@ -85,6 +123,7 @@ const Container = styled.div`
     }
 
     .clicked{
+        position: relative;
         margin-top: 10px;
         min-width: 110px;
         height: 70px;
