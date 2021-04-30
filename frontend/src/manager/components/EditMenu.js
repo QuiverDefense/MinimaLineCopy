@@ -25,6 +25,9 @@ class EditMenu extends Component {
                 clicked: true
             })
     }
+    deleteAlert(){
+        alert("are you sure?");
+    }
 
     render() { 
         const Product = (props) => {
@@ -50,7 +53,7 @@ class EditMenu extends Component {
                         </ArrowWrapper>
                     </Arrow>
                     <Nav>
-                        <Categ/> 
+                        <Categ mode={"edit"}/> 
                         <IconContext.Provider value={{ size: "50px"}}>
                             <AddCategButton/>
                         </IconContext.Provider>
@@ -68,7 +71,7 @@ class EditMenu extends Component {
                                     onClick={()=>this.changeColor(index)}
                                     className={(this.state.clicked && (this.state.current===index)) ? 'clicked' : 'unclicked'}>
                                         <IconContext.Provider value={{ size: "50px"}}>
-                                            <DeleteButton/>
+                                            <DeleteButton onClick={this.deleteAlert}/>
                                         </IconContext.Provider>
                                         <Product key={index} product={product}></Product>
                                     </div>

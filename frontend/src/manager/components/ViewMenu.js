@@ -12,11 +12,11 @@ class ViewMenu extends Component {
         super();
         this.state = {
             clicked: false,
-            current: null,
-            editButtonClicked: false,
+            current: null
+            // editButtonClicked: false,
         }
         this.changeColor = this.changeColor.bind(this);
-        this.editMenu = this.editMenu.bind(this);
+        // this.editMenu = this.editMenu.bind(this);
     }
     changeColor(index){
         if(this.state.current !== index)
@@ -26,11 +26,11 @@ class ViewMenu extends Component {
             })
     }
 
-    editMenu(){
-        this.setState({
-            editButtonClicked: true
-        })
-    }
+    // editMenu(){
+    //     this.setState({
+    //         editButtonClicked: true
+    //     })
+    // }
 
     render() { 
         const Product = (props) => {
@@ -57,11 +57,11 @@ class ViewMenu extends Component {
                     </Arrow>
                     <EditButton>
                         <Link to='/edit-menu'>
-                            <button onClick={this.editMenu}>Edit Menu</button>
+                            <button>Edit Menu</button>
                         </Link>
                     </EditButton>
                     <Nav>
-                        <Categ {...this.state.editButtonClicked}/> 
+                        <Categ mode={"view"}/> 
                     </Nav>
                     <ProdGrid>
                         <section className='productlist'> 

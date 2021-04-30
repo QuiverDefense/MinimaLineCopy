@@ -42,8 +42,8 @@ class Categ extends Component {
         this.state = { // initial/default state is the first category on the list
             clicked: false,
             current: 0,
-            default: true,
-            editMode: this.editButtonClicked
+            default: true
+            // editMode: this.editButtonClicked
         }
         this.changeColor = this.changeColor.bind(this);
     }
@@ -54,6 +54,10 @@ class Categ extends Component {
                 clicked: true,
                 default: false
             })
+    }
+
+    deleteAlert(){
+        alert("are you sure?");
     }
 
     render() { 
@@ -74,9 +78,9 @@ class Categ extends Component {
                             className={((this.state.clicked || this.state.default) && (this.state.current===index)) ? 'clicked' : 'unclicked'}
                             onClick={()=>this.changeColor(index)}>
                             <Product key={index} product={product}></Product>
-                            {this.state.editMode ? 
+                            {this.props.mode==="edit" ? 
                                 <IconContext.Provider value={{ size: "25px"}}>
-                                    <DeleteButton/>
+                                    <DeleteButton onClick={this.deleteAlert}/>
                                 </IconContext.Provider>
                             : null
                             }
