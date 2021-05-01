@@ -18,8 +18,9 @@ const SignIn = () => {
           <h3>Sign In</h3>
           <Input placeholder="Username" name="username" />
           <Input type="password" placeholder="Password" name="password" />
-
-          <button type="submit"> Sign In </button>
+          <Link to="/dashboard">
+            <button type="submit"> Sign In </button>
+          </Link>
         </form>
       </Form>
       <div>
@@ -34,13 +35,6 @@ const SignIn = () => {
   );
 };
 
-// const Terms = styled.p`
-//     padding: 0 1rem;
-//     text-align: center;
-//     font-size: 10px;
-//     color: #808080;
-//     font-weight: 300;
-// `;
 const Form = styled.form`
     width: 100%;
     display: flex;
@@ -61,7 +55,6 @@ const Form = styled.form`
         min-width: 250px;
         height: 40px;
         border: none;
-        // margin: 1rem 0;
         box-shadow: 0px 14px 9px -15px rgba(0,0,0,0.25);
         border-radius: 8px;
         background-color: #70edb9;

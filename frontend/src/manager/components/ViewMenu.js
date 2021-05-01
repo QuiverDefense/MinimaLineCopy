@@ -5,7 +5,6 @@ import { BiArrowBack } from "react-icons/bi";
 import Categ from "./Categ";
 import ProdDesc from "./ProdDesc";
 import Products from "./Products";
-import EditMenu from "./EditMenu";
 
 class ViewMenu extends Component {
     constructor(){
@@ -13,10 +12,8 @@ class ViewMenu extends Component {
         this.state = {
             clicked: false,
             current: null
-            // editButtonClicked: false,
         }
         this.changeColor = this.changeColor.bind(this);
-        // this.editMenu = this.editMenu.bind(this);
     }
     changeColor(index){
         if(this.state.current !== index)
@@ -25,12 +22,6 @@ class ViewMenu extends Component {
                 clicked: true
             })
     }
-
-    // editMenu(){
-    //     this.setState({
-    //         editButtonClicked: true
-    //     })
-    // }
 
     render() { 
         const Product = (props) => {
@@ -50,7 +41,7 @@ class ViewMenu extends Component {
                 <Wrapper>
                     <Arrow>
                         <ArrowWrapper>
-                            <Link to="/store-reg">
+                            <Link to="/dashboard">
                                 <BiArrowBack size="40px" color="#676666"/>
                             </Link>
                         </ArrowWrapper>
@@ -74,7 +65,7 @@ class ViewMenu extends Component {
                                     </div>
                                 )
                             })}
-                            {this.state.clicked ? <ProdDesc {...Products[this.state.current]}/> : null }
+                            {this.state.clicked ? <ProdDesc {...Products[this.state.current]} mode={"view"}/> : null }
                         </section>
                     </ProdGrid>
                 </Wrapper>
@@ -107,7 +98,6 @@ const EditButton = styled.div`
         background: #F9C91E;
         border-radius: 1rem;
         transition: all 0.1s ease-in;
-        /* box-shadow: 0px 0px 10px 2px #858585; */
 
         &:hover {
             transform: translateY(-4px);
@@ -162,7 +152,6 @@ const ProdGrid = styled.div`
         position: absolute;
         width: 70%;
         margin-top: 160px;
-        //height: 100%;
         display: flex;
         margin-left: 50px;
         display: grid;
@@ -221,8 +210,6 @@ const ProdGrid = styled.div`
 `;
 
 const Wrapper = styled.div`
-  /* background: rgb(255,140,140);
-  background: linear-gradient(63deg, rgba(255,140,140,1) 0%, rgba(250,240,224,1) 60%, rgba(113,237,184,1) 100%); */
   width: 100%;
   height: 100%;
   display: flex;

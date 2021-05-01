@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import SelectMode from './SelectMode';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import * as Manager from './manager/components';
@@ -9,14 +9,7 @@ import * as Customer from './customer/components';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-          <Switch>
-            <Route path="/" exact component={SelectMode} />
-            <Route path="/sign-in" exact component={Manager.App} />
-            <Route path="/c" exact component={Customer.App} />
-            {/* <Route path="/view-menu" exact component={Manager.ViewMenu} /> */}
-          </Switch>
-      </Router>
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );
