@@ -1,7 +1,14 @@
 var express = require('express');
 var app = express();
 var cors = require('cors');
+var database = require('./config/database');
 var port = process.env.PORT || 3005;
+
+//Connect to database
+
+database.connect((err) => {
+    if (err) throw err;
+});
 
 //allow access of rest api for cross-origin resource sharing
 app.use(cors());
@@ -16,10 +23,22 @@ app.use(express.urlencoded ({
 
 //Register routes in main index.js
 
-//http://localhost:3005/
+app.use('/', [
+    require('./routes/store-info')
+]);
+
+//http://localhost:3005/ (index.js)
+//http://localhost:3005/sign-in
+//http://localhost:3005/start-page
+//http://localhost:3005/store-registration
 
 app.get('/', (req,res) => {
-    res.send("Yey backend!");
+    res.send("yey backend!");
+});
+
+
+app.get('/check_check', (req,res) => {
+    res.send("yes it works!");
 });
 
 app.listen(port, () => {
