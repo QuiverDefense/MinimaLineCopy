@@ -47,7 +47,7 @@ class EditMenu extends Component {
                 <Wrapper>
                     <Arrow>
                         <ArrowWrapper>
-                            <Link to="/store-reg">
+                            <Link to="/dashboard">
                                 <BiArrowBack size="40px" color="#676666"/>
                             </Link>
                         </ArrowWrapper>
@@ -70,7 +70,7 @@ class EditMenu extends Component {
                                     <div
                                     onClick={()=>this.changeColor(index)}
                                     className={(this.state.clicked && (this.state.current===index)) ? 'clicked' : 'unclicked'}>
-                                        <IconContext.Provider value={{ size: "50px"}}>
+                                        <IconContext.Provider value={{size: "50px"}}>
                                             <DeleteButton onClick={this.deleteAlert}/>
                                         </IconContext.Provider>
                                         <Product key={index} product={product}></Product>
@@ -104,12 +104,11 @@ const AddCategButton = styled(IoIosAddCircleOutline)`
 
 const DeleteButton = styled(TiDeleteOutline)`
     position: absolute;
-    // left: 135px;
     right: -25px;
     top: -15px;
 
     &:hover {
-        color: red;
+        color: #FF5C5C;
     }
 ` 
 const AddButton = styled(IoIosAddCircleOutline)`
@@ -120,7 +119,7 @@ const AddButton = styled(IoIosAddCircleOutline)`
     transition: all 0.2s ease-in;
     &:hover {
         transform: translateY(-4px);
-        color: green;
+        color: #F9C91E;
     }
 ` 
 
@@ -201,7 +200,6 @@ const ProdGrid = styled.div`
         position: absolute;
         width: 70%;
         margin-top: 160px;
-        //height: 100%;
         display: flex;
         margin-left: 50px;
         display: grid;
@@ -262,8 +260,6 @@ const ProdGrid = styled.div`
 `;
 
 const Wrapper = styled.div`
-  /* background: rgb(255,140,140);
-  background: linear-gradient(63deg, rgba(255,140,140,1) 0%, rgba(250,240,224,1) 60%, rgba(113,237,184,1) 100%); */
   width: 100%;
   height: 100%;
   display: flex;

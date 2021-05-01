@@ -100,7 +100,7 @@ const DeleteButton = styled(TiDeleteOutline)`
     top: -10px;
 
     &:hover {
-        color: red;
+        color: #FF5C5C;
     }
 ` 
 

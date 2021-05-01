@@ -3,12 +3,7 @@ import styled from "styled-components";
 
 const Main = () => {
   return (
-    <Container>
-      {/* <h1>
-          Hi <br/>
-          Hello
-      </h1> */}
-    </Container>
+    <Container/>
   );
 };
 

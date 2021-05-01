@@ -35,7 +35,7 @@ const SignUp = () => {
         </Terms>
         <h4>
           Already have an account? 
-            <Link to='/sign-in' style={{textDecoration:'none'}}>
+            <Link to='/' style={{textDecoration:'none'}}>
               <span>  Sign In</span>
             </Link>
         </h4>
@@ -71,7 +71,6 @@ const Form = styled.form`
         min-width: 250px;
         height: 40px;
         border: none;
-        // margin: 1rem 0;
         box-shadow: 0px 14px 9px -15px rgba(0,0,0,0.25);
         border-radius: 8px;
         background-color: #70edb9;
