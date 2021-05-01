@@ -3,6 +3,7 @@ var app = express();
 var database = require('../config/database');
 var moment = require('moment');
 
+//get data from store-info table
 app.get('/store-info', (req,res) => {
     let sql = 'SELECT * FROM store_info';
 

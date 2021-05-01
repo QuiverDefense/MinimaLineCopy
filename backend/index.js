@@ -32,11 +32,12 @@ app.use('/', [
 //http://localhost:3005/start-page
 //http://localhost:3005/store-registration
 
+//testing 1
 app.get('/', (req,res) => {
     res.send("yey backend!");
 });
 
-
+//testing2
 app.get('/check_check', (req,res) => {
     res.send("yes it works!");
 });
