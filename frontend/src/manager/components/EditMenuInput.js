@@ -17,7 +17,7 @@ const EditMenuInput = ({type, placeholder, name}) => {
 const StyledInput = styled.input`
     width: 40%;
     max-width: 350px;
-    min-width: 150px;
+    min-width: 250px;
     height: 40px;
     border: none;
     color: black;
@@ -34,6 +34,11 @@ const StyledInput = styled.input`
 
     ::placeholder {
         color: black;
+    }
+
+    @media screen and (max-width: 1024px) {
+      min-width: 150px;
+      // padding: 0 0.5rem;
     }
 `;
 

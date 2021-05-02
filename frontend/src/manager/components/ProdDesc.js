@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import EditMenuInput from "./EditMenuInput";
-import UploadPhoto from "./UploadPhoto";
 
 class ProdDesc extends Component {
 
@@ -163,7 +162,6 @@ const Container = styled.div`
             width: 180px;
         }
     }
-
 `;
 
 export default ProdDesc;

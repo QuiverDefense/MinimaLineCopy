@@ -60,7 +60,7 @@ class EditMenu extends Component {
                     </Nav>
                     <EditButton>
                         <Link to="/view-menu">
-                            <button>Save Changes</button>
+                            <button>Save</button>
                         </Link>
                     </EditButton>
                     <ProdGrid>
@@ -128,7 +128,6 @@ const Arrow = styled.div`
     display: flex;
     flex-direction: row;
     height: 120px;
-    overflow-x: auto;
     position: fixed;
     width: 5%;
     align-items: center;
@@ -142,7 +141,6 @@ const EditButton = styled.div`
     display: flex;
     flex-direction: row;
     height: 120px;
-    overflow-x: auto;
     position: fixed;
     width: 12%;
     align-items: center;
@@ -161,10 +159,14 @@ const EditButton = styled.div`
         background: #F9C91E;
         border-radius: 1rem;
         transition: all 0.1s ease-in;
+        font-family: "Work Sans";
+        font-size: 90%;
+        font-weight: bold;
 
         &:hover {
             transform: translateY(-4px);
-        }
+        }    
+
     }
 `
 
@@ -181,10 +183,8 @@ const Nav = styled.div`
 `;
 
 const ArrowWrapper = styled.div`
-  margin-top: 10px;
-  margin-left: 40px;
-  margin-right: 40px;
-  z-index: 2;
+    margin-top: 10px;
+    padding-left: 25%;
 `;
 
 const Container = styled.div`
@@ -208,7 +208,7 @@ const ProdGrid = styled.div`
         grid-template-columns: repeat(auto-fit, minmax(177px, 1fr));
 
         @media screen and (max-width: 1024px) {
-            gap: 1rem;
+            gap: 1.5rem;
         }
     }
 
@@ -233,7 +233,6 @@ const ProdGrid = styled.div`
         }
         @media screen and (max-width: 1024px) {
             width: 70%;
-            /* padding: 1rem 2rem; */
         }
     }
     .unclicked{
@@ -263,7 +262,6 @@ const ProdGrid = styled.div`
     }
     @media screen and (max-width: 1024px) {
             width: 70%;
-            /* padding: 1rem 2rem; */
         }
 
 `;
