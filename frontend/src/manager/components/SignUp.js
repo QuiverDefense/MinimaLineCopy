@@ -1,10 +1,26 @@
-import React from "react";
+import React,{ useEffect, useState, response } from "react";
+import Axios from "axios"
 import styled from "styled-components";
 import logo from "../../assets/logo.svg";
 import Input from "./Input";
 import {Link} from 'react-router-dom';
 
-const SignUp = () => {
+function SignUp(){
+  
+  const [usernameReg, setUsernameReg] = useState('')
+  const [emailReg, setEmailReg] = useState('')
+  const [passwordReg, setPasswordReg] = useState('')
+
+  const register = () => {
+    Axios.post('http://localhost:3005/user-registration', {
+      username: usernameReg, 
+      email: emailReg, 
+      password: passwordReg
+    }).then((response) => {
+      console.log(response);
+    });
+  };
+
   return (
     <Container>
       <LogoWrapper>
@@ -16,12 +32,33 @@ const SignUp = () => {
       <Form>
         <h3>Sign Up</h3>
         <form>
-          <Input placeholder="Username" name="username" />
-          <Input type="email" placeholder="Email" name="email" />
-          <Input type="password" placeholder="Password" name="password"/>
+          <Input 
+            type="text" 
+            placeholder="Username" 
+            name="username" 
+            onChange={(e) => {
+              setUsernameReg(e.target.value);
+            }}
+          />
+          <Input 
+            type="email" 
+            placeholder="Email" 
+            name="email" 
+            onChange={(e) => {
+              setEmailReg(e.target.value);
+            }}
+          />
+          <Input 
+            type="password" 
+            placeholder="Password" 
+            name="password"
+            onChange={(e) => {
+              setPasswordReg(e.target.value);
+            }}
+          />
           <Link to={{
             pathname: '/store-reg'}}>
-            <button type="submit"> Sign Up </button>
+            <button onClick={register}> Sign Up </button>
           </Link>
         </form>
         

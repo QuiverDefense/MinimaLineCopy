@@ -16,7 +16,11 @@ const StoreReg = () => {
       <Form>
         <form>
           <h2>Store Registration</h2>
-          <Input placeholder="Store Name" name="store-name" />
+          <Input 
+            type="text"
+            placeholder="Store Name" 
+            name="store-name" 
+          />
           <Input placeholder="Branch" name="branch" />
           <Input placeholder="Manager" name="manager" />
           <p>Store Logo</p>
