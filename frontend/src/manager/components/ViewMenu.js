@@ -157,9 +157,10 @@ const ProdGrid = styled.div`
         display: grid;
         gap: 2rem;
         z-index: 0;
+        grid-template-columns: repeat(auto-fit, minmax(177px, 1fr));
 
-        @media screen and (min-width: 768px) {
-            grid-template-columns: repeat(auto-fit, minmax(177px, 1fr));
+        @media screen and (max-width: 1024px) {
+            gap: 1rem;
         }
     }
 
@@ -181,6 +182,11 @@ const ProdGrid = styled.div`
             font-size: 0.9rem;
             margin-top: 0.25;
         }
+
+        @media screen and (max-width: 1024px) {
+            width: 70%;
+            /* padding: 1rem 2rem; */
+        }
     }
     .unclicked{
         background: #fff;
@@ -200,6 +206,10 @@ const ProdGrid = styled.div`
             color: #617d98;
             font-size: 0.9rem;
             margin-top: 0.25;
+        }
+        @media screen and (max-width: 1024px) {
+            width: 70%;
+            /* padding: 1rem 2rem; */
         }
     }
     .image{

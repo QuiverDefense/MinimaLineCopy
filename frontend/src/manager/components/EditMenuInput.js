@@ -17,7 +17,7 @@ const EditMenuInput = ({type, placeholder, name}) => {
 const StyledInput = styled.input`
     width: 40%;
     max-width: 350px;
-    min-width: 250px;
+    min-width: 150px;
     height: 40px;
     border: none;
     color: black;
@@ -41,6 +41,7 @@ const Container  = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    
 `;
 
 export default EditMenuInput;

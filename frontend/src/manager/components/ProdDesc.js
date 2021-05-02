@@ -77,7 +77,7 @@ const Buttons = styled.div`
 
         &:hover{
             transform: translateY(-3px);
-        }    
+        }  
     }
     .save{
         color: black;
@@ -88,11 +88,23 @@ const Buttons = styled.div`
         color: #fff;
         background-color: #FF5C5C;
     }
+    @media screen and (max-width: 1024px) {
+        flex-direction: column;
+        .save{
+            margin: 40px 5px 0px;
+        }
+        .cancel{
+            margin: 10px 5px 10px;
+        }
+    }  
 `
 
 const Upload = styled.input`
     margin-top: 10px;
     margin-bottom: 10px;
+    @media screen and (max-width: 1024px) {
+        margin-left: 80px;
+    }  
 `
 
 const Select = styled.select`
@@ -100,7 +112,7 @@ const Select = styled.select`
     width: 280px;
     // width: 100%;
     // max-width: 700px;
-    // min-width: 250px;
+    /* min-width: 150px; */
     height: 40px;
     border: none;
     margin: 1rem 0 0;
@@ -117,6 +129,11 @@ const Select = styled.select`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media screen and (max-width: 1024px) {
+        width: 185px;
+        padding: 0 0.5rem;
+    }
 `
 
 const Container = styled.div`
@@ -130,14 +147,23 @@ const Container = styled.div`
     right: 0;
     margin-top: 50px;
     border-radius: 1rem;
-    margin-right: 40px;
+    margin-right: 30px;
     box-shadow: 0px 5px 10px -2px #858585;
+    /* padding: 1rem; */
 
     img{
         height: 200px;
         width: 200px;
         margin-top: -60px;
     }
+    @media screen and (max-width: 1024px) {
+        margin-right: 27px;
+        img{
+            height: 180px;
+            width: 180px;
+        }
+    }
+
 `;
 
 export default ProdDesc;

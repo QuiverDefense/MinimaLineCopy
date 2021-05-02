@@ -55,14 +55,14 @@ const Container = styled.div`
   width: 100%;
 `;
 const Body = styled.div`
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  margin-top: 260px;
-  background-color: transparent;
-  justify-content: center;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  position: fixed;
+  background-color: transparent;
+  margin-top: 260px;
+  width: 100%;
+  height: 100%;
 `;
 const HeaderCircle = styled.div`
   margin: 20px 0px 0px 130px;
