@@ -23,22 +23,20 @@ class App extends Component {
         </div>
 
         <Body>
-            <Link to="/view-menu" style={{textDecoration:'none'}}>
-                <Option>
-                    <MdRestaurantMenu className="icon" size="90px"/>
-                    <h2>View Menu</h2>
-                    <p>View and edit the restaurant menu.</p>
-                </Option>
-            </Link>
-          <Option>
+          <StyledLink to="/view-menu" style={{textDecoration:'none'}}>
+              <MdRestaurantMenu className="icon" size="90px"/>
+              <h2>View Menu</h2>
+              <p>View and edit the restaurant menu.</p>
+          </StyledLink>
+          <StyledLink to="/dashboard" style={{textDecoration:'none'}}>
             <MdAccountCircle className="icon" size="90px"/>
             <h2>Account</h2>
             <p>Manage your account and restaurant information.</p>
-          </Option>
+          </StyledLink>
           <Option>
-            <AiOutlineUserSwitch className="icon" size="90px"/>
-            <h2>Switch Modes</h2>
-            <p>Switch to Cashier Mode or Customer Mode.</p>
+              <AiOutlineUserSwitch className="icon" size="90px"/>
+              <h2>Switch Modes</h2>
+              <p>Switch to Cashier Mode or Customer Mode.</p>
           </Option>
         </Body>
 
@@ -58,7 +56,7 @@ const Body = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  position: fixed;
+  /* position: fixed; */
   background-color: transparent;
   margin-top: 260px;
   width: 100%;
@@ -104,7 +102,7 @@ const HeaderBar = styled.div`
   margin: 65px 0px 0px 300px;
   position: fixed;
   background-color: white;
-  width: 80%;
+  width: 100%;
   height: 130px;
   display: flex;
   align-items: center;
@@ -126,9 +124,77 @@ const HeaderBar = styled.div`
       }
     }
     animation: fadeInX 2s;
+
+    @media screen and (max-width: 1200px){
+      font-size: 40px;
+      margin-left: 120px;
+    }
   }
+
+  
 `;
 
+const StyledLink = styled(Link)`
+  height: 330px;
+  width: 270px;
+  background-color: white;
+  box-shadow: 3px 6px 5px 3px #d6d6d6;
+  border-radius: 8px;
+  margin: 60px 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .icon{
+    color: #676666;
+    margin-top: 50px;
+  }
+
+  p{
+    padding: 0px 10px;
+    text-align: center;
+    color: #676666;
+    font-family: 'Lato';
+  }
+
+  h2{
+    color: #676666;
+  }
+
+  :hover{
+    transform: translateY(3px);
+    cursor: pointer;
+    background-color: #f9c91e;
+
+    .icon{
+      color: black;
+    }
+    p, h2{
+      color: black;
+    }
+  }
+
+  @keyframes fadeInY{
+    0% {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    100% { 
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+  animation: fadeInY 2s;
+
+  @media screen and (max-width: 1230px) {
+    height: 310px;
+    width: 250px;
+    margin: 50px 40px;
+    .icon{
+      margin-top: 40px;
+    }
+  }
+`;
 const Option = styled.div`
   height: 330px;
   width: 270px;
@@ -180,6 +246,15 @@ const Option = styled.div`
     }
   }
   animation: fadeInY 2s;
+
+  @media screen and (max-width: 1230px) {
+    height: 310px;
+    width: 250px;
+    margin: 50px 40px;
+    .icon{
+      margin-top: 40px;
+    }
+  }
 `;
  
 export default App;
