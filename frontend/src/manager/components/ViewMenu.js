@@ -79,7 +79,6 @@ const EditButton = styled.div`
     display: flex;
     flex-direction: row;
     height: 120px;
-    overflow-x: auto;
     position: fixed;
     width: 12%;
     align-items: center;
@@ -98,6 +97,9 @@ const EditButton = styled.div`
         background: #F9C91E;
         border-radius: 1rem;
         transition: all 0.1s ease-in;
+        font-family: "Work Sans";
+        font-size: 90%;
+        font-weight: bold;
 
         &:hover {
             transform: translateY(-4px);
@@ -119,10 +121,8 @@ const Nav = styled.div`
 `;
 
 const ArrowWrapper = styled.div`
-  margin-top: 10px;
-  margin-left: 40px;
-  margin-right: 40px;
-
+    margin-top: 10px;
+    padding-left: 25%;
 `;
 
 const Arrow = styled.div`
@@ -130,13 +130,11 @@ const Arrow = styled.div`
     display: flex;
     flex-direction: row;
     height: 120px;
-    overflow-x: auto;
     position: fixed;
     width: 5%;
     align-items: center;
     background: white;
     z-index: 1;
-    
 `
 
 const Container = styled.div`
@@ -157,9 +155,10 @@ const ProdGrid = styled.div`
         display: grid;
         gap: 2rem;
         z-index: 0;
+        grid-template-columns: repeat(auto-fit, minmax(177px, 1fr));
 
-        @media screen and (min-width: 768px) {
-            grid-template-columns: repeat(auto-fit, minmax(177px, 1fr));
+        @media screen and (max-width: 1024px) {
+            gap: 1.5rem;
         }
     }
 
@@ -181,6 +180,11 @@ const ProdGrid = styled.div`
             font-size: 0.9rem;
             margin-top: 0.25;
         }
+
+        @media screen and (max-width: 1024px) {
+            width: 70%;
+            /* padding: 1rem 2rem; */
+        }
     }
     .unclicked{
         background: #fff;
@@ -201,12 +205,15 @@ const ProdGrid = styled.div`
             font-size: 0.9rem;
             margin-top: 0.25;
         }
+        @media screen and (max-width: 1024px) {
+            width: 70%;
+            /* padding: 1rem 2rem; */
+        }
     }
     .image{
         height: 150px;
         width: 150px;
     }
-
 `;
 
 const Wrapper = styled.div`
