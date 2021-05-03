@@ -1,25 +1,56 @@
-import React from "react";
+import React,{ useEffect, useState, response } from "react";
 import styled from "styled-components";
 import logo from "../../assets/logo.svg";
 import Input from "./Input";
 import {Link} from 'react-router-dom';
+import Axios from "axios"
 
-const SignIn = () => {
+function SignIn(){
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [loginStatus, setLoginStatus] = useState("");
+
+  const login = () => {
+    Axios.post("http://localhost:3005/user-login", {
+      username: username,  
+      password: password
+    }).then((response) => {
+      console.log(response);
+    });
+  };
+
   return (
     <Container>
       <LogoWrapper>
         <img src={logo} alt="" />
         <h3>
-          Minima <span>Line</span>
+          Minima<span>Line</span>
         </h3>
       </LogoWrapper>
       <Form>
         <form>
           <h3>Sign In</h3>
-          <Input placeholder="Username" name="username" />
-          <Input type="password" placeholder="Password" name="password" />
-
-          <button type="submit"> Sign In </button>
+          <Input 
+            type="text" 
+            placeholder="Username" 
+            name="username" 
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+            />
+          <Input 
+            type="password" 
+            placeholder="Password" 
+            name="password" 
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+          <Link to="/dashboard">
+            <button type="submit" onClick={login}> Sign In </button>
+          </Link>
         </form>
       </Form>
       <div>
@@ -29,18 +60,12 @@ const SignIn = () => {
             <span>  Sign Up</span>
             </Link>
         </h4>
+
       </div>
     </Container>
   );
 };
 
-// const Terms = styled.p`
-//     padding: 0 1rem;
-//     text-align: center;
-//     font-size: 10px;
-//     color: #808080;
-//     font-weight: 300;
-// `;
 const Form = styled.form`
     width: 100%;
     display: flex;
@@ -50,15 +75,17 @@ const Form = styled.form`
     h3{
         color: #666666;
         margin-bottom: 2rem;
+        margin-left: 165px;
     }
 
     button{
+        margin-left: 45px;
+        margin-top: 10px;
         width: 75%;
         max-width: 350px;
         min-width: 250px;
         height: 40px;
         border: none;
-        margin: 1rem 0;
         box-shadow: 0px 14px 9px -15px rgba(0,0,0,0.25);
         border-radius: 8px;
         background-color: #70edb9;
