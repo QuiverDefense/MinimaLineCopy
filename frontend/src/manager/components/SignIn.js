@@ -1,10 +1,26 @@
-import React from "react";
+import React,{ useEffect, useState, response } from "react";
 import styled from "styled-components";
 import logo from "../../assets/logo.svg";
 import Input from "./Input";
 import {Link} from 'react-router-dom';
+import Axios from "axios"
 
-const SignIn = () => {
+function SignIn(){
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [loginStatus, setLoginStatus] = useState("");
+
+  const login = () => {
+    Axios.post("http://localhost:3005/user-login", {
+      username: username,  
+      password: password
+    }).then((response) => {
+      console.log(response);
+    });
+  };
+
   return (
     <Container>
       <LogoWrapper>
@@ -16,10 +32,24 @@ const SignIn = () => {
       <Form>
         <form>
           <h3>Sign In</h3>
-          <Input placeholder="Username" name="username" />
-          <Input type="password" placeholder="Password" name="password" />
+          <Input 
+            type="text" 
+            placeholder="Username" 
+            name="username" 
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+            />
+          <Input 
+            type="password" 
+            placeholder="Password" 
+            name="password" 
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
           <Link to="/dashboard">
-            <button type="submit"> Sign In </button>
+            <button type="submit" onClick={login}> Sign In </button>
           </Link>
         </form>
       </Form>
@@ -30,6 +60,7 @@ const SignIn = () => {
             <span>  Sign Up</span>
             </Link>
         </h4>
+
       </div>
     </Container>
   );
