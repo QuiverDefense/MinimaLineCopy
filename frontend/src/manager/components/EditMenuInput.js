@@ -35,12 +35,18 @@ const StyledInput = styled.input`
     ::placeholder {
         color: black;
     }
+
+    @media screen and (max-width: 1024px) {
+      min-width: 150px;
+      // padding: 0 0.5rem;
+    }
 `;
 
 const Container  = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    
 `;
 
 export default EditMenuInput;
