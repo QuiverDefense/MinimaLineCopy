@@ -21,8 +21,8 @@ const StoreReg = () => {
             placeholder="Store Name" 
             name="store-name" 
           />
-          <Input placeholder="Branch" name="branch" />
-          <Input placeholder="Manager" name="manager" />
+          <Input placeholder="Branch" name="branch" type="text"/>
+          <Input placeholder="Manager" name="manager" type="text"/>
           <p>Store Logo</p>
           <UploadPhoto placeholder="Logo" name="store-logo" />
           <Link to='/dashboard'>

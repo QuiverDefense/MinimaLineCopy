@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var cors = require("cors");
 var database = require('./config/database');
+// var bodyParser = require('body-parser');
 var port = process.env.PORT || 3005;
 
 //Connect to database
@@ -21,6 +22,7 @@ app.use(express.urlencoded ({
     extended: true
 }));
 
+
 //Register routes in main index.js
 
 app.use('/', [
@@ -36,13 +38,11 @@ app.use('/', [
 //to register user and store info in account_info table
 app.post('/user-registration', (req,res)=> {
     
-    const username=req.body.username
-    const email=req.body.email
-    const password=req.body.password
+    const {username,email,password}=req.body
 
     database.query("INSERT INTO account_info (username, email, password) VALUES (?,?,?)", 
     [username, email, password], 
-    (err, result) => {
+    (err, res) => {
         console.log(err);
         }
     );

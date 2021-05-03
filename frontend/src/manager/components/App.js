@@ -8,7 +8,7 @@ import Terms from "./Terms";
 import ViewMenu from "./ViewMenu";
 import EditMenu from "./EditMenu";
 import Dashboard from "./Dashboard";
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 
 const App = () => {
   return (
@@ -18,6 +18,7 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={SignIn} />
           <Route path="/sign-up" exact component={SignUp} />
+          {/* <Redirect from="/sign-up" to ="/store-reg"/> */}
           <Route path="/terms" exact component={Terms} />
           <Route path="/store-reg" exact component={StoreReg} />
           <Route path="/view-menu" exact component={ViewMenu} />
