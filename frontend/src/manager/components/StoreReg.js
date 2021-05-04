@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Axios from "axios"
 import styled from "styled-components";
 import {Link, Redirect} from 'react-router-dom';
 import { BiArrowBack } from "react-icons/bi";
@@ -9,10 +10,10 @@ class StoreReg extends Component{
   constructor(props){
     super(props)
     this.state = {
-      storename: '',
-      branch: '',
-      manager: '',
-      storelogo: null,
+      store_name: '',
+      manager_naem: '',
+      location: '',
+      logo: null,
       redirect: false
     }
   }
@@ -27,6 +28,20 @@ class StoreReg extends Component{
     })
   }
   // INSERT AXIOS CALL HERE
+  register = e => {
+    const data = {
+      storename: this.state.store_name,
+      manager_naem: this.state.manager_name,
+      location: this.state.location,
+      logo: this.state.logo
+    };
+    console.log('hello this is your input:',data)
+    e.preventDefault();
+    Axios.post('http://localhost:3005/store-registration',data).then((response) => {
+      console.log(response)
+      this.setState({redirect:true},()=>console.log(this.state.redirect))
+    })
+  };
 
   render(){
     if(this.state.redirect)
@@ -38,24 +53,25 @@ class StoreReg extends Component{
             <BiArrowBack size="40px" color="#676666"/>
           </Link>
         </ArrowWrapper>
-        <Form>
+        <Form onSubmit={this.register}>
             <h2>Store Registration</h2>
             <InputContainer>
               <StyledInput 
                 type="text"
                 placeholder="Store Name" 
-                name="storename"
-                value={this.state.storename}
+                name="store_name"
+                value={this.state.store_name}
                 required
-                autocomplete="off"/>
+                autocomplete="off"
+                onChange={this.handleChange.bind(this)}/> 
               <InputStatus />
             </InputContainer>
             <InputContainer>
               <StyledInput 
                 type="text"
                 placeholder="Branch"
-                name="branch"
-                value={this.state.branch} 
+                name="location"
+                value={this.state.location} 
                 required
                 autocomplete="off"
                 onChange={this.handleChange.bind(this)}/> 
@@ -65,8 +81,8 @@ class StoreReg extends Component{
               <StyledInput 
                 type="text"
                 placeholder="Manager"
-                name="manager"
-                value={this.state.manager}
+                name="manager_name"
+                value={this.state.manager_name}
                 required
                 autocomplete="off"
                 onChange={this.handleChange.bind(this)}/>
@@ -78,8 +94,8 @@ class StoreReg extends Component{
               <StyledUpload
                 type="file"
                 placeholder="Logo"
-                name="storelogo"
-                value={this.state.storelogo}
+                name="logo"
+                value={this.state.logo}
                 onChange={this.handleUpload.bind(this)}/>
             </InputContainer>
             <button type="submit"> Submit </button>

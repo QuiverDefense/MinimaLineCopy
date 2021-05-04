@@ -72,6 +72,21 @@ app.post('/user-login', (req,res)=> {
     });
 });
 
+//for store-registration
+app.post('/store-registration', (req,res)=> {
+    
+    const {store_name,manager_name,location,logo}=req.body
+
+    database.query("INSERT INTO store_info (store_name, manager_name, location, logo) VALUES (?,?,?,?)", 
+    [store_name, manager_name, location, logo], 
+    (err, result) => {
+        if(!err)
+            res.send(result)
+        }
+    )
+    
+});
+
 app.listen(port, () => {
     console.log(`Listening at port http://localhost:${port}`);
 });
