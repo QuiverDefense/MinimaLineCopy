@@ -8,6 +8,7 @@ import Terms from "./Terms";
 import ViewMenu from "./ViewMenu";
 import EditMenu from "./EditMenu";
 import Dashboard from "./Dashboard";
+import * as Customer from '../../customer/components';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 

@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import Axios from "axios"
 import styled from "styled-components";
 import logo from "../../assets/logo.svg";
-import Input from "./Input";
-import {Link,Redirect} from 'react-router-dom';
+import {Redirect,Link} from 'react-router-dom';
 
 class SignUp extends Component{
   constructor(props){
@@ -12,27 +11,33 @@ class SignUp extends Component{
     this.state = {
       username: '',
       email: '',
-      password: ''
+      password: '',
+      redirect: false
     }
-    this.register = this.register.bind(this);
+    // this.register = this.register.bind(this);
   }
   handleChange(e){
     this.setState({
       [e.target.name]: e.target.value
     })
   }
-
   register = e => {
-    const data = this.state;
+    const data = {
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password
+    };
     console.log('hello this is your input:',data)
     e.preventDefault();
-    Axios.post('http://localhost:3005/user-registration',
-      data).then((response) => {
-      console.log(response.data);
+    Axios.post('http://localhost:3005/user-registration',data).then((response) => {
+      console.log(response)
+      this.setState({redirect:true},()=>console.log(this.state.redirect))
     })
   };
 
   render(){
+    if(this.state.redirect)
+      return <Redirect to="/store-reg"/>
     return (
       <Container>
         <LogoWrapper>
@@ -52,8 +57,7 @@ class SignUp extends Component{
                 value={this.state.username} 
                 required
                 autocomplete="off"
-                onChange={this.handleChange.bind(this)}
-              />
+                onChange={this.handleChange.bind(this)}/>
               <Status />
             </InputContainer>
             <InputContainer>
@@ -64,8 +68,7 @@ class SignUp extends Component{
                 value={this.state.email} 
                 required
                 autocomplete="off"
-                onChange={this.handleChange.bind(this)}
-              />
+                onChange={this.handleChange.bind(this)}/>
               <Status />
             </InputContainer>
             <InputContainer>
@@ -76,13 +79,10 @@ class SignUp extends Component{
                 value={this.state.password} 
                 required
                 autocomplete="off"
-                onChange={this.handleChange.bind(this)}
-              />
+                onChange={this.handleChange.bind(this)}/>
               <Status />
             </InputContainer>
-            {/* <Link to='/store-reg'> */}
-              <button type="submit"> Sign Up </button>
-            {/* </Link> */}
+            <button type="submit"> Sign Up </button>
         </Form>
         
         <div>
@@ -123,7 +123,7 @@ const Form = styled.form`
     }
 
     button{
-        margin-left: 45px;
+        /* margin-left: 45px; */
         margin-top: 10px;
         width: 75%;
         max-width: 350px;
@@ -147,6 +147,7 @@ const Form = styled.form`
 const LogoWrapper = styled.div`
     img{
         height: 6rem;
+        margin-bottom: -20px;
     }
 
     h3{
