@@ -11,7 +11,7 @@ class StoreReg extends Component{
     super(props)
     this.state = {
       store_name: '',
-      manager_naem: '',
+      manager_name: '',
       location: '',
       logo: null,
       redirect: false
@@ -30,8 +30,8 @@ class StoreReg extends Component{
   // INSERT AXIOS CALL HERE
   register = e => {
     const data = {
-      storename: this.state.store_name,
-      manager_naem: this.state.manager_name,
+      store_name: this.state.store_name,
+      manager_name: this.state.manager_name,
       location: this.state.location,
       logo: this.state.logo
     };
