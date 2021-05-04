@@ -4,22 +4,34 @@ import logo from '../../assets/random.jpeg';
 import {MdRestaurantMenu, MdAccountCircle} from 'react-icons/md';
 import {AiOutlineUserSwitch} from 'react-icons/ai';
 import {Link} from 'react-router-dom';
+import Modal from 'react-modal';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {  }
+    this.state = { 
+      clicked: false
+     }
+     this.handleClick = this.handleClick.bind(this);
   }
+  componentDidMount(){
+    document.title = "MinimaLine | Dashboard"
+  }
+
+  handleClick(){
+    this.setState({clicked: !this.state.clicked})
+  }
+
   render() {
     return ( 
       <Container>
         <div className="header">
-          <HeaderCircle>
-            <img src={logo}/>
-          </HeaderCircle>
           <HeaderBar>
             <h1>Welcome, &lt;username&gt;.</h1>
           </HeaderBar>
+          <HeaderCircle>
+            <img src={logo}/>
+          </HeaderCircle>
         </div>
 
         <Body>
@@ -33,12 +45,25 @@ class App extends Component {
             <h2>Account</h2>
             <p>Manage your account and restaurant information.</p>
           </StyledLink>
-          <Option>
+          <Option onClick={this.handleClick}>
               <AiOutlineUserSwitch className="icon" size="90px"/>
               <h2>Switch Modes</h2>
               <p>Switch to Cashier Mode or Customer Mode.</p>
           </Option>
         </Body>
+
+        {this.state.clicked ?
+          <ModalContainer>
+            <SwitchModal isOpen={true}>
+              <Link to="/customer">
+                <button>customer</button>
+              </Link>
+              <button>cashier</button>
+              <button onClick={this.handleClick}>close</button>
+            </SwitchModal>
+          </ModalContainer>
+          : null
+        }
 
       </Container>
      );
@@ -76,7 +101,7 @@ const HeaderCircle = styled.div`
   border-top-right-radius: 200px 200px;
   border-bottom-right-radius: 200px 200px;
   box-shadow: 3px 3px 5px 3px #d6d6d6;
-  z-index: 1;
+  /* z-index: 1; */
 
   img{
     width: 210px;
@@ -107,7 +132,7 @@ const HeaderBar = styled.div`
   display: flex;
   align-items: center;
   box-shadow: 8px 5px 5px 3px #d6d6d6;
-  z-index: 0;
+  /* z-index: 0; */
 
   h1{
     font-size: 50px;
@@ -256,5 +281,21 @@ const Option = styled.div`
     }
   }
 `;
- 
+const ModalContainer = styled.div`
+  position: relative;
+  
+`;
+
+const SwitchModal = styled(Modal)`
+  background-color: white;
+  box-shadow: 3px 6px 5px 3px #d6d6d6;
+  border-radius: 8px;
+  height: 500px;
+  width: 800px;
+  margin-top: -250px;
+  margin-left: -400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+`;
 export default App;

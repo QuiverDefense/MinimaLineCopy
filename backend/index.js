@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var cors = require("cors");
 var database = require('./config/database');
-// var bodyParser = require('body-parser');
+var upload = require('express-fileupload');
 var port = process.env.PORT || 3005;
 
 //Connect to database
@@ -21,6 +21,8 @@ app.use(express.json());
 app.use(express.urlencoded ({
     extended: true
 }));
+
+app.use(upload());
 
 
 //Register routes in main index.js
@@ -45,6 +47,8 @@ app.post('/user-registration', (req,res)=> {
     (err, result) => {
         if(!err)
             res.send(result)
+        else
+            res.send("username/email already used")
         }
     )
     
@@ -75,14 +79,22 @@ app.post('/user-login', (req,res)=> {
 //for store-registration
 app.post('/store-registration', (req,res)=> {
     
-    const {store_name,manager_name,location,logo}=req.body
+    const {store_name,manager_name,location} = req.body
+    const logo = req.files
+
+    console.log(req.body)
+    console.log(req.files)
 
     database.query("INSERT INTO store_info (store_name, manager_name, location, logo) VALUES (?,?,?,?)", 
     [store_name, manager_name, location, logo], 
     (err, result) => {
         if(!err)
             res.send(result)
+            // if(result===logo){
+
+            // }
         }
+
     )
     
 });

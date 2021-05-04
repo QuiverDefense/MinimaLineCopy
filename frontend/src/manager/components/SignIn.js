@@ -15,6 +15,10 @@ class SignIn extends Component {
       redirect: false
      }
   }
+  componentDidMount(){
+    document.title = "MinimaLine | Sign In"
+  }
+  
   handleChange(e){
     this.setState({
       [e.target.name]: e.target.value
@@ -50,7 +54,7 @@ class SignIn extends Component {
             name="username"
             value={this.state.username}
             required
-            autocomplete="off"
+            autoComplete="off"
             onChange={this.handleChange.bind(this)}/>
           <Status/>
         </InputContainer>
@@ -61,7 +65,7 @@ class SignIn extends Component {
             name="password" 
             value={this.state.password}
             required
-            autocomplete="off"
+            autoComplete="off"
             onChange={this.handleChange.bind(this)}/>
           <Status/>
         </InputContainer>
