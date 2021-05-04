@@ -24,11 +24,11 @@ class StoreReg extends Component{
   }
   handleUpload(e){
     this.setState({
-      storelogo: e.target.files[0]
+      logo: e.target.files[0]
     })
   }
-  // INSERT AXIOS CALL HERE
-  register = e => {
+  
+  registerStore = e => {
     const data = {
       store_name: this.state.store_name,
       manager_name: this.state.manager_name,
@@ -53,7 +53,7 @@ class StoreReg extends Component{
             <BiArrowBack size="40px" color="#676666"/>
           </Link>
         </ArrowWrapper>
-        <Form onSubmit={this.register}>
+        <Form onSubmit={this.registerStore}>
             <h2>Store Registration</h2>
             <InputContainer>
               <StyledInput 
