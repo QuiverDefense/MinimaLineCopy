@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from "styled-components";
 
-const UploadPhoto = ({placeholder, name, mode}) => {
+const UploadPhoto = ({placeholder, name}) => {
+  // console.log({name})
     return (
       <Container>
         <StyledUpload

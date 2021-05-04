@@ -42,17 +42,18 @@ app.post('/user-registration', (req,res)=> {
 
     database.query("INSERT INTO account_info (username, email, password) VALUES (?,?,?)", 
     [username, email, password], 
-    (err, res) => {
-        console.log(err);
+    (err, result) => {
+        if(!err)
+            res.send(result)
         }
-    );
+    )
+    
 });
 
 //authentication for user-login
 app.post('/user-login', (req,res)=> {
-    
-    const username=req.body.username;
-    const password=req.body.password;
+
+    const {username,password}=req.body
 
     database.query(
         "SELECT * FROM account_info WHERE username = ? AND password = ?", 
@@ -63,6 +64,7 @@ app.post('/user-login', (req,res)=> {
         } 
 
         if (result.length > 0) {
+            console.log('yes')
             res.send(result)
         } else {
             res.send({message: "Wrong username and/or password!"});

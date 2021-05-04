@@ -8,7 +8,9 @@ import Terms from "./Terms";
 import ViewMenu from "./ViewMenu";
 import EditMenu from "./EditMenu";
 import Dashboard from "./Dashboard";
+import * as Customer from '../../customer/components';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+
 
 const App = () => {
   return (
@@ -18,11 +20,14 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={SignIn} />
           <Route path="/sign-up" exact component={SignUp} />
+          {/* <Redirect from="/sign-up" to ="/store-reg"/> */}
           <Route path="/terms" exact component={Terms} />
           <Route path="/store-reg" exact component={StoreReg} />
           <Route path="/view-menu" exact component={ViewMenu} />
           <Route path="/edit-menu" exact component={EditMenu} />
           <Route path="/dashboard" exact component={Dashboard} />
+          <Route path="/dashboard" exact component={Dashboard} />
+          <Route path="/customer" exact component={Customer.App} />
         </Switch>
         <Main />
       </Wrapper>
