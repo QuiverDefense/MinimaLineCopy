@@ -20,4 +20,39 @@ app.get('/account-info', (req,res) => {
     });
 });
 
+//to register user info in account_info table
+app.post('/user-registration', (req,res)=> {
+    
+    const {username,email,password}=req.body
+
+    database.query("INSERT INTO account_info (username, email, password) VALUES (?,?,?)", 
+    [username, email, password], 
+    (err, result) => {
+        if(!err)
+            res.send(result)
+        }
+    )
+    
+});
+
+//authentication for user-login
+app.post('/user-login', (req,res)=> {
+
+    const {username,password}=req.body
+
+    database.query("SELECT * FROM account_info WHERE username = ? AND password = ?", 
+    [username, password], 
+    (err, result) => {
+        if(err){
+            res.send({err: err})
+        } 
+        if (result.length > 0) {
+            console.log('yes')
+            res.send(result)
+        } else {
+            res.send({message: "Wrong username and/or password!"});
+        }
+    });
+});
+
 module.exports = app;

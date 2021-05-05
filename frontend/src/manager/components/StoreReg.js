@@ -24,7 +24,7 @@ class StoreReg extends Component{
   }
   handleUpload(e){
     this.setState({
-      storelogo: e.target.files[0]
+      logo: e.target.files[0]
     })
   }
   // INSERT AXIOS CALL HERE
@@ -194,7 +194,7 @@ const StyledInput = styled.input`
   }
 `;
 const StyledUpload = styled.input`
-  display: none;
+  //display: none;
 `;
 const InputContainer  = styled.div`
     display: flex;

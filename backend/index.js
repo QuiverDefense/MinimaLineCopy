@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var upload = require('express-fileupload');
 var cors = require("cors");
 var database = require('./config/database');
 // var bodyParser = require('body-parser');
@@ -13,6 +14,9 @@ database.connect((err) => {
 
 //allow access of rest api for cross-origin resource sharing
 app.use(cors());
+
+//to upload file
+app.use(upload());
 
 //allow api for parsing json
 app.use(express.json());
@@ -34,58 +38,6 @@ app.use('/', [
 //http://localhost:3001/sign-in
 //http://localhost:3001/start-page
 //http://localhost:3001/store-registration
-
-//to register user and store info in account_info table
-app.post('/user-registration', (req,res)=> {
-    
-    const {username,email,password}=req.body
-
-    database.query("INSERT INTO account_info (username, email, password) VALUES (?,?,?)", 
-    [username, email, password], 
-    (err, result) => {
-        if(!err)
-            res.send(result)
-        }
-    )
-    
-});
-
-//authentication for user-login
-app.post('/user-login', (req,res)=> {
-
-    const {username,password}=req.body
-
-    database.query(
-        "SELECT * FROM account_info WHERE username = ? AND password = ?", 
-    [username, password], 
-    (err, result) => {
-        if(err){
-            res.send({err: err})
-        } 
-
-        if (result.length > 0) {
-            console.log('yes')
-            res.send(result)
-        } else {
-            res.send({message: "Wrong username and/or password!"});
-        }
-    });
-});
-
-//for store-registration
-app.post('/store-registration', (req,res)=> {
-    
-    const {store_name,manager_name,location,logo}=req.body
-
-    database.query("INSERT INTO store_info (store_name, manager_name, location, logo) VALUES (?,?,?,?)", 
-    [store_name, manager_name, location, logo], 
-    (err, result) => {
-        if(!err)
-            res.send(result)
-        }
-    )
-    
-});
 
 app.listen(port, () => {
     console.log(`Listening at port http://localhost:${port}`);
