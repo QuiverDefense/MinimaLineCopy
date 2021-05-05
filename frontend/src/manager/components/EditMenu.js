@@ -6,8 +6,8 @@ import Categ from "./Categ";
 import ProdDesc from "./ProdDesc";
 import Products from "./Products";
 import { TiDeleteOutline } from "react-icons/ti";
-import { IconContext } from "react-icons";
 import { IoIosAddCircleOutline } from "react-icons/io";
+import Modal from 'react-modal';
 
 class EditMenu extends Component {
     constructor(){
@@ -15,8 +15,22 @@ class EditMenu extends Component {
         this.state = {
             clicked: false,
             current: null,
+            new_categ: '',
+            prod_name: '',
+            prod_price: '',
+            prod_availability: true,
+            prod_img: '',
+            openDeleteModal: false,
+            openAddCateg: false,
+            openAddProd: false
         }
         this.changeColor = this.changeColor.bind(this);
+        this.deleteModal = this.deleteModal.bind(this);
+        this.addCateg = this.addCateg.bind(this);
+        this.addProduct = this.addProduct.bind(this);
+    }
+    componentDidMount(){
+        document.title = "MinimaLine | Edit Menu"
     }
     changeColor(index){
         if(this.state.current !== index)
@@ -25,8 +39,34 @@ class EditMenu extends Component {
                 clicked: true
             })
     }
-    deleteAlert(){
-        alert("are you sure?");
+    deleteModal(){
+        this.setState({openDeleteModal: !this.state.openDeleteModal})
+    }
+    addCateg(){
+        this.setState({openAddCateg: !this.state.openAddCateg})
+    }
+    addProduct(){
+        this.setState({openAddProd: !this.state.openAddProd})
+    }
+    handleChange(e){
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+    handleUpload(e){
+        this.setState({
+            prod_img: e.target.files[0]
+        })
+    }
+    addNewCateg = e =>{
+        e.preventDefault();
+    }
+    addNewProd = e =>{
+        e.preventDefault();
+        console.log(this.state.prod_name,
+                    this.state.prod_price,
+                    this.state.prod_availability,
+                    this.state.prod_img)
     }
 
     render() { 
@@ -41,9 +81,86 @@ class EditMenu extends Component {
                 </article> 
             );
         };
-        
+        var modalStyle={overlay: {zIndex: 2}}
+
         return ( 
             <Container>
+                {this.state.openDeleteModal ?
+                    <ModalContainer>
+                        <StyledModal isOpen={true} style={modalStyle}>
+                            <h2>Are you sure you want to remove this product from the menu?</h2>
+                            <div className="buttons">
+                                <button className="delete">Delete</button>
+                                <button onClick={this.deleteModal}>Cancel</button>
+                            </div>
+                        </StyledModal>
+                    </ModalContainer>
+                : null}
+
+                {this.state.openAddCateg ?
+                    <ModalContainer>
+                        <StyledModal isOpen={true} style={modalStyle}>
+                            <h2>Add New Menu Category</h2>
+                            <form onSubmit={this.addNewCateg}>
+                                <input
+                                    type="text"
+                                    placeholder="Category Name"
+                                    name="new_categ"
+                                    value={this.state.new_categ}
+                                    required
+                                    autoComplete="off"
+                                    onChange={this.handleChange.bind(this)}/>
+                                <div className="buttons">
+                                    <button className="save">Save Changes</button>
+                                    <button onClick={this.addCateg}>Cancel</button>
+                                </div>
+                            </form>
+                        </StyledModal>
+                    </ModalContainer>
+                : null}
+
+                {this.state.openAddProd?
+                    <ModalContainer>
+                        <StyledModal className="add-prod" isOpen={true} style={modalStyle}>
+                            <h2>Add New Product</h2>
+                            <form onSubmit={this.addNewProd}>
+                                <input
+                                    type="text"
+                                    placeholder="Product Name"
+                                    name="prod_name"
+                                    value={this.state.prod_name}
+                                    required
+                                    autoComplete="off"
+                                    onChange={this.handleChange.bind(this)}/>
+                                <input
+                                    type="text"
+                                    placeholder="Price"
+                                    name="prod_price"
+                                    value={this.state.prod_price}
+                                    required
+                                    autoComplete="off"
+                                    onChange={this.handleChange.bind(this)}/>
+                                <select>
+                                    <option selected value={this.state.prod_availability}>Available</option> 
+                                    <option value={!this.state.prod_availability}>Not Available</option>
+                                </select>
+                                <input
+                                    type="file"
+                                    placeholder="Product Image"
+                                    name="prod_img"
+                                    value={this.state.prod_img}
+                                    required
+                                    autoComplete="off"
+                                    onChange={this.handleChange.bind(this)}/>
+                                <div className="buttons">
+                                    <button className="save">Save Changes</button>
+                                    <button onClick={this.addProduct}>Cancel</button>
+                                </div>
+                            </form>
+                        </StyledModal>
+                    </ModalContainer>
+                : null}
+
                 <Wrapper>
                     <Arrow>
                         <ArrowWrapper>
@@ -53,10 +170,8 @@ class EditMenu extends Component {
                         </ArrowWrapper>
                     </Arrow>
                     <Nav>
-                        <Categ mode={"edit"}/> 
-                        <IconContext.Provider value={{ size: "50px"}}>
-                            <AddCategButton/>
-                        </IconContext.Provider>
+                        <Categ mode={"edit"}/>
+                        <AddCategButton size="50px" onClick={this.addCateg}/>
                     </Nav>
                     <EditButton>
                         <Link to="/view-menu">
@@ -70,24 +185,105 @@ class EditMenu extends Component {
                                     <div
                                     onClick={()=>this.changeColor(index)}
                                     className={(this.state.clicked && (this.state.current===index)) ? 'clicked' : 'unclicked'}>
-                                        <IconContext.Provider value={{size: "50px"}}>
-                                            <DeleteButton onClick={this.deleteAlert}/>
-                                        </IconContext.Provider>
+                                            <DeleteButton size="50px" onClick={this.deleteModal}/>
                                         <Product key={index} product={product}></Product>
                                     </div>
                                 )
                             })}
                             {this.state.clicked ? <ProdDesc {...Products[this.state.current]} mode={"edit"}/> : null }
-                        <IconContext.Provider value={{ size: "100px"}}>
-                            <AddButton/>
-                        </IconContext.Provider>
+                            <AddButton size="100px" onClick={this.addProduct}/>
                         </section>
                     </ProdGrid>
+
                 </Wrapper>
             </Container>
          );
     }
 }
+
+const ModalContainer = styled.div`
+  position: relative;
+`;
+const StyledModal = styled(Modal)`
+  background-color: white;
+  box-shadow: 3px 6px 5px 3px #d6d6d6;
+  border-radius: 8px;
+  height: 300px;
+  width: 600px;
+  margin-top: -150px;
+  margin-left: -300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .add-prod{
+    height: 800px;
+    width: 300px;
+    margin-top: -400px;
+    margin-left: -150px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+  h2{
+      text-align: center;
+      padding: 35px 50px 0px;
+  }
+  
+  form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  input{
+    width: 80%;
+    max-width: 350px;
+    min-width: 250px;
+    height: 40px;
+    border: none;
+    color: black;
+    margin: 7px 0px 10px;
+    background-color: #f5f5f5;
+    box-shadow: 0px 14px 9px -15px rbga(0,0,0,0.25);
+    border-radius: 8px;
+    padding: 0 1rem;
+    transition: all 0.2s ease-in;
+  }
+    
+  .buttons{
+    flex-direction: row;
+    
+    button{
+        font-family: "Work Sans";
+        margin: 30px 20px 0px;
+        width: 150px;
+        height: 50px;
+        border: none;
+        box-shadow: 0px 10px 9px -15px rgba(0,0,0,0.25);
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 18px;
+        cursor: pointer;
+
+        :hover{
+            transform: translateY(2px)
+        }
+    }
+    .delete{
+        color: #fff;
+        background-color: #FF5C5C;
+        box-shadow: 0px 14px 9px -15px rgba(0,0,0,0.25);
+    }
+    .save{
+        color: black;
+        background-color: #F9C91E;
+    }
+  }
+  
+`;
 
 const AddCategButton = styled(IoIosAddCircleOutline)`
     // position: relative;
@@ -176,7 +372,8 @@ const Nav = styled.div`
   height: 120px;
   overflow-x: auto;
   position: fixed;
-  margin-left: 5%;width: 83%;
+  margin-left: 5%;
+  width: 83%;
   align-items: center;
   background: white;
   z-index: 1;
@@ -204,7 +401,7 @@ const ProdGrid = styled.div`
         margin-left: 50px;
         display: grid;
         gap: 2rem;
-        z-index: 0;
+        /* z-index: 0; */
         grid-template-columns: repeat(auto-fit, minmax(177px, 1fr));
 
         @media screen and (max-width: 1024px) {

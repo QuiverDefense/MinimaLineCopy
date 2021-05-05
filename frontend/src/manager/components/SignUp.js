@@ -12,10 +12,15 @@ class SignUp extends Component{
       username: '',
       email: '',
       password: '',
-      redirect: false
+      redirect: false,
+      error: false
     }
     // this.register = this.register.bind(this);
   }
+  componentDidMount(){
+    document.title = "MinimaLine | Sign Up"
+  }
+
   handleChange(e){
     this.setState({
       [e.target.name]: e.target.value
@@ -31,7 +36,10 @@ class SignUp extends Component{
     e.preventDefault();
     Axios.post('http://localhost:3005/user-registration',data).then((response) => {
       console.log(response)
-      this.setState({redirect:true},()=>console.log(this.state.redirect))
+      if(response.data=="username/email already used")
+        this.setState({error:true})
+      else
+        this.setState({redirect:true})
     })
   };
 
@@ -46,9 +54,9 @@ class SignUp extends Component{
             Minima<span>Line</span>
           </h3>
         </LogoWrapper>
-
         <Form onSubmit={this.register}>
           <h3>Sign Up</h3>
+            {/* {this.state.error ? <h1>The username/e-mail is already being used.</h1> : null} */}
             <InputContainer>
               <StyledInput 
                 type="text" 
@@ -56,7 +64,7 @@ class SignUp extends Component{
                 name="username"
                 value={this.state.username} 
                 required
-                autocomplete="off"
+                autoComplete="off"
                 onChange={this.handleChange.bind(this)}/>
               <Status />
             </InputContainer>
@@ -67,7 +75,7 @@ class SignUp extends Component{
                 name="email" 
                 value={this.state.email} 
                 required
-                autocomplete="off"
+                autoComplete="off"
                 onChange={this.handleChange.bind(this)}/>
               <Status />
             </InputContainer>
@@ -78,7 +86,7 @@ class SignUp extends Component{
                 name="password"
                 value={this.state.password} 
                 required
-                autocomplete="off"
+                autoComplete="off"
                 onChange={this.handleChange.bind(this)}/>
               <Status />
             </InputContainer>
