@@ -3,7 +3,7 @@ var app = express();
 var upload = require('express-fileupload');
 var cors = require("cors");
 var database = require('./config/database');
-// var bodyParser = require('body-parser');
+var upload = require('express-fileupload');
 var port = process.env.PORT || 3005;
 
 //Connect to database
@@ -25,6 +25,8 @@ app.use(express.json());
 app.use(express.urlencoded ({
     extended: true
 }));
+
+app.use(upload());
 
 
 //Register routes in main index.js

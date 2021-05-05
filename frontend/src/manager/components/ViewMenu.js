@@ -15,6 +15,10 @@ class ViewMenu extends Component {
         }
         this.changeColor = this.changeColor.bind(this);
     }
+    componentDidMount(){
+        document.title = "MinimaLine | View Menu"
+    }
+    
     changeColor(index){
         if(this.state.current !== index)
             this.setState({

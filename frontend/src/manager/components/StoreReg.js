@@ -13,22 +13,27 @@ class StoreReg extends Component{
       store_name: '',
       manager_name: '',
       location: '',
-      logo: null,
+      logo: '',
       redirect: false
     }
   }
+  componentDidMount(){
+    document.title = "MinimaLine | Store Registration"
+  }
+
   handleChange(e){
     this.setState({
       [e.target.name]: e.target.value
     })
   }
   handleUpload(e){
+    console.log(e.target.files[0])
     this.setState({
       logo: e.target.files[0]
     })
   }
-  // INSERT AXIOS CALL HERE
-  register = e => {
+  
+  registerStore = e => {
     const data = {
       store_name: this.state.store_name,
       manager_name: this.state.manager_name,
@@ -53,7 +58,7 @@ class StoreReg extends Component{
             <BiArrowBack size="40px" color="#676666"/>
           </Link>
         </ArrowWrapper>
-        <Form onSubmit={this.register}>
+        <Form onSubmit={this.registerStore}>
             <h2>Store Registration</h2>
             <InputContainer>
               <StyledInput 
@@ -62,7 +67,7 @@ class StoreReg extends Component{
                 name="store_name"
                 value={this.state.store_name}
                 required
-                autocomplete="off"
+                autoComplete="off"
                 onChange={this.handleChange.bind(this)}/> 
               <InputStatus />
             </InputContainer>
@@ -73,7 +78,7 @@ class StoreReg extends Component{
                 name="location"
                 value={this.state.location} 
                 required
-                autocomplete="off"
+                autoComplete="off"
                 onChange={this.handleChange.bind(this)}/> 
               <InputStatus />
             </InputContainer>
@@ -84,7 +89,7 @@ class StoreReg extends Component{
                 name="manager_name"
                 value={this.state.manager_name}
                 required
-                autocomplete="off"
+                autoComplete="off"
                 onChange={this.handleChange.bind(this)}/>
               <InputStatus />
             </InputContainer>
@@ -95,7 +100,7 @@ class StoreReg extends Component{
                 type="file"
                 placeholder="Logo"
                 name="logo"
-                value={this.state.logo}
+                // value={this.state.logo}
                 onChange={this.handleUpload.bind(this)}/>
             </InputContainer>
             <button type="submit"> Submit </button>
@@ -194,7 +199,7 @@ const StyledInput = styled.input`
   }
 `;
 const StyledUpload = styled.input`
-  //display: none;
+  /* display: none; */
 `;
 const InputContainer  = styled.div`
     display: flex;
