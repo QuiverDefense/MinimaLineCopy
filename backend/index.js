@@ -1,16 +1,15 @@
 var express = require('express');
 var app = express();
+var moment = require('moment');
 var upload = require('express-fileupload');
 var cors = require("cors");
 var database = require('./config/database');
-var upload = require('express-fileupload');
 var port = process.env.PORT || 3005;
 
 //Connect to database
 database.connect((err) => {
     if (err) throw err;
 });
-
 
 //allow access of rest api for cross-origin resource sharing
 app.use(cors());
@@ -26,11 +25,7 @@ app.use(express.urlencoded ({
     extended: true
 }));
 
-app.use(upload());
-
-
 //Register routes in main index.js
-
 app.use('/', [
     require('./routes/store-info'),
     require('./routes/account-info')

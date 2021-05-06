@@ -34,6 +34,7 @@ class StoreReg extends Component{
   }
   
   registerStore = e => {
+    console.log(this.state.logo)
     const data = {
       store_name: this.state.store_name,
       manager_name: this.state.manager_name,
