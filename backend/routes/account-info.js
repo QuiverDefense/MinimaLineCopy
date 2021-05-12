@@ -43,14 +43,14 @@ app.post('/user-login', (req,res)=> {
     database.query("SELECT * FROM account_info WHERE username = ? AND password = ?", 
     [username, password], 
     (err, result) => {
-        if(err){
-            res.send({err: err})
-        } 
+        // if(err){
+        //     err.send({message: "Wrong username and/or password!"});
+        // } 
         if (result.length > 0) {
-            console.log('yes')
             res.send(result)
-        } else {
-            res.send({message: "Wrong username and/or password!"});
+        }
+        else {
+            res.status(400).send({message: "Wrong username and/or password!"});
         }
     });
 });

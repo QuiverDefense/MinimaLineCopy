@@ -34,17 +34,23 @@ class StoreReg extends Component{
   }
   
   registerStore = e => {
+    const img = new FormData();
+    img.append('file',this.state.logo)
+    console.log(this.state.logo)
     const data = {
       store_name: this.state.store_name,
       manager_name: this.state.manager_name,
       location: this.state.location,
-      logo: this.state.logo
+      logo: img
     };
     console.log('hello this is your input:',data)
     e.preventDefault();
-    Axios.post('http://localhost:3005/store-registration',data).then((response) => {
+    Axios.post('http://localhost:3005/store-registration',data,{headers: {"Content-Type":"multipart/form-data"}}).then((response) => {
       console.log(response)
       this.setState({redirect:true},()=>console.log(this.state.redirect))
+    })
+    .catch(error => {
+      console.log(error.response)
     })
   };
 
