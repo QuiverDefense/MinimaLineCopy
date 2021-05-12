@@ -21,30 +21,6 @@ app.get('/store-info', (req,res) => {
 });
 
 //to register store into store_info table
-// app.post('/store-registration', (req,res)=> {
-    
-//     const {store_name,manager_name,location}=req.body
-    
-//     if(!req.files)
-//         return res.status(400).send('No files were uploaded')
-
-//     const {logo} = req.files 
-//     var img_name = logo.name
-
-//     //console.log(req.files)
-//     //console.log(img_name)
-//     //console.log(req.body.store_name)
-//     //console.log(req.body.location)
-
-//     database.query("INSERT INTO store_info (store_name, manager_name, location, logo) VALUES (?,?,?,?)", 
-//     [store_name, manager_name, location, logo],
-    
-//     (err, result) => {
-//         if(!err)
-//             res.send(result)
-//             }
-//         ) 
-//     });
 app.post('/store-registration', (req,res)=> {
     if(req.method == "POST"){
         var post  = req.body;
@@ -53,17 +29,21 @@ app.post('/store-registration', (req,res)=> {
         var location= post.location;
 
         if (!req.files){
-            return res.status(400).send('No files were uploaded.');
+            database.query("INSERT INTO store_info (store_name,manager_name,location) VALUES ('" + store_name + "','" + manager_name + "','" + location + "')",
+                            (err, result) => {
+                                if(!err)
+                                    res.send(result)
+                                }
+                            );
+            return res.status(200).send('Insert data into database, but no files were uploaded.');
         }
-
+          
           var file = req.files.logo;
-        //   console.log(file);
           var img_name = file.name;
-
           console.log("file uploaded:")
           console.log(file)
 
-             if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" ){
+             if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"|| file.mimetype == "image/gif" || file.mimetype == "image/svg" || file.mimetype == "image/jpg"){
                                    
                 file.mv('public/uploads'+file.name, function(err) {
                                
@@ -85,5 +65,5 @@ app.post('/store-registration', (req,res)=> {
             }
      }
   });
-
+    
 module.exports = app;

@@ -34,8 +34,6 @@ class StoreReg extends Component{
   }
   
   registerStore = e => {
-    const img = new FormData();
-    img.append('file',this.state.logo)
     console.log(this.state.logo)
     const data = {
       store_name: this.state.store_name,
