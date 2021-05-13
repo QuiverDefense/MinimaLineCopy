@@ -5,26 +5,17 @@ import EditMenuInput from "./EditMenuInput";
 class ProdDesc extends Component {
 
     render() { 
-        return ( 
-            <Container>
-                <img src={this.props.product_img}/>
-                {this.props.mode==="edit" ? 
+        if (this.props.mode==="edit") {
+            return (
+                <Container>
+                    <img src={this.props.product_img}/>
                     <Upload
                         type="file"
                         name="photo"
                         autocomplete="off"
                     />
-                : null
-                } 
-                {this.props.mode==="edit" ? 
                     <EditMenuInput placeholder={this.props.product_name} name="product name" />
-                    : <h1>{this.props.product_name}</h1>
-                }
-                {this.props.mode==="edit" ? 
                     <EditMenuInput placeholder={this.props.product_price} name="product price" />
-                    : <h3>{this.props.product_price}</h3>
-                }
-                {this.props.mode==="edit" ? 
                     <div>
                         {(() => {
                             if(this.props.product_availability==true){
@@ -44,17 +35,22 @@ class ProdDesc extends Component {
                             } 
                         })()}
                     </div>
-                : <h3>{this.props.product_availability ? "Available" : "Not Available"}</h3>
-                }
-                {this.props.mode==="edit" ? 
                     <Buttons>
                         <button className="save">Save Changes</button>
                         <button className="cancel">Cancel</button>
                     </Buttons>
-                : null
-                }
-            </Container>
-         );
+                </Container>
+            );
+        } else {
+            return (
+                <Container>
+                    <img src={this.props.product_img}/>
+                    <h1>{this.props.product_name}</h1>
+                    <h3>{this.props.product_price}</h3>
+                    <h3>{this.props.product_availability ? "Available" : "Not Available"}</h3>
+                </Container>
+            );
+        }
     }
 }
 

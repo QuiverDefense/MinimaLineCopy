@@ -90,6 +90,7 @@ const EditButton = styled.div`
     z-index: 1;
 
     button{ 
+        outline: none;
         border: none;
         color: black;
         padding: 0rem 1rem;

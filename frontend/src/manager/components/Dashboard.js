@@ -53,15 +53,15 @@ class App extends Component {
         </Body>
 
         {this.state.clicked ?
-          <ModalContainer>
+          // <ModalContainer>
             <SwitchModal isOpen={true}>
+              <button className="close"onClick={this.handleClick}>X</button>
               <Link to="/customer">
-                <button>customer</button>
+                <button className="modes">Customer</button>
               </Link>
-              <button>cashier</button>
-              <button onClick={this.handleClick}>close</button>
+              <button className="modes">Cashier</button>
             </SwitchModal>
-          </ModalContainer>
+          // </ModalContainer>
           : null
         }
 
@@ -287,15 +287,54 @@ const ModalContainer = styled.div`
 `;
 
 const SwitchModal = styled(Modal)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: white;
   box-shadow: 3px 6px 5px 3px #d6d6d6;
   border-radius: 8px;
-  height: 500px;
-  width: 800px;
-  margin-top: -250px;
-  margin-left: -400px;
+  height: 300px;
+  width: 400px;
+  margin-top: -150px;
+  margin-left: -200px;
   position: absolute;
   top: 50%;
   left: 50%;
+  .modes{
+        font-family: "Work Sans";
+        margin: 30px 20px 0px;
+        width: 200px;
+        height: 60px;
+        border: none;
+        box-shadow: 0px 10px 9px -15px rgba(0,0,0,0.25);
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 22px;
+        cursor: pointer;
+
+        :hover{
+            transform: translateY(2px);
+            background-color: #f9c91e;
+        }
+    }
+  .close{
+        font-family: "Work Sans";
+        background-color: transparent;
+        margin: 10px 0px 0px 350px;
+        border: none;
+        height: 35px;
+        width: 30px;
+        font-weight: 600;
+        font-size: 25px;
+        cursor: pointer;
+
+        :hover{
+            /* transform: translateY(2px); */
+            /* height: 45px;
+            width: 45px; */
+            border-radius: 8px;
+            background-color: #F3D9A4;
+        }
+    }
 `;
 export default App;

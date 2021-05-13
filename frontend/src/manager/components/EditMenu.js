@@ -87,19 +87,19 @@ class EditMenu extends Component {
             <Container>
                 {this.state.openDeleteModal ?
                     <ModalContainer>
-                        <StyledModal isOpen={true} style={modalStyle}>
+                        <CategModal isOpen={true} style={modalStyle}>
                             <h2>Are you sure you want to remove this product from the menu?</h2>
                             <div className="buttons">
                                 <button className="delete">Delete</button>
                                 <button onClick={this.deleteModal}>Cancel</button>
                             </div>
-                        </StyledModal>
+                        </CategModal>
                     </ModalContainer>
                 : null}
 
                 {this.state.openAddCateg ?
                     <ModalContainer>
-                        <StyledModal isOpen={true} style={modalStyle}>
+                        <CategModal isOpen={true} style={modalStyle}>
                             <h2>Add New Menu Category</h2>
                             <form onSubmit={this.addNewCateg}>
                                 <input
@@ -115,13 +115,13 @@ class EditMenu extends Component {
                                     <button onClick={this.addCateg}>Cancel</button>
                                 </div>
                             </form>
-                        </StyledModal>
+                        </CategModal>
                     </ModalContainer>
                 : null}
 
                 {this.state.openAddProd?
                     <ModalContainer>
-                        <StyledModal className="add-prod" isOpen={true} style={modalStyle}>
+                        <ProdModal className="add-prod" isOpen={true} style={modalStyle}>
                             <h2>Add New Product</h2>
                             <form onSubmit={this.addNewProd}>
                                 <input
@@ -157,7 +157,7 @@ class EditMenu extends Component {
                                     <button onClick={this.addProduct}>Cancel</button>
                                 </div>
                             </form>
-                        </StyledModal>
+                        </ProdModal>
                     </ModalContainer>
                 : null}
 
@@ -204,7 +204,97 @@ class EditMenu extends Component {
 const ModalContainer = styled.div`
   position: relative;
 `;
-const StyledModal = styled(Modal)`
+const ProdModal = styled(Modal)`
+  outline: none;
+  background-color: white;
+  box-shadow: 3px 6px 5px 3px #d6d6d6;
+  border-radius: 8px;
+  height: 440px;
+  width: 400px;
+  margin-top: -220px;
+  margin-left: -200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2{
+      text-align: center;
+      padding: 35px 50px 0px;
+  }
+  
+  form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  input{
+    width: 80%;
+    max-width: 350px;
+    min-width: 250px;
+    height: 40px;
+    border: none;
+    color: black;
+    margin: 7px 0px 10px;
+    background-color: #f5f5f5;
+    box-shadow: 0px 14px 9px -15px rbga(0,0,0,0.25);
+    border-radius: 8px;
+    padding: 0 1rem;
+    transition: all 0.2s ease-in;
+  }
+    
+  select{
+    width: 89%;
+    max-width: 400px;
+    min-width: 250px;
+    height: 40px;
+    border: none;
+    color: black;
+    margin: 7px 0px 10px;
+    background-color: #f5f5f5;
+    box-shadow: 0px 14px 9px -15px rbga(0,0,0,0.25);
+    border-radius: 8px;
+    padding: 0 1rem;
+    transition: all 0.2s ease-in;
+  }
+
+  .buttons{
+    flex-direction: row;
+    
+    button{
+        font-family: "Work Sans";
+        margin: 30px 20px 0px;
+        width: 150px;
+        height: 50px;
+        border: none;
+        box-shadow: 0px 10px 9px -15px rgba(0,0,0,0.25);
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 18px;
+        cursor: pointer;
+
+        :hover{
+            transform: translateY(2px)
+        }
+    }
+    .delete{
+        color: #fff;
+        background-color: #FF5C5C;
+        box-shadow: 0px 14px 9px -15px rgba(0,0,0,0.25);
+    }
+    .save{
+        color: black;
+        background-color: #F9C91E;
+    }
+  }
+  
+`;
+
+const CategModal = styled(Modal)`
+  outline: none;
   background-color: white;
   box-shadow: 3px 6px 5px 3px #d6d6d6;
   border-radius: 8px;
@@ -218,15 +308,6 @@ const StyledModal = styled(Modal)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  .add-prod{
-    height: 800px;
-    width: 300px;
-    margin-top: -400px;
-    margin-left: -150px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-  }
 
   h2{
       text-align: center;
@@ -344,6 +425,7 @@ const EditButton = styled.div`
     z-index: 1;
 
     button{ 
+        outline: none;
         border: none;
         color: black;
         padding: 0rem 1rem;
