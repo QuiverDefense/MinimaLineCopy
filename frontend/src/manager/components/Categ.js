@@ -16,36 +16,7 @@ const products = [
     {
         product_name: 'Desserts',
     },
-      {
-        product_name: 'Drinks',
-    },
-    {
-        product_name: 'Sides',
-    },
-    {
-        product_name: 'Desserts',
-    },
-      {
-        product_name: 'Drinks',
-    },
-    {
-        product_name: 'Sides',
-    },
-    {
-        product_name: 'Desserts',
-    },
-    {
-        product_name: 'Desserts',
-    },
-      {
-        product_name: 'Drinks',
-    },
-    {
-        product_name: 'Sides',
-    },
-    {
-        product_name: 'Desserts',
-    },
+
 ];
 
 class Categ extends Component {
