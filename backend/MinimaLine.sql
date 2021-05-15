@@ -2,10 +2,10 @@
 -- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 18, 2021 at 07:46 AM
+-- Host: 127.0.0.1
+-- Generation Time: May 15, 2021 at 08:27 AM
 -- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.2
+-- PHP Version: 8.0.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `MinimaLine`
+-- Database: `minimaline`
 --
 
 -- --------------------------------------------------------
@@ -56,6 +56,17 @@ CREATE TABLE `all_orders` (
 CREATE TABLE `cancelled_orders` (
   `id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category`
+--
+
+CREATE TABLE `category` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -110,8 +121,7 @@ CREATE TABLE `menu_info` (
   `product` varchar(30) DEFAULT NULL,
   `price` decimal(6,0) DEFAULT NULL,
   `availability` tinyint(1) DEFAULT NULL,
-  `photo` mediumblob DEFAULT NULL,
-  `category` varchar(30) DEFAULT NULL
+  `photo` mediumblob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -123,6 +133,18 @@ CREATE TABLE `menu_info` (
 CREATE TABLE `pending_orders` (
   `id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_category`
+--
+
+CREATE TABLE `product_category` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -164,6 +186,12 @@ ALTER TABLE `cancelled_orders`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
@@ -198,6 +226,12 @@ ALTER TABLE `pending_orders`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `product_category`
+--
+ALTER TABLE `product_category`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `store_info`
 --
 ALTER TABLE `store_info`
@@ -223,6 +257,12 @@ ALTER TABLE `all_orders`
 -- AUTO_INCREMENT for table `cancelled_orders`
 --
 ALTER TABLE `cancelled_orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -253,6 +293,12 @@ ALTER TABLE `menu_info`
 -- AUTO_INCREMENT for table `pending_orders`
 --
 ALTER TABLE `pending_orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `product_category`
+--
+ALTER TABLE `product_category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --

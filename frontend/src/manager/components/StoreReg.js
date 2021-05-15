@@ -39,7 +39,7 @@ class StoreReg extends Component{
       store_name: this.state.store_name,
       manager_name: this.state.manager_name,
       location: this.state.location,
-      logo: img
+      logo: this.state.logo//img
     };
     console.log('hello this is your input:',data)
     e.preventDefault();
@@ -71,6 +71,8 @@ class StoreReg extends Component{
                 name="store_name"
                 value={this.state.store_name}
                 required
+                minLength="3"
+                maxLength="255"
                 autoComplete="off"
                 onChange={this.handleChange.bind(this)}/> 
               <InputStatus />
