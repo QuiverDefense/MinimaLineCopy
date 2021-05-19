@@ -85,7 +85,6 @@ class Categ extends Component {
 
 const DeleteButton = styled(TiDeleteOutline)`
     position: absolute;
-    // left: 135px;
     right: -10px;
     top: -10px;
 
