@@ -39,7 +39,7 @@ class SignIn extends Component {
     return ( 
       <Container>
       <LogoWrapper>
-        <img src={logo} alt="" />
+        {/* <img src={logo} alt="" /> */}
         <h3>
           Minima<span>Line</span>
         </h3>
@@ -93,8 +93,11 @@ const Form = styled.form`
     align-items: center;
 
     h3{
-        color: #666666;
-        margin-bottom: 2rem;
+      color: #666666;
+      // color: black;
+      margin-bottom: 2rem;
+      font-size: 40px;
+      align-items: left;
     }
 
     button{
@@ -107,7 +110,7 @@ const Form = styled.form`
         border: none;
         box-shadow: 0px 14px 9px -15px rgba(0,0,0,0.25);
         border-radius: 8px;
-        background-color: #70edb9;
+        background-color: #568d33;
         color: #fff;
         font-weight: 600;
         cursor: pointer;
@@ -127,12 +130,12 @@ const LogoWrapper = styled.div`
 
     h3{
         text-align:center;
-        color: #ff8d8d;
+        color: #ec9736;
         font-size: 22px;
     }
 
     span{
-        color: #5dc399;
+        color: #568d33;
         font-weight: 300;
         font-size: 18px;
     }
@@ -163,7 +166,8 @@ const Container = styled.div`
       margin-top: 2rem;
 
       span {
-          color: #ff8d8d;
+          // color: #ff8d8d;
+          color: #568d33;
           cursor: pointer;
       }
   }
@@ -206,7 +210,8 @@ const Status = styled.div`
     background: #fe2f75;
   }
   ${StyledInput}:valid + & {
-    background: #70edb9;
+    // background: #70edb9;
+    background: #568d33;
   }
 `;
 
