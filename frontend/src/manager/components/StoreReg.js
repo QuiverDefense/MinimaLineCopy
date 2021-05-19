@@ -43,7 +43,7 @@ class StoreReg extends Component{
     };
     console.log('hello this is your input:',data)
     e.preventDefault();
-    Axios.post('http://localhost:3005/store-registration',data,{headers: {"Content-Type":"multipart/form-data"}}).then((response) => {
+    Axios.post('http://localhost:3005/store-registration',data).then((response) => {
       console.log(response)
       this.setState({redirect:true},()=>console.log(this.state.redirect))
     })
