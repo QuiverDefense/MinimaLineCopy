@@ -47,6 +47,8 @@ app.post('/user-login', (req,res)=> {
         //     err.send({message: "Wrong username and/or password!"});
         // } 
         if (result.length > 0) {
+            //console.log("Username and Password: ")
+            //console.log(result)
             res.send(result)
         }
         else {

@@ -28,7 +28,8 @@ app.use(express.urlencoded ({
 //Register routes in main index.js
 app.use('/', [
     require('./routes/store-info'),
-    require('./routes/account-info')
+    require('./routes/account-info'),
+    require('./routes/menu'),
 ]);
 
 //http://localhost:3001/ (index.js)
