@@ -72,7 +72,7 @@ class App extends Component {
 
 const Container = styled.div`
   position: absolute;
-  overflow: auto;
+  overflow: hidden;
   background-color: #faf0e0;
   height: 100%;
   width: 100%;

@@ -119,6 +119,14 @@ const ArrowWrapper = styled.div`
 `;
 
 const Container = styled.div`
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+ 
   min-width: 600px;
   backdrop-filter: blur(35px);
   background-color: rgba(255, 255, 255, 0.5);
@@ -133,5 +141,7 @@ const Container = styled.div`
       padding: 0;
   }
 `;
+
+
 
 export default Terms;

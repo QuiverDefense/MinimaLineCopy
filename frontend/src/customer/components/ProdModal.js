@@ -6,7 +6,7 @@ class ProdModal extends Component {
     constructor(props) {
         super(props);
         this.state = {    
-            count: 1
+            count: 1,
         }
         this.increment = this.increment.bind(this);
         this.decrement = this.decrement.bind(this);
@@ -77,7 +77,6 @@ const ProductModal = styled(Modal)`
   }
   
   .left{
-    /* margin-top: -100px; */
 
     h1{
         margin-top: -100px;
@@ -85,10 +84,10 @@ const ProductModal = styled(Modal)`
     }
 
     h2{
-    margin-top: -35px;
-    margin-bottom: 80px;
-    color: #617d98;
-    font-size: 2rem;
+        margin-top: -35px;
+        margin-bottom: 80px;
+        color: #617d98;
+        font-size: 2rem;
     }
 
     .counter{
