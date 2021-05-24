@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import bgImg from '../../assets/food.png'
+import bgImg from '../../assets/testing.png'
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import Main from "./Main";
@@ -8,6 +8,7 @@ import Terms from "./Terms";
 import ViewMenu from "./ViewMenu";
 import EditMenu from "./EditMenu";
 import Dashboard from "./Dashboard";
+import * as Customer from '../../customer/components';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 
@@ -47,7 +48,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   background-image: url(${bgImg});
-  background-color: #fd8d8c; 
+  background-color: #f3d9a4; 
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

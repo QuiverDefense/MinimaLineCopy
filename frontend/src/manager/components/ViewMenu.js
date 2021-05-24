@@ -15,6 +15,10 @@ class ViewMenu extends Component {
         }
         this.changeColor = this.changeColor.bind(this);
     }
+    componentDidMount(){
+        document.title = "MinimaLine | View Menu"
+    }
+    
     changeColor(index){
         if(this.state.current !== index)
             this.setState({
@@ -86,6 +90,7 @@ const EditButton = styled.div`
     z-index: 1;
 
     button{ 
+        outline: none;
         border: none;
         color: black;
         padding: 0rem 1rem;
