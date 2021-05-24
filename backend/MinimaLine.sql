@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2021 at 08:27 AM
+-- Generation Time: May 19, 2021 at 05:35 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -120,6 +120,7 @@ CREATE TABLE `menu_info` (
   `id` int(11) NOT NULL,
   `product` varchar(30) DEFAULT NULL,
   `price` decimal(6,0) DEFAULT NULL,
+  `category_id` int(11) NOT NULL,
   `availability` tinyint(1) DEFAULT NULL,
   `photo` mediumblob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -133,18 +134,6 @@ CREATE TABLE `menu_info` (
 CREATE TABLE `pending_orders` (
   `id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `product_category`
---
-
-CREATE TABLE `product_category` (
-  `id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -226,12 +215,6 @@ ALTER TABLE `pending_orders`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `product_category`
---
-ALTER TABLE `product_category`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `store_info`
 --
 ALTER TABLE `store_info`
@@ -293,12 +276,6 @@ ALTER TABLE `menu_info`
 -- AUTO_INCREMENT for table `pending_orders`
 --
 ALTER TABLE `pending_orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `product_category`
---
-ALTER TABLE `product_category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
