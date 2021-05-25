@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2021 at 05:35 PM
+-- Generation Time: May 25, 2021 at 06:35 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -31,7 +31,9 @@ CREATE TABLE `account_info` (
   `id` int(11) NOT NULL,
   `username` varchar(30) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `password` text DEFAULT NULL
+  `password` text DEFAULT NULL,
+  `role` tinyint(1) DEFAULT NULL,
+  `store_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -44,7 +46,8 @@ CREATE TABLE `all_orders` (
   `id` int(11) NOT NULL,
   `customer_num` int(11) DEFAULT NULL,
   `queue` int(11) DEFAULT NULL,
-  `status` char(10) NOT NULL DEFAULT 'PENDING'
+  `status` char(10) NOT NULL DEFAULT 'PENDING',
+  `store_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -55,7 +58,8 @@ CREATE TABLE `all_orders` (
 
 CREATE TABLE `cancelled_orders` (
   `id` int(11) NOT NULL,
-  `customer_id` int(11) NOT NULL
+  `customer_id` int(11) NOT NULL,
+  `store_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -66,7 +70,8 @@ CREATE TABLE `cancelled_orders` (
 
 CREATE TABLE `category` (
   `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL
+  `name` varchar(100) NOT NULL,
+  `store_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -79,7 +84,8 @@ CREATE TABLE `customer` (
   `id` int(11) NOT NULL,
   `priority_type` char(10) NOT NULL DEFAULT 'REGULAR',
   `dine_in` tinyint(1) DEFAULT NULL,
-  `date` date DEFAULT NULL
+  `date` date DEFAULT NULL,
+  `store_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -122,7 +128,8 @@ CREATE TABLE `menu_info` (
   `price` decimal(6,0) DEFAULT NULL,
   `category_id` int(11) NOT NULL,
   `availability` tinyint(1) DEFAULT NULL,
-  `photo` mediumblob DEFAULT NULL
+  `photo` mediumblob DEFAULT NULL,
+  `store_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
