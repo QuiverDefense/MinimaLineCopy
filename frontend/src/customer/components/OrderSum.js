@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { MdModeEdit } from "react-icons/md";
 
 const orders = [
     {
@@ -34,13 +35,16 @@ class OrderSum extends Component {
                 <div className="list">
                     {orders.map((order,index)=>{
                         return(
-                            <div className="order">
-                                <div>
-                                    <p className="name">{order.product}</p>
-                                </div>
-                                <div className="price">
-                                    <p>x{order.quantity}</p>
-                                    <p>Php {order.price}</p>
+                            <div className="wrapper">
+                                <MdModeEdit/>
+                                <div className="order">
+                                    <div>
+                                        <p className="name">{order.product}</p>
+                                    </div>
+                                    <div className="price">
+                                        <p>x{order.quantity}</p>
+                                        <p>Php {order.price}</p>
+                                    </div>
                                 </div>
                             </div>
                         )
@@ -68,6 +72,12 @@ const Container = styled.div`
     border-radius: 1rem;
     box-shadow: 0px 5px 10px -2px #858585;
 
+    .wrapper{
+        display: flex;
+        flex-direction: row;
+        margin-left: 20px;
+    }
+
     .list{
         /* height: 310px; */
         height: 350px;
@@ -75,7 +85,7 @@ const Container = styled.div`
     }
 
     .order{
-        margin-left: 50px;
+        margin-left: 20px;
         margin-top: -20px;
     }
 
