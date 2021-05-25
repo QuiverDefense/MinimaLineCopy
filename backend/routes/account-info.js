@@ -43,16 +43,14 @@ app.post('/user-registration', async (req,res)=> {
 app.post('/user-login', async(req,res)=> {
 
     const {username,password}=req.body
-    hashPass = await bcrypt.compare(password,hash)
-    console.log(password+'\n'+hashPass)
-
+    
     database.query("SELECT * FROM account_info WHERE username = ? AND password = ?", 
     [username, password], 
     (err, result) => {
         // if(err){
         //     err.send({message: "Wrong username and/or password!"});
         // } 
-        if (result.length > 0 && hashPass) {
+        if (result.length > 0) {
             //console.log("Username and Password: ")
             //console.log(result)
             res.send(result)
