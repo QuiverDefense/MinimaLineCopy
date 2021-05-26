@@ -108,6 +108,7 @@ const EditButton = styled.div`
 
         &:hover {
             transform: translateY(-4px);
+            cursor: pointer;
         }
     }
 `
@@ -175,6 +176,7 @@ const ProdGrid = styled.div`
 
         &:hover {
             transform: translateY(-4px);
+            cursor: pointer;
         }
 
         h1{
@@ -200,6 +202,7 @@ const ProdGrid = styled.div`
         &:hover {
             transform: translateY(-4px);
             background: #F3D9A4;
+            cursor: pointer;
         }
         h1{
             margin-top: 0.5rem;

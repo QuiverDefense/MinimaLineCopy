@@ -3,7 +3,7 @@ import styled from "styled-components";
 import logo from "../../assets/logo.svg";
 // import Input from "./Input";
 import {Redirect,Link} from 'react-router-dom';
-import Axios from "axios"
+import Axios from "axios";
 
 
 class SignIn extends Component {
@@ -12,7 +12,9 @@ class SignIn extends Component {
     this.state = { 
       username: '',
       password: '',
-      redirect: false
+      redirect: false,
+      login_error: false,
+      error_msg: null
      }
   }
   componentDidMount(){
@@ -28,9 +30,18 @@ class SignIn extends Component {
     e.preventDefault();
     const data = this.state;
     Axios.post("http://localhost:3005/user-login", data).then((response) => {
-      console.log(response)
-      this.setState({redirect:true})
-    });
+      if(response.status!==400){
+        console.log(response)
+        this.setState({redirect:true})
+      }
+      else{
+        {throw new Error()}
+      }
+    })
+    .catch((err) => {
+      this.setState({login_error:true})
+      console.log(this.state.login_error)
+    })
   };
 
   render() { 
@@ -47,6 +58,7 @@ class SignIn extends Component {
 
       <Form onSubmit={this.login}>
         <h3>Sign In</h3>
+        {this.state.login_error ? <p>Incorrect username/password!</p> : null}
         <InputContainer>
           <StyledInput 
             type="text" 

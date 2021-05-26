@@ -2,22 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { TiDeleteOutline } from "react-icons/ti";
 import Modal from 'react-modal';
-
-const products = [
-    {
-        product_name: 'Mains',
-    },
-    {
-        product_name: 'Appetizers',
-    },
-    {
-        product_name: 'Sides',
-    },
-    {
-        product_name: 'Desserts',
-    },
-
-];
+import Axios from 'axios';
 
 class Categ extends Component {
     constructor(){
@@ -26,10 +11,13 @@ class Categ extends Component {
             clicked: false,
             current: 0,
             default: true,
-            openModal: false
+            openModal: false,
+            categ: [],
+            delete_this: null
         }
         this.changeColor = this.changeColor.bind(this);
-        this.handleClick = this.handleClick.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
+        this.deleteCateg = this.deleteCateg.bind(this);
     }
     changeColor(index){
         if(this.state.current !== index) // different category is clicked
@@ -39,46 +27,60 @@ class Categ extends Component {
                 default: false
             })
     }
-    handleClick(){
-        this.setState({openModal: !this.state.openModal})
+    toggleModal(id){
+        this.setState({
+            openModal: !this.state.openModal,
+            delete_this: id
+        })
+    }
+
+    deleteCateg(){
+        Axios.delete(`http://localhost:3005/delete-categ/${this.state.delete_this}`).then((response) => {
+            console.log(response)
+            this.toggleModal()
+        })
+    }
+    async componentDidMount(){
+        let results = await Axios.get('http://localhost:3005/display-category');
+        this.setState({ categ: results.data })
     }
 
     render() { 
-        const Product = (props) => {
-            const {product_name} = props.product;
-            return (
-                <div className="word">
-                <h1>{product_name}</h1>
-                </div>
-            );
-        };
         var modalStyle={overlay: {zIndex: 2}}
         return ( 
-            <Container>
-                {products.map((product,index)=>{
-                    return(
-                        <div
-                            className={((this.state.clicked || this.state.default) && (this.state.current===index)) ? 'clicked' : 'unclicked'}
-                            onClick={()=>this.changeColor(index)}>
-                            <Product key={index} product={product}></Product>
-                            {this.props.mode==="edit" ? 
-                                <DeleteButton size="25px"onClick={this.handleClick}/>
-                            : null}
-                        </div>
-                    )
-                })} 
-                {this.state.openModal ?
-                    <ModalContainer>
-                        <DeleteModal isOpen={true} style={modalStyle}>
-                            <h2>Are you sure you want to remove this category from the menu?</h2>
-                            <div className="buttons">
-                                <button className="delete">Delete</button>
-                                <button onClick={this.handleClick}>Cancel</button>
+            <>
+            {!this.state.categ.length ? 
+                <div></div>
+            :
+                <Container>
+                        {this.state.categ.map((categ,index)=>{
+                        return(
+                            <div
+                                className={((this.state.clicked || this.state.default) && (this.state.current===index)) ? 'clicked' : 'unclicked'}
+                                onClick={()=>this.changeColor(index)}>
+                                <div className="word">
+                                    <h1>{categ["name"]}</h1>
+                                </div>
+                                {this.props.mode==="edit" ? 
+                                    <DeleteButton size="25px"onClick={() => this.toggleModal(categ["id"])}/>
+                                : null}
                             </div>
-                        </DeleteModal>
-                    </ModalContainer>
-                : null}     
-            </Container>
+                        )
+                    })} 
+                    {this.state.openModal ?
+                        <ModalContainer>
+                            <DeleteModal isOpen={true} style={modalStyle}>
+                                <h2>Are you sure you want to remove this category from the menu?</h2>
+                                <div className="buttons">
+                                    <button className="delete" onClick={this.deleteCateg}>Delete</button>
+                                    <button onClick={this.toggleModal}>Cancel</button>
+                                </div>
+                            </DeleteModal>
+                        </ModalContainer>
+                    : null}     
+                </Container>
+            } 
+            </>  
          );
     }
 }
@@ -90,6 +92,7 @@ const DeleteButton = styled(TiDeleteOutline)`
 
     &:hover {
         color: #FF5C5C;
+        cursor: pointer;
     }
 ` 
 
@@ -112,6 +115,7 @@ const Container = styled.div`
         &:hover {
             transform: translateY(-4px);
             background: #F3D9A4;
+            cursor: pointer;
         }
     }
 
@@ -130,6 +134,7 @@ const Container = styled.div`
 
         &:hover {
             transform: translateY(-4px);
+            cursor: pointer;
         }
     }
     
@@ -183,7 +188,8 @@ const DeleteModal = styled(Modal)`
         cursor: pointer;
 
         :hover{
-            transform: translateY(2px)
+            transform: translateY(2px);
+            cursor: pointer;
         }
     }
     .delete{

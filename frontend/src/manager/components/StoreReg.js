@@ -34,17 +34,21 @@ class StoreReg extends Component{
   }
   
   registerStore = e => {
+    console.log(this.state.logo)
     const data = {
       store_name: this.state.store_name,
       manager_name: this.state.manager_name,
       location: this.state.location,
-      logo: this.state.logo
+      logo: this.state.logo//img
     };
     console.log('hello this is your input:',data)
     e.preventDefault();
     Axios.post('http://localhost:3005/store-registration',data).then((response) => {
       console.log(response)
       this.setState({redirect:true},()=>console.log(this.state.redirect))
+    })
+    .catch(error => {
+      console.log(error.response)
     })
   };
 
@@ -67,6 +71,8 @@ class StoreReg extends Component{
                 name="store_name"
                 value={this.state.store_name}
                 required
+                minLength="3"
+                maxLength="255"
                 autoComplete="off"
                 onChange={this.handleChange.bind(this)}/> 
               <InputStatus />
@@ -169,7 +175,7 @@ const ArrowWrapper = styled.div`
 
 const Container = styled.div`
   min-width: 600px;
-  backdrop-filter: blur(9px);
+  backdrop-filter: blur(35px);
   background-color: rgba(255, 255, 255, 0.5);
   height: 100%;
   display: flex;
@@ -224,6 +230,5 @@ const InputStatus = styled.div`
     background: #70edb9;
   }
 `;
-
 
 export default StoreReg;
