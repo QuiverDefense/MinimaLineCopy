@@ -8,6 +8,7 @@ import Products from "./Products";
 import { TiDeleteOutline } from "react-icons/ti";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import Modal from 'react-modal';
+import Axios from "axios";
 
 class EditMenu extends Component {
     constructor(){
@@ -60,6 +61,11 @@ class EditMenu extends Component {
     }
     addNewCateg = e =>{
         e.preventDefault();
+        const data = this.state.new_categ;
+        console.log(data);
+        Axios.post("http://localhost:3005/add-categ", data).then((response) => {
+            console.log(response)
+        })
     }
     addNewProd = e =>{
         e.preventDefault();
@@ -111,7 +117,7 @@ class EditMenu extends Component {
                                     autoComplete="off"
                                     onChange={this.handleChange.bind(this)}/>
                                 <div className="buttons">
-                                    <button className="save">Save Changes</button>
+                                    <button className="save" onClick={this.addNewCateg}>Save Changes</button>
                                     <button onClick={this.addCateg}>Cancel</button>
                                 </div>
                             </form>
