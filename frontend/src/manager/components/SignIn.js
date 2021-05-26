@@ -156,7 +156,8 @@ const LogoWrapper = styled.div`
 
 const Container = styled.div`
   min-width: 400px;
-  backdrop-filter: blur(35px);
+  /* backdrop-filter: blur(35px); */
+  backdrop-filter: blur(9px);
   background-color: rgba(255, 255, 255, 0.5);
   height: 100%;
   display: flex;
@@ -174,7 +175,7 @@ const Container = styled.div`
   h4 {
       color: #808080;
       font-weight: bold;
-      font-size: 13px;
+      font-size: 16px;
       margin-top: 2rem;
 
       span {

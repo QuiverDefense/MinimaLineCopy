@@ -231,5 +231,4 @@ const InputStatus = styled.div`
   }
 `;
 
-
 export default StoreReg;

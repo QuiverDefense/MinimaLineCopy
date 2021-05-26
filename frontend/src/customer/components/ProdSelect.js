@@ -61,7 +61,7 @@ class ProdSelect extends Component {
                 <Wrapper>
                     <Arrow>
                         <ArrowWrapper>
-                            <Link to="/dashboard">
+                            <Link to="/customer">
                                 <BiArrowBack size="40px" color="#676666"/>
                             </Link>
                         </ArrowWrapper>

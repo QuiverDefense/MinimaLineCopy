@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import logo from '../../assets/logo.svg';
+// import logo from '../../assets/logo.svg';
 import {IconContext} from 'react-icons';
 import {FiArrowRightCircle} from 'react-icons/fi';
 import RegularPriority from './RegularPriority';
@@ -30,7 +30,7 @@ class Main extends Component {
         <Box>
 
           <LogoWrapper>
-            <img src={logo} alt="MinimaLine logo"/>
+            {/* <img src={logo} alt="MinimaLine logo"/> */}
             <h3> Minima<span>Line</span> </h3>
           </LogoWrapper>
 
@@ -105,12 +105,13 @@ const LogoWrapper = styled.div`
 
   h3{
     text-align:center;
-    color: #f9c91e;
+    /* color: #f9c91e; */
+    color: #ec9736;
     font-size: 22px;
   }
 
   span{
-    color: black;
+    color: #568d33;
     font-weight: 300;
     font-size: 18px;
   }
