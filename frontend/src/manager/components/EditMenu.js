@@ -60,9 +60,11 @@ class EditMenu extends Component {
         })
     }
     addNewCateg = e =>{
+        const data = {
+            category: this.state.new_categ
+        };
         e.preventDefault();
-        const data = this.state.new_categ;
-        console.log(data);
+        //console.log(data);
         Axios.post("http://localhost:3005/add-categ", data).then((response) => {
             console.log(response)
         })

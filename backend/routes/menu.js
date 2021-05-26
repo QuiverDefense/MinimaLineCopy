@@ -5,12 +5,12 @@ var database = require('../config/database');
 //Add categories to edit menu
 app.post('/add-categ', (req,res)=> {
     
-    const {name} = req.body
+    const {category} = req.body
     //console.log(name)
     //console.log(req.body)
     
     database.query("INSERT INTO category (name) VALUES (?)", 
-    [name],
+    [category],
     (err, result) => {
         if(!err)
             //console.log(result)

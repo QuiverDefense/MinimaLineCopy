@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { TiDeleteOutline } from "react-icons/ti";
 import Modal from 'react-modal';
-
+import Axios from 'axios';
+/*
 const products = [
     {
         product_name: 'Mains',
@@ -18,6 +19,7 @@ const products = [
     },
 
 ];
+*/
 
 class Categ extends Component {
     constructor(){
@@ -26,7 +28,8 @@ class Categ extends Component {
             clicked: false,
             current: 0,
             default: true,
-            openModal: false
+            openModal: false,
+            categ: {}
         }
         this.changeColor = this.changeColor.bind(this);
         this.handleClick = this.handleClick.bind(this);

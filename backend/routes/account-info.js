@@ -3,6 +3,7 @@ var bcrypt = require('bcrypt');
 var app = express();
 var database = require('../config/database');
 
+
 //get data from account-info table
 app.get('/account-info', (req,res) => {
     let sql = 'SELECT * FROM account_info';
