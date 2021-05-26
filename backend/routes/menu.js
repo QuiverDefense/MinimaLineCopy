@@ -6,14 +6,30 @@ var database = require('../config/database');
 app.post('/add-categ', (req,res)=> {
     
     const {category} = req.body
-    //console.log(name)
-    //console.log(req.body)
+    // console.log(category)
+    // console.log(req.body)
     
     database.query("INSERT INTO category (name) VALUES (?)", 
     [category],
     (err, result) => {
         if(!err)
-            //console.log(result)
+            // console.log(result)
+            res.send(result)
+        }
+    )
+    
+});
+
+//Delete categories 
+app.delete('/delete-categ/:id', (req,res)=> {
+    
+    const id = req.params.id
+    console.log(id)
+    
+    database.query("DELETE FROM category WHERE id = ?", id,
+    (err, result) => {
+        if(!err)
+            console.log(result)
             res.send(result)
         }
     )
