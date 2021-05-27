@@ -64,6 +64,8 @@ class SignUp extends Component{
                 name="username"
                 value={this.state.username} 
                 required
+                minLength="3"
+                maxLength="255"
                 autoComplete="off"
                 onChange={this.handleChange.bind(this)}/>
               <Status />
