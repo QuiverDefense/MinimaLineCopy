@@ -44,6 +44,7 @@ class DineInTakeOut extends Component {
 }
 
 const StyledButtons = styled.input`
+    outline: none;
     margin: 0px 30px 20px;
     padding: 10px 15px;
     width: 120px;
