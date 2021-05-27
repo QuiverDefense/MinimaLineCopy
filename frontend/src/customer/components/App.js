@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Main from "./Main";
 import ProdSelect from "./ProdSelect";
+import Checkout from "./Checkout";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
             {/* <Main /> */}
             <Route path="/customer" exact component={Main} />
             <Route path="/prod-select" exact component={ProdSelect} />
+            <Route path="/checkout" exact component={Checkout} />
           </Switch>
         </Wrapper>
       </Container>
