@@ -120,7 +120,7 @@ class EditMenu extends Component {
                                     autoComplete="off"
                                     onChange={this.handleChange.bind(this)}/>
                                 <div className="buttons">
-                                    <button className="save" onClick={this.addNewCateg}>Save Changes</button>
+                                    <button className="save">Save Changes</button>
                                     <button onClick={this.addCateg}>Cancel</button>
                                 </div>
                             </form>
