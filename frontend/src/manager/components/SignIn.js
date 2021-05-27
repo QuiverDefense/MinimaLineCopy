@@ -111,7 +111,10 @@ const Form = styled.form`
       font-size: 40px;
       align-items: left;
     }
-
+    p{
+      color: #ff5c5c;
+      font-weight: bold;
+    }
     button{
         /* margin-left: 45px; */
         margin-top: 10px;

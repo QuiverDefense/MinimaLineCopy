@@ -67,9 +67,9 @@ class ProdSelect extends Component {
                         </ArrowWrapper>
                     </Arrow>
                     <CheckoutButton>
-                        {/* <Link to='/edit-menu'> */}
-                        <button>Checkout</button>
-                        {/* </Link> */}
+                        <Link to='/checkout'>
+                            <button>Checkout</button>
+                        </Link>
                     </CheckoutButton>
                     <Nav>
                         <Categ mode={"view"}/> 

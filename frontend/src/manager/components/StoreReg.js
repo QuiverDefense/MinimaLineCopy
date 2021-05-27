@@ -141,7 +141,7 @@ const Form = styled.form`
         border: none;
         box-shadow: 0px 14px 9px -15px rgba(0,0,0,0.25);
         border-radius: 8px;
-        background-color: #70edb9;
+        background-color: #568d33;
         color: #fff;
         font-weight: 600;
         cursor: pointer;
@@ -227,7 +227,7 @@ const InputStatus = styled.div`
     background: #fe2f75;
   }
   ${StyledInput}:valid + & {
-    background: #70edb9;
+    background: #568d33;
   }
 `;
 
