@@ -119,15 +119,20 @@ const ArrowWrapper = styled.div`
 `;
 
 const Container = styled.div`
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+ 
   min-width: 600px;
   backdrop-filter: blur(35px);
   background-color: rgba(255, 255, 255, 0.5);
   height: 100%;
   display: flex;
-  // flex-direction: column;
   justify-content: space-evenly;
-  // align-items: center;
-  // padding: 0 2rem;
   overflow: auto; 
 
   @media (max-width: 900px){
@@ -136,5 +141,7 @@ const Container = styled.div`
       padding: 0;
   }
 `;
+
+
 
 export default Terms;

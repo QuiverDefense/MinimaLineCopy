@@ -1,23 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-
-const products = [
-    {
-        product_name: 'Mains',
-    },
-    {
-        product_name: 'Appetizers',
-    },
-    {
-        product_name: 'Sides',
-    },
-    {
-        product_name: 'Desserts',
-    },
-      {
-        product_name: 'Drinks',
-    },
-];
+import { TiDeleteOutline } from "react-icons/ti";
+import Modal from 'react-modal';
+import Axios from 'axios';
 
 class Categ extends Component {
     constructor(){
@@ -25,9 +10,14 @@ class Categ extends Component {
         this.state = { // initial/default state is the first category on the list
             clicked: false,
             current: 0,
-            default: true
+            default: true,
+            openModal: false,
+            categ: [],
+            delete_this: null
         }
         this.changeColor = this.changeColor.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
+        this.deleteCateg = this.deleteCateg.bind(this);
     }
     changeColor(index){
         if(this.state.current !== index) // different category is clicked
@@ -37,37 +27,81 @@ class Categ extends Component {
                 default: false
             })
     }
+    toggleModal(id){
+        this.setState({
+            openModal: !this.state.openModal,
+            delete_this: id
+        })
+    }
+
+    deleteCateg(){
+        Axios.delete(`http://localhost:3005/delete-categ/${this.state.delete_this}`).then((response) => {
+            console.log(response)
+            this.toggleModal()
+        })
+    }
+    async componentDidMount(){
+        let results = await Axios.get('http://localhost:3005/display-category');
+        this.setState({ categ: results.data })
+    }
 
     render() { 
-        const Product = (props) => {
-            const {product_name} = props.product;
-            return (
-                <div className="word">
-                <h1>{product_name}</h1>
-                </div>
-            );
-        };
+        var modalStyle={overlay: {zIndex: 2}}
         return ( 
-            <Container>
-                {products.map((product,index)=>{
-                    return(
-                        <div
-                            className={((this.state.clicked || this.state.default) && (this.state.current===index)) ? 'clicked' : 'unclicked'}
-                            onClick={()=>this.changeColor(index)}>
-                            <Product key={index} product={product}></Product>
-                        </div>
-                    )
-                })}      
-            </Container>
+            <>
+            {!this.state.categ.length ? 
+                <div></div>
+            :
+                <Container>
+                        {this.state.categ.map((categ,index)=>{
+                        return(
+                            <div
+                                className={((this.state.clicked || this.state.default) && (this.state.current===index)) ? 'clicked' : 'unclicked'}
+                                onClick={()=>this.changeColor(index)}>
+                                <div className="word">
+                                    <h1>{categ["name"]}</h1>
+                                </div>
+                                {this.props.mode==="edit" ? 
+                                    <DeleteButton size="25px"onClick={() => this.toggleModal(categ["id"])}/>
+                                : null}
+                            </div>
+                        )
+                    })} 
+                    {this.state.openModal ?
+                        <ModalContainer>
+                            <DeleteModal isOpen={true} style={modalStyle}>
+                                <h2>Are you sure you want to remove this category from the menu?</h2>
+                                <div className="buttons">
+                                    <button className="delete" onClick={this.deleteCateg}>Delete</button>
+                                    <button onClick={this.toggleModal}>Cancel</button>
+                                </div>
+                            </DeleteModal>
+                        </ModalContainer>
+                    : null}     
+                </Container>
+            } 
+            </>  
          );
     }
 }
+
+const DeleteButton = styled(TiDeleteOutline)`
+    position: absolute;
+    right: -10px;
+    top: -10px;
+
+    &:hover {
+        color: #FF5C5C;
+        cursor: pointer;
+    }
+` 
 
 const Container = styled.div`
     display: flex;
     flex-direction: row;
 
     .unclicked{
+        position: relative;
         margin-top: 10px;
         min-width: 110px;
         height: 70px;
@@ -81,10 +115,12 @@ const Container = styled.div`
         &:hover {
             transform: translateY(-4px);
             background: #F3D9A4;
+            cursor: pointer;
         }
     }
 
     .clicked{
+        position: relative;
         margin-top: 10px;
         min-width: 110px;
         height: 70px;
@@ -98,6 +134,7 @@ const Container = styled.div`
 
         &:hover {
             transform: translateY(-4px);
+            cursor: pointer;
         }
     }
     
@@ -107,7 +144,60 @@ const Container = styled.div`
         color: black;
 
     }
-
 `
+const ModalContainer = styled.div`
+  position: relative;
+`;
+const DeleteModal = styled(Modal)`
+  background-color: white;
+  box-shadow: 3px 6px 5px 3px #d6d6d6;
+  border-radius: 8px;
+  height: 300px;
+  width: 600px;
+  margin-top: -150px;
+  margin-left: -300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .ReactModal__Overlay{
+      z-index: 1000;
+  }
+
+  h2{
+      text-align: center;
+      padding: 45px 50px 0px;
+  }
+  .buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    button{
+        font-family: "Work Sans";
+        margin: 30px 20px 0px;
+        width: 150px;
+        height: 50px;
+        border: none;
+        box-shadow: 0px 10px 9px -15px rgba(0,0,0,0.25);
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 18px;
+        cursor: pointer;
+
+        :hover{
+            transform: translateY(2px);
+            cursor: pointer;
+        }
+    }
+    .delete{
+        color: #fff;
+        background-color: #FF5C5C;
+        box-shadow: 0px 14px 9px -15px rgba(0,0,0,0.25);
+    }
+  }
+`;
 
 export default Categ;
