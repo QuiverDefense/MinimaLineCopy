@@ -34,17 +34,21 @@ class StoreReg extends Component{
   }
   
   registerStore = e => {
+    console.log(this.state.logo)
     const data = {
       store_name: this.state.store_name,
       manager_name: this.state.manager_name,
       location: this.state.location,
-      logo: this.state.logo
+      logo: this.state.logo//img
     };
     console.log('hello this is your input:',data)
     e.preventDefault();
     Axios.post('http://localhost:3005/store-registration',data).then((response) => {
       console.log(response)
       this.setState({redirect:true},()=>console.log(this.state.redirect))
+    })
+    .catch(error => {
+      console.log(error.response)
     })
   };
 
@@ -67,6 +71,8 @@ class StoreReg extends Component{
                 name="store_name"
                 value={this.state.store_name}
                 required
+                minLength="3"
+                maxLength="255"
                 autoComplete="off"
                 onChange={this.handleChange.bind(this)}/> 
               <InputStatus />
@@ -135,7 +141,7 @@ const Form = styled.form`
         border: none;
         box-shadow: 0px 14px 9px -15px rgba(0,0,0,0.25);
         border-radius: 8px;
-        background-color: #70edb9;
+        background-color: #568d33;
         color: #fff;
         font-weight: 600;
         cursor: pointer;
@@ -169,7 +175,7 @@ const ArrowWrapper = styled.div`
 
 const Container = styled.div`
   min-width: 600px;
-  backdrop-filter: blur(9px);
+  backdrop-filter: blur(35px);
   background-color: rgba(255, 255, 255, 0.5);
   height: 100%;
   display: flex;
@@ -221,9 +227,8 @@ const InputStatus = styled.div`
     background: #fe2f75;
   }
   ${StyledInput}:valid + & {
-    background: #70edb9;
+    background: #568d33;
   }
 `;
-
 
 export default StoreReg;

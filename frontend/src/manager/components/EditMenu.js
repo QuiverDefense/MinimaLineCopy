@@ -8,6 +8,7 @@ import Products from "./Products";
 import { TiDeleteOutline } from "react-icons/ti";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import Modal from 'react-modal';
+import Axios from "axios";
 
 class EditMenu extends Component {
     constructor(){
@@ -59,7 +60,15 @@ class EditMenu extends Component {
         })
     }
     addNewCateg = e =>{
+        const data = {
+            category: this.state.new_categ
+        };
         e.preventDefault();
+        //console.log(data);
+        Axios.post("http://localhost:3005/add-categ", data).then((response) => {
+            console.log(response)
+            this.addCateg()
+        })
     }
     addNewProd = e =>{
         e.preventDefault();
@@ -376,6 +385,7 @@ const AddCategButton = styled(IoIosAddCircleOutline)`
     &:hover {
         transform: translateY(-4px);
         background: #F3D9A4;
+        cursor: pointer;
     }
 ` 
 
@@ -386,6 +396,7 @@ const DeleteButton = styled(TiDeleteOutline)`
 
     &:hover {
         color: #FF5C5C;
+        cursor: pointer;
     }
 ` 
 const AddButton = styled(IoIosAddCircleOutline)`
@@ -397,6 +408,7 @@ const AddButton = styled(IoIosAddCircleOutline)`
     &:hover {
         transform: translateY(-4px);
         color: #F9C91E;
+        cursor: pointer;
     }
 ` 
 
@@ -443,6 +455,7 @@ const EditButton = styled.div`
 
         &:hover {
             transform: translateY(-4px);
+            cursor: pointer;
         }    
 
     }
@@ -500,6 +513,7 @@ const ProdGrid = styled.div`
 
         &:hover {
             transform: translateY(-4px);
+            cursor: pointer;
         }
 
         h1{
@@ -524,6 +538,7 @@ const ProdGrid = styled.div`
         &:hover {
             transform: translateY(-4px);
             background: #F3D9A4;
+            cursor: pointer;
         }
         h1{
             margin-top: 0.5rem;
