@@ -153,6 +153,9 @@ class EditMenu extends Component {
                                     <option selected value={this.state.prod_availability}>Available</option> 
                                     <option value={!this.state.prod_availability}>Not Available</option>
                                 </select>
+                                {/* <select>
+                                    <option value={this.state}>{}</option> 
+                                </select> */}
                                 <input
                                     type="file"
                                     placeholder="Product Image"
