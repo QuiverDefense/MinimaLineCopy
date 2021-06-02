@@ -14,10 +14,9 @@ app.post('/add-categ', (req,res)=> {
     (err, result) => {
         if(!err)
             // console.log(result)
-            res.send(result)
+            res.status(201).send(result)
         }
     )
-    
 });
 
 //Delete categories 
@@ -30,7 +29,7 @@ app.delete('/delete-categ/:id', (req,res)=> {
     (err, result) => {
         if(!err)
             console.log(result)
-            res.send(result)
+            res.status(200).send(result)
         }
     )
     
@@ -45,11 +44,10 @@ app.get('/display-category', (req,res) => {
             res.status(400).send(err);
             return;
         }
-
         if (result.length) {
-            res.json(result);
+            res.status(200).json(result);
         }
-        else res.json({});
+        else res.status(200).json({});
     });
 });
 
@@ -65,9 +63,9 @@ app.get('/menu-info', (req,res) => {
         }
 
         if (result.length) {
-            res.json(result);
+            res.status(200).json(result);
         }
-        else res.json({});
+        else res.status(200).json({});
     });
 });
 
@@ -83,7 +81,7 @@ app.post('/add-product', (req,res)=> {
             database.query("INSERT INTO menu_info (product,price,availability) VALUES ('" + product + "','" + price + "','" + availability + "')",
                             (err, result) => {
                                 if(!err)
-                                    res.send(result)
+                                    res.status(201).send(result)
                                 }
                             );
             return res.status(500).send('Insert data into database, but no files were uploaded.');
@@ -104,9 +102,9 @@ app.post('/add-product', (req,res)=> {
                             database.query("INSERT INTO menu_info (product,price,availability,photo) VALUES ('" + product + "','" + price + "','" + availability + "','" + img_name + "')",
                             (err, result) => {
                                 if(!err)
-                                    res.send(result)
+                                    res.status(201).send(result)
                                 else
-                                    res.send("error")
+                                    res.status(400).send("error")
                             }
                             );
    
@@ -116,5 +114,23 @@ app.post('/add-product', (req,res)=> {
             }
      }
   });
+
+//Delete products
+app.delete('/delete-product/:id', (req,res)=> {
+    
+    const id = req.params.id
+    console.log(id)
+    
+    database.query("DELETE FROM menu_info WHERE id = ?", id,
+    (err, result) => {
+        if(!err){
+            //console.log(result)
+            res.send(result)
+        }
+        else{
+            res.status(400).send({message:"no account to delete"})
+        }
+    })
+});
 
 module.exports = app;

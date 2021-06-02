@@ -1,5 +1,8 @@
 var express = require('express');
 var app = express();
+
+const {check, validationResult} = require('express-validator');
+
 var database = require('../config/database');
 var moment = require('moment');
 
@@ -21,10 +24,27 @@ app.get('/store-info', (req,res) => {
 });
 
 //to register store into store_info table
-app.post('/store-registration', (req,res)=> {
+app.post('/store-registration', [
+    check('store_name')
+    .notEmpty()
+    .withMessage('Store name cannot be empty'),
+    check('manager_name')
+    .notEmpty()
+    .withMessage('Manager name cannot be empty'),
+    check('location')
+    .notEmpty()
+    .withMessage('Location cannot be empty')
+    ] ,(req,res)=> {
+
+    const errors = validationResult(req);
+    console.log(errors)
+    if(!errors.isEmpty()){
+        return res.status(400).json({errors: errors.array()});
+    }
+
     if(req.method == "POST"){
         var post  = req.body;
-        var store_name= post.store_name;
+        var store_name = post.store_name;
         var manager_name= post.manager_name;
         var location= post.location;
 
@@ -64,6 +84,6 @@ app.post('/store-registration', (req,res)=> {
               console.log("This format is not allowed , please upload file with '.png','.gif','.jpg'");
             }
      }
-  });
+});
     
 module.exports = app;

@@ -1,10 +1,13 @@
 var express = require('express');
 var bcrypt = require('bcrypt');
+
+const {check, validationResult} = require('express-validator');
+
 var app = express();
 var database = require('../config/database');
 
 
-//get data from account-info table
+//get data from account-info table (OK)
 app.get('/account-info', (req,res) => {
     let sql = 'SELECT * FROM account_info';
 
@@ -13,31 +16,57 @@ app.get('/account-info', (req,res) => {
             res.status(400).send(err);
             return;
         }
-
         if (result.length) {
-            res.json(result);
+            res.status(200).json(result);
         }
-        else res.json({});
+        else res.status(200).json({});
     });
 });
 
-//to register user info in account_info table
-app.post('/user-registration', async (req,res)=> {
+//to register user info in account_info table (OK [no validation])
+app.post('/user-registration', [
+    check('username')
+    .notEmpty()
+    .withMessage('Username cannot be empty')
+    .isLength({min: 3})
+    .withMessage('Username should be at least 3 characters long')
+    .isLength({max: 12})
+    .withMessage('Username cannot be more than 12 characters long')
+    .exists()
+    .withMessage('Username exists'),
+    check('password')
+    .notEmpty()
+    .withMessage('Password cannot be empty')
+    .isLength({min: 4, max: 20})
+    .withMessage('Password should be between 4 - 20 characters'),
+    check('email')
+    .notEmpty()
+    .withMessage('Email cannot be empty')
+    .isEmail()
+    .withMessage('Email should be valid')
+    ],(req,res)=> {
+
+    const errors = validationResult(req);
+    console.log(errors)
+    if(!errors.isEmpty()){
+        return res.status(400).json({errors: errors.array()});
+    }
     
     const {username,email,password}=req.body
+    //hashPass = await bcrypt.hash(password,10)
+    //console.log(password+'\n'+hashPass)
 
-    hashPass = await bcrypt.hash(password,10)
-    console.log(password+'\n'+hashPass)
-        database.query("INSERT INTO account_info (username, email, password) VALUES (?,?,?)", 
-        [username, email, hashPass], 
-        (err, result) => {
-            if(!err)
-                res.send(result)
-            }
-        )
+    database.query("INSERT INTO account_info (username, email, password) VALUES (?,?,?)", 
+    [username, email, password], 
+    (err, result) => {
+        if(!err)
+            res.status(201).send(result)   
+        else
+            res.status(400)
+    })
 });
 
-//authentication for user-login
+//authentication for user-login 
 app.post('/user-login', (req,res)=> {
 
     const {username,password}=req.body
@@ -46,7 +75,7 @@ app.post('/user-login', (req,res)=> {
     [username, password], 
     (err, result) => {
         if (result.length > 0) {
-            res.send(result)
+            res.status(201).send(result)
         }
         else {
             res.status(400).send({message: "Wrong username and/or password!"});

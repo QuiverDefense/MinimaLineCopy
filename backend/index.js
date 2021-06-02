@@ -23,7 +23,7 @@ app.use(express.json());
 
 //allow api to receive data from client app
 app.use(express.urlencoded ({
-    extended: true
+    extended: false
 }));
 
 //Register routes in main index.js
