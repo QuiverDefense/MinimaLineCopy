@@ -153,9 +153,10 @@ class EditMenu extends Component {
                                     <option selected value={this.state.prod_availability}>Available</option> 
                                     <option value={!this.state.prod_availability}>Not Available</option>
                                 </select>
-                                {/* <select>
-                                    <option value={this.state}>{}</option> 
-                                </select> */}
+                                <select>
+                                    <option>Categ 1</option> 
+                                    <option>Categ 2</option> 
+                                </select>
                                 <input
                                     type="file"
                                     placeholder="Product Image"
@@ -221,9 +222,9 @@ const ProdModal = styled(Modal)`
   background-color: white;
   box-shadow: 3px 6px 5px 3px #d6d6d6;
   border-radius: 8px;
-  height: 440px;
+  height: 500px;
   width: 400px;
-  margin-top: -220px;
+  margin-top: -250px;
   margin-left: -200px;
   position: absolute;
   top: 50%;
