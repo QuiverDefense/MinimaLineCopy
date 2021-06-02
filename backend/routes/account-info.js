@@ -28,23 +28,25 @@ app.post('/user-registration', [
     check('username')
     .notEmpty()
     .withMessage('Username cannot be empty')
-    .isLength({min: 3})
-    .withMessage('Username should be at least 3 characters long')
-    .isLength({max: 12})
-    .withMessage('Username cannot be more than 12 characters long')
+    .isLength({min: 4}) 
+    .withMessage('Username should be at least 4 characters long')
+    .isLength({max: 20})
+    .withMessage('Username cannot be more than 20 characters long')
     .exists()
     .withMessage('Username exists'),
-    check('password')
-    .notEmpty()
-    .withMessage('Password cannot be empty')
-    .isLength({min: 4, max: 20})
-    .withMessage('Password should be between 4 - 20 characters'),
     check('email')
     .notEmpty()
     .withMessage('Email cannot be empty')
     .isEmail()
     .withMessage('Email should be valid')
-    ],(req,res)=> {
+    .exists()
+    .withMessage('Email exists'),
+    check('password')
+    .notEmpty()
+    .withMessage('Password cannot be empty')
+    .isLength({min: 4, max: 20})
+    .withMessage('Password should be between 4 - 20 characters'),
+    ], (req,res)=> {
 
     const errors = validationResult(req);
     console.log(errors)
@@ -55,12 +57,16 @@ app.post('/user-registration', [
     const {username,email,password}=req.body
     //hashPass = await bcrypt.hash(password,10)
     //console.log(password+'\n'+hashPass)
+    //console.log(username, password, email) 
+    
 
     database.query("INSERT INTO account_info (username, email, password) VALUES (?,?,?)", 
     [username, email, password], 
     (err, result) => {
-        if(!err)
+        if(!err){
+            console.log(result)
             res.status(201).send(result)   
+        }
         else
             res.status(400)
     })

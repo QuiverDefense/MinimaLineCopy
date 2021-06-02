@@ -1,10 +1,27 @@
 var express = require('express');
 var app = express();
+//const multer = require('multer');
+//const path = require("path");
 
 const {check, validationResult} = require('express-validator');
 
 var database = require('../config/database');
-var moment = require('moment');
+//var moment = require('moment');
+
+/*
+const storage = multer.diskStorage({
+    destination: "./public/uploads/",
+    filename: function(res, file, cb){
+        cb(null,"IMAGE-" + Date.now() +
+    path.extname(file.originalname));
+    }
+});
+
+const upload = multer({
+    storage: storage,
+    limits:{fileSize: 1000000},
+}).single("myImage");
+*/
 
 //get data from store-info table
 app.get('/store-info', (req,res) => {
@@ -34,7 +51,7 @@ app.post('/store-registration', [
     check('location')
     .notEmpty()
     .withMessage('Location cannot be empty')
-    ] ,(req,res)=> {
+    ] , /*upload,*/ (req,res)=> {
 
     const errors = validationResult(req);
     console.log(errors)
@@ -65,12 +82,13 @@ app.post('/store-registration', [
 
              if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"|| file.mimetype == "image/gif" || file.mimetype == "image/svg" || file.mimetype == "image/jpg"){
                                    
-                file.mv('public/uploads'+file.name, function(err) {
+                file.mv('public/uploads'+ file.name , function(err) {
+                    //upload(res,req,function(err) {
                                
                     if (err)
                         // console.log(err)
                       return res.status(500).send(err);
-                            database.query("INSERT INTO store_info (store_name,manager_name,location,logo) VALUES ('" + store_name + "','" + manager_name + "','" + location + "','" + img_name + "')",
+                            database.query("INSERT INTO store_info (store_name,manager_name,location,logo) VALUES ('" + store_name + "','" + manager_name + "','" + location + "','" + file + "')",
                             (err, result) => {
                                 if(!err)
                                     res.send(result)
