@@ -8,27 +8,27 @@ class ProdDesc extends Component {
         if (this.props.mode==="edit") {
             return (
                 <Container>
-                    <img src={this.props.product_img}/>
+                    <img src={this.props["photo"]}/>
                     <Upload
                         type="file"
                         name="photo"
                         autocomplete="off"
                     />
-                    <EditMenuInput placeholder={this.props.product_name} name="product name" />
-                    <EditMenuInput placeholder={this.props.product_price} name="product price" />
+                    <EditMenuInput placeholder={this.props["product"]} name="product name" />
+                    <EditMenuInput placeholder={this.props["price"]} name="product price" />
                     <div>
                         {(() => {
-                            if(this.props.product_availability==true){
+                            if(this.props["availability"]===1){
                                 return(
                                     <Select>
-                                        <option selected value={this.props.product_availability}>Available</option> 
-                                        <option value={!this.props.product_availability}>Not Available</option>
+                                        <option selected value={this.props["availability"]}>Available</option> 
+                                        <option value="0">Not Available</option>
                                     </Select>
                                 )
                             } else {
                                 return(
                                     <Select>
-                                        <option value={this.props.product_availability}>Available</option> 
+                                        <option value={this.props["availability"]}>Available</option> 
                                         <option selected value={!this.props.product_availability}>Not Available</option>
                                     </Select>
                                 )
@@ -44,10 +44,10 @@ class ProdDesc extends Component {
         } else {
             return (
                 <Container>
-                    <img src={this.props.product_img}/>
-                    <h1>{this.props.product_name}</h1>
-                    <h3>{this.props.product_price}</h3>
-                    <h3>{this.props.product_availability ? "Available" : "Not Available"}</h3>
+                    <img src={this.props["photo"]}/>
+                    <h1>{this.props["product"]}</h1>
+                    <h3>P{this.props["price"]}</h3>
+                    <h3>{this.props["availability"] ? "Available" : "Not Available"}</h3>
                 </Container>
             );
         }

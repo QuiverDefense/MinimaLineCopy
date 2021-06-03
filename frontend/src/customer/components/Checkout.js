@@ -186,7 +186,9 @@ class Checkout extends Component {
                         autoComplete="off"
                         // onChange={this.handleChange.bind(this)}
                     />
-                    <button>Confirm</button>
+                    <Link to="/confirmation">
+                        <button>Confirm</button>
+                    </Link>
                 </div>
             </Container>
         );
@@ -236,11 +238,32 @@ const Container = styled.div`
     }
 
     .bottom{
-        margin-top: -70px;
-        margin-left: 130px;
-    
-    }
+        margin-top: -95px;
+        margin-left: 300px;
+        font-size: 20px;
 
+        button{
+            position: absolute;
+            margin-top: 40px;
+            margin-left: 590px;
+            font-family: "Work Sans";
+            width: 200px;
+            height: 90px;
+            border: none;
+            box-shadow: 0px 10px 9px -15px rgba(0,0,0,0.25);
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 25px;
+            cursor: pointer;
+            color: black;
+            background-color: #f9c91e;
+            /* box-shadow: 0px 14px 9px -15px rgba(0,0,0,0.25); */
+            :hover{
+                transform: translateY(2px)
+            }
+        }
+    }
+    
     textarea{
         outline: none;
         width: 80%;

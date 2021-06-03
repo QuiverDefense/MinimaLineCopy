@@ -4,19 +4,24 @@ import {Link} from 'react-router-dom';
 import { BiArrowBack } from "react-icons/bi";
 import Categ from "./Categ";
 import ProdDesc from "./ProdDesc";
-import Products from "./Products";
+import Axios from 'axios';
 
 class ViewMenu extends Component {
     constructor(){
         super();
         this.state = {
             clicked: false,
-            current: null
+            current: null,
+            prods: []
         }
         this.changeColor = this.changeColor.bind(this);
     }
-    componentDidMount(){
+    async componentDidMount(){
         document.title = "MinimaLine | View Menu"
+        let results = await Axios.get('http://localhost:3005/menu-info');
+        this.setState({
+            prods: results.data
+        })
     }
     
     changeColor(index){
@@ -27,19 +32,7 @@ class ViewMenu extends Component {
             })
     }
 
-    render() { 
-        const Product = (props) => {
-            const {product_img, product_name, product_price, product_availability} = props.product;
-            return (
-                <article>
-                    <h3><img className='image' src={product_img} alt="" /></h3>
-                    <h1>{product_name}</h1>
-                    <h2>{product_price}</h2>
-                    <h2>{product_availability ? "Available" : "Not Available"}</h2>
-                </article> 
-            );
-        };
-        
+    render() {
         return ( 
             <Container>
                 <Wrapper>
@@ -58,20 +51,30 @@ class ViewMenu extends Component {
                     <Nav>
                         <Categ mode={"view"}/> 
                     </Nav>
-                    <ProdGrid>
-                        <section className='productlist'> 
-                        {Products.map((product,index)=>{
-                                return (
-                                    <div
-                                        onClick={()=>this.changeColor(index)}
-                                        className={(this.state.clicked && (this.state.current===index)) ? 'clicked' : 'unclicked'}>
-                                        <Product key={index} product={product}></Product>
-                                    </div>
-                                )
-                            })}
-                            {this.state.clicked ? <ProdDesc {...Products[this.state.current]} mode={"view"}/> : null }
-                        </section>
-                    </ProdGrid>
+                    {!this.state.prods.length ?
+                        <div></div> :
+                        <ProdGrid>
+                            <section className='productlist'> 
+                            {this.state.prods.map((prod,index)=>{
+                                    return (
+                                        <div
+                                            onClick={()=>this.changeColor(index)}
+                                            className={(this.state.clicked && (this.state.current===index)) ? 'clicked' : 'unclicked'}>
+                                            {/* <Product key={index} product={product}></Product> */}
+                                            <article>
+                                                <h3><img className='image' src={prod["photo"]} alt={prod["product"]}/></h3>
+                                                <h1>{prod["product"]}</h1>
+                                                <h2>P{prod["price"]}</h2>
+                                                <h2>{prod["availability"]===1 ? "Available" : "Not Available"}</h2>
+                                            </article> 
+                                        </div>
+                                    )
+                                })}
+                                {this.state.clicked ? <ProdDesc {...this.state.prods[this.state.current]} mode={"view"}/> : null }
+                            </section>
+                        </ProdGrid>
+                    }
+
                 </Wrapper>
             </Container>
          );
