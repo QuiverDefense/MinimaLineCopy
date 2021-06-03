@@ -73,7 +73,6 @@ app.post('/user-registration', [
     })
 });
 
-app.post('/')
 //authentication for user-login 
 app.post('/user-login', (req,res)=> {
 
