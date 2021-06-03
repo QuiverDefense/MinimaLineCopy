@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom';
 import { BiArrowBack } from "react-icons/bi";
 import Categ from "./Categ";
 import ProdDesc from "./ProdDesc";
-import Products from "./Products";
 import Axios from 'axios';
 
 class ViewMenu extends Component {
