@@ -14,6 +14,7 @@ class EditMenu extends Component {
     constructor(){
         super();
         this.state = {
+            prods: [],
             clicked: false,
             current: null,
             new_categ: '',
@@ -30,8 +31,12 @@ class EditMenu extends Component {
         this.addCateg = this.addCateg.bind(this);
         this.addProduct = this.addProduct.bind(this);
     }
-    componentDidMount(){
-        document.title = "MinimaLine | Edit Menu"
+    async componentDidMount(){
+        document.title = "MinimaLine | Edit Menu";
+        let results = await Axios.get('http://localhost:3005/menu-info');
+        this.setState({
+            prods: results.data
+        })
     }
     changeColor(index){
         if(this.state.current !== index)
@@ -79,17 +84,17 @@ class EditMenu extends Component {
     }
 
     render() { 
-        const Product = (props) => {
-            const {product_img, product_name, product_price, product_availability} = props.product;
-            return (
-                <article>
-                    <h3><img className='image' src={product_img} alt="" /></h3>
-                    <h1>{product_name}</h1>
-                    <h2>{product_price}</h2>
-                    <h2>{product_availability ? "Available" : "Not Available"}</h2>
-                </article> 
-            );
-        };
+        // const Product = (props) => {
+        //     const {product_img, product_name, product_price, product_availability} = props.product;
+        //     return (
+        //         <article>
+        //             <h3><img className='image' src={product_img} alt="" /></h3>
+        //             <h1>{product_name}</h1>
+        //             <h2>{product_price}</h2>
+        //             <h2>{product_availability ? "Available" : "Not Available"}</h2>
+        //         </article> 
+        //     );
+        // };
         var modalStyle={overlay: {zIndex: 2}}
 
         return ( 
@@ -190,22 +195,30 @@ class EditMenu extends Component {
                             <button>Save</button>
                         </Link>
                     </EditButton>
-                    <ProdGrid>
-                        <section className='productlist'> 
-                        {Products.map((product,index)=>{
-                                return (
-                                    <div
-                                    onClick={()=>this.changeColor(index)}
-                                    className={(this.state.clicked && (this.state.current===index)) ? 'clicked' : 'unclicked'}>
-                                            <DeleteButton size="50px" onClick={this.deleteModal}/>
-                                        <Product key={index} product={product}></Product>
-                                    </div>
-                                )
-                            })}
-                            {this.state.clicked ? <ProdDesc {...Products[this.state.current]} mode={"edit"}/> : null }
-                            <AddButton size="100px" onClick={this.addProduct}/>
-                        </section>
-                    </ProdGrid>
+                    {!this.state.prods.length ? 
+                        <div></div> :
+                        <ProdGrid>
+                            <section className='productlist'> 
+                            {this.state.prods.map((prod,index)=>{
+                                    return (
+                                        <div
+                                        onClick={()=>this.changeColor(index)}
+                                        className={(this.state.clicked && (this.state.current===index)) ? 'clicked' : 'unclicked'}>
+                                                <DeleteButton size="50px" onClick={this.deleteModal}/>
+                                                <article>
+                                                    <h3><img className='image' src={prod["photo"]} alt={prod["product"]}/></h3>
+                                                    <h1>{prod["product"]}</h1>
+                                                    <h2>P{prod["price"]}</h2>
+                                                    <h2>{prod["availability"]===1 ? "Available" : "Not Available"}</h2>
+                                                </article> 
+                                        </div>
+                                    )
+                                })}
+                                {this.state.clicked ? <ProdDesc {...this.state.prods[this.state.current]} mode={"edit"}/> : null }
+                                <AddButton size="100px" onClick={this.addProduct}/>
+                            </section>
+                        </ProdGrid>
+                    }
 
                 </Wrapper>
             </Container>
