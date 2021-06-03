@@ -54,14 +54,15 @@ app.post('/user-registration', [
         return res.status(400).json({errors: errors.array()});
     }
     
+    var role = "manager"
     const {username,email,password}=req.body
     //hashPass = await bcrypt.hash(password,10)
     //console.log(password+'\n'+hashPass)
     //console.log(username, password, email) 
     
 
-    database.query("INSERT INTO account_info (username, email, password) VALUES (?,?,?)", 
-    [username, email, password], 
+    database.query("INSERT INTO account_info (username, email, password,role) VALUES (?,?,?,?)", 
+    [username, email, password,role], 
     (err, result) => {
         if(!err){
             console.log(result)
@@ -72,6 +73,7 @@ app.post('/user-registration', [
     })
 });
 
+app.post('/')
 //authentication for user-login 
 app.post('/user-login', (req,res)=> {
 
