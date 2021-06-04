@@ -32,17 +32,25 @@ class EditMenu extends Component {
         this.addCateg = this.addCateg.bind(this);
         this.addProduct = this.addProduct.bind(this);
         this.deleteProd = this.deleteProd.bind(this);
+        this.showProducts = this.showProducts.bind(this);
     }
     async componentDidMount(){
         document.title = "MinimaLine | Edit Menu";
-        let products = await Axios.get('http://localhost:3005/menu-info');
-        this.setState({
-            prods: products.data
-        })
         let categs = await Axios.get('http://localhost:3005/display-category');
         this.setState({
             all_categs: categs.data
-        }) 
+        })
+        this.showProducts(this.state.all_categs[0]["id"])
+        // let categProds = await Axios.get(`http://localhost:3005/menu-info/${curr_categID}`);
+        // this.setState({
+        //     prods: categProds.data
+        // })
+    }
+    async showProducts(categ_id){
+        let categProds = await Axios.get(`http://localhost:3005/menu-info/${categ_id}`);
+        this.setState({
+            prods: categProds.data
+        })
     }
     changeColor(index){
         if(this.state.current !== index)
@@ -195,7 +203,7 @@ class EditMenu extends Component {
                         </ArrowWrapper>
                     </Arrow>
                     <Nav>
-                        <Categ mode={"edit"}/>
+                        <Categ mode={"edit"} categs={this.state.all_categs} onClick={this.showProducts}/>
                         <AddCategButton size="50px" onClick={this.addCateg}/>
                     </Nav>
                     <EditButton>
@@ -218,7 +226,7 @@ class EditMenu extends Component {
                                                             <article>
                                                                 <h3><img className='image' src={prod["photo"]} alt={prod["product"]}/></h3>
                                                                 <h1>{prod["product"]}</h1>
-                                                                <h2>P{prod["price"]}</h2>
+                                                                <h2>Php {prod["price"]}</h2>
                                                                 <h2>{prod["availability"]===1 ? "Available" : "Not Available"}</h2>
                                                             </article> 
                                                     </div>
