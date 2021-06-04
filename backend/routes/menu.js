@@ -51,12 +51,13 @@ app.get('/display-category', (req,res) => {
     });
 });
 
+//get products by category ID
+app.get('/menu-info/:id', (req,res) => {
+    // let sql = 'SELECT * FROM menu_info';
+    const id = req.params.id
 
-//get menu-info from database (product name, price, availability, photo)
-app.get('/menu-info', (req,res) => {
-    let sql = 'SELECT * FROM menu_info';
-
-    database.query(sql, (err, result) => {
+    database.query("SELECT * FROM menu_info WHERE category_id = ?", id,
+    (err, result) => {
         if (err) {
             res.status(400).send(err);
             return;
@@ -131,6 +132,27 @@ app.delete('/delete-product/:id', (req,res)=> {
             res.status(400).send({message:"no account to delete"})
         }
     })
+});
+
+app.get('/edit-menu/:id', function(req, res, next) {
+    var id = req.params.id;
+    var sql = `SELECT * FROM menu_info WHERE id= ${id}`;
+    database.query(sql, function (err, data) {
+      if (err) throw err;
+        res.send(result)
+    });
+});
+
+app.post('/edit-menu/:id', function(req, res, next) {
+    var id= req.params.id;
+    var updateData=req.body;
+    var sql = "UPDATE menu_info SET ? WHERE id= ?";
+
+    database.query(sql, [updateData, id], function (err, data) {
+     if (err) throw err;
+        console.log(data.affectedRows + " record(s) updated");
+        res.status(200).send(result)
+    });
 });
 
 module.exports = app;

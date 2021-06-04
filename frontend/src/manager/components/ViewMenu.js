@@ -12,24 +12,35 @@ class ViewMenu extends Component {
         this.state = {
             clicked: false,
             current: null,
-            prods: []
+            prods: [],
+            all_categs: [],
+            curr_categ: null
         }
         this.changeColor = this.changeColor.bind(this);
+        this.showProducts = this.showProducts.bind(this);
+     
     }
-    async componentDidMount(){
-        document.title = "MinimaLine | View Menu"
-        let results = await Axios.get('http://localhost:3005/menu-info');
-        this.setState({
-            prods: results.data
-        })
-    }
-    
     changeColor(index){
         if(this.state.current !== index)
             this.setState({
                 current: index,
                 clicked: true
             })
+    }
+    async showProducts(categ_id){
+        let categProds = await Axios.get(`http://localhost:3005/menu-info/${categ_id}`);
+        this.setState({
+            prods: categProds.data
+        })
+    }
+    async componentDidMount(){
+        document.title = "MinimaLine | View Menu"
+        let categs = await Axios.get('http://localhost:3005/display-category');
+        this.setState({
+            all_categs: categs.data,
+            curr_categ: this.state.all_categs[0]
+        })
+        this.showProducts(this.state.all_categs[0]["id"])
     }
 
     render() {
@@ -49,7 +60,7 @@ class ViewMenu extends Component {
                         </Link>
                     </EditButton>
                     <Nav>
-                        <Categ mode={"view"}/> 
+                        <Categ mode={"view"} categs={this.state.all_categs} onClick={this.showProducts}/> 
                     </Nav>
                     {!this.state.prods.length ?
                         <div></div> :
@@ -64,7 +75,7 @@ class ViewMenu extends Component {
                                             <article>
                                                 <h3><img className='image' src={prod["photo"]} alt={prod["product"]}/></h3>
                                                 <h1>{prod["product"]}</h1>
-                                                <h2>P{prod["price"]}</h2>
+                                                <h2>Php {prod["price"]}</h2>
                                                 <h2>{prod["availability"]===1 ? "Available" : "Not Available"}</h2>
                                             </article> 
                                         </div>
