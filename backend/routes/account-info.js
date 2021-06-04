@@ -59,7 +59,55 @@ app.post('/user-registration', [
     //hashPass = await bcrypt.hash(password,10)
     //console.log(password+'\n'+hashPass)
     //console.log(username, password, email) 
+
+    database.query("INSERT INTO account_info (username, email, password,role) VALUES (?,?,?,?)", 
+    [username, email, password,role], 
+    (err, result) => {
+        if(!err){
+            console.log(result)
+            res.status(201).send(result)   
+        }
+        else
+            res.status(400)
+    })
+});
+
+//register a cashier
+app.post('/add-cashier', [
+    check('username')
+    .notEmpty()
+    .withMessage('Username cannot be empty')
+    .isLength({min: 4}) 
+    .withMessage('Username should be at least 4 characters long')
+    .isLength({max: 20})
+    .withMessage('Username cannot be more than 20 characters long')
+    .exists()
+    .withMessage('Username exists'),
+    check('email')
+    .notEmpty()
+    .withMessage('Email cannot be empty')
+    .isEmail()
+    .withMessage('Email should be valid')
+    .exists()
+    .withMessage('Email exists'),
+    check('password')
+    .notEmpty()
+    .withMessage('Password cannot be empty')
+    .isLength({min: 4, max: 20})
+    .withMessage('Password should be between 4 - 20 characters'),
+    ], (req,res)=> {
+
+    const errors = validationResult(req);
+    console.log(errors)
+    if(!errors.isEmpty()){
+        return res.status(400).json({errors: errors.array()});
+    }
     
+    var role = "cashier"
+    const {username,email,password}=req.body
+    //hashPass = await bcrypt.hash(password,10)
+    //console.log(password+'\n'+hashPass)
+    //console.log(username, password, email) 
 
     database.query("INSERT INTO account_info (username, email, password,role) VALUES (?,?,?,?)", 
     [username, email, password,role], 
@@ -89,5 +137,7 @@ app.post('/user-login', (req,res)=> {
         }
     });
 });
+
+
 
 module.exports = app;

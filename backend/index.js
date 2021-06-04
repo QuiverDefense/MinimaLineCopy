@@ -36,8 +36,16 @@ app.post('/upload', function (req, res) {
 */
 
 //Connect to database
-database.connect((err) => {
+database.connect(function(err) {
     if (err) throw err;
+    
+    //Sample code for Joining tables
+    //var sql = "Select menu_info.product AS Product, category.name AS Category FROM menu_info JOIN category ON menu_info.category_id = category.id ";
+    //database.query(sql,function(err,result) {
+        //if(err) throw err;
+        //console.log(result);
+    //});
+    
 });
 
 //allow access of rest api for cross-origin resource sharing

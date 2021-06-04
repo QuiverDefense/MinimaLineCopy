@@ -1,9 +1,16 @@
 var express = require('express');
 var app = express();
 var database = require('../config/database');
+const {check, validationResult} = require('express-validator');
 
 //Add categories to edit menu
-app.post('/add-categ', (req,res)=> {
+app.post('/add-categ', [
+    check('category')
+    .notEmpty()
+    .withMessage("Category cannot be empty")
+    .exists()
+    .withMessage("Category exists")
+    ], (req,res)=> {
     
     const {category} = req.body
     // console.log(category)
@@ -131,6 +138,28 @@ app.delete('/delete-product/:id', (req,res)=> {
             res.status(400).send({message:"no account to delete"})
         }
     })
+});
+
+//for edit menu
+app.get('/edit-menu/:id', function(req, res, next) {
+    var id = req.params.id;
+    var sql = `SELECT * FROM menu_info WHERE id= ${id}`;
+    database.query(sql, function (err, data) {
+      if (err) throw err;
+        res.send(result)
+    });
+});
+
+app.post('/edit-menu/:id', function(req, res, next) {
+    var id= req.params.id;
+    var updateData=req.body;
+    var sql = `UPDATE menu_info SET ? WHERE id= ?`;
+    
+    database.query(sql, [updateData, id], function (err, data) {
+     if (err) throw err;
+        console.log(data.affectedRows + " record(s) updated");
+        res.status(200).send(result)
+    });    
 });
 
 module.exports = app;
