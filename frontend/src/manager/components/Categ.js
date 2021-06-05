@@ -42,10 +42,6 @@ class Categ extends Component {
             this.toggleModal()
         })
     }
-    // async componentDidMount(){
-    //     let results = await Axios.get('http://localhost:3005/display-category');
-    //     this.setState({ categ: results.data })
-    // }
 
     render() { 
         var modalStyle={overlay: {zIndex: 2}}

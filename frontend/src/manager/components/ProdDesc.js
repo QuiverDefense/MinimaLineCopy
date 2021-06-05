@@ -9,6 +9,7 @@ class ProdDesc extends Component {
             all_categs: [],
             prod_name: '',
             prod_price: '',
+            prod_categ: '',
             prod_availability: this.props["availability"]
         }
         // this.showAvailability = this.showAvailability.bind(this)
