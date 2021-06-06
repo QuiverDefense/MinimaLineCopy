@@ -40,10 +40,10 @@ class App extends Component {
               <h2>View Menu</h2>
               <p>View and edit the restaurant menu.</p>
           </StyledLink>
-          <StyledLink to="/dashboard" style={{textDecoration:'none'}}>
+          <StyledLink to="/account" style={{textDecoration:'none'}}>
             <MdAccountCircle className="icon" size="90px"/>
             <h2>Account</h2>
-            <p>Manage your account and restaurant information.</p>
+            <p>Manage your account and store information.</p>
           </StyledLink>
           <Option onClick={this.handleClick}>
               <AiOutlineUserSwitch className="icon" size="90px"/>
