@@ -30,7 +30,9 @@ class ViewMenu extends Component {
     async showProducts(categ_id){
         let categProds = await Axios.get(`http://localhost:3005/menu-info/${categ_id}`);
         this.setState({
-            prods: categProds.data
+            prods: categProds.data,
+            clicked: false,
+            current: null
         })
     }
     async componentDidMount(){
@@ -63,17 +65,20 @@ class ViewMenu extends Component {
                         <Categ mode={"view"} categs={this.state.all_categs} onClick={this.showProducts}/> 
                     </Nav>
                     {!this.state.prods.length ?
-                        <div></div> :
                         <ProdGrid>
+                            <div className="productlist">
+                                <h3> No products in this category.</h3>
+                            </div>
+                        </ProdGrid>
+                        : <ProdGrid>
                             <section className='productlist'> 
                             {this.state.prods.map((prod,index)=>{
                                     return (
                                         <div
                                             onClick={()=>this.changeColor(index)}
                                             className={(this.state.clicked && (this.state.current===index)) ? 'clicked' : 'unclicked'}>
-                                            {/* <Product key={index} product={product}></Product> */}
                                             <article>
-                                                <h3><img className='image' src={prod["photo"]} alt={prod["product"]}/></h3>
+                                                <h3><img className='image' src={prod["photo"]} alt="No image"/></h3>
                                                 <h1>{prod["product"]}</h1>
                                                 <h2>Php {prod["price"]}</h2>
                                                 <h2>{prod["availability"]===1 ? "Available" : "Not Available"}</h2>
@@ -83,7 +88,7 @@ class ViewMenu extends Component {
                                 })}
                                 {this.state.clicked ? <ProdDesc {...this.state.prods[this.state.current]} mode={"view"}/> : null }
                             </section>
-                        </ProdGrid>
+                         </ProdGrid>
                     }
 
                 </Wrapper>

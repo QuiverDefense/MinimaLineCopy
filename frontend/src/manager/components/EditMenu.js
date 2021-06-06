@@ -28,9 +28,9 @@ class EditMenu extends Component {
             this_prod: null
         }
         this.changeColor = this.changeColor.bind(this);
-        this.deleteModal = this.deleteModal.bind(this);
-        this.addCateg = this.addCateg.bind(this);
-        this.addProduct = this.addProduct.bind(this);
+        this.toggleDeleteProd = this.toggleDeleteProd.bind(this);
+        this.toggleAddCateg = this.toggleAddCateg.bind(this);
+        this.toggleAddProd = this.toggleAddProd.bind(this);
         this.deleteProd = this.deleteProd.bind(this);
         this.showProducts = this.showProducts.bind(this);
     }
@@ -41,15 +41,13 @@ class EditMenu extends Component {
             all_categs: categs.data
         })
         this.showProducts(this.state.all_categs[0]["id"])
-        // let categProds = await Axios.get(`http://localhost:3005/menu-info/${curr_categID}`);
-        // this.setState({
-        //     prods: categProds.data
-        // })
     }
     async showProducts(categ_id){
         let categProds = await Axios.get(`http://localhost:3005/menu-info/${categ_id}`);
         this.setState({
-            prods: categProds.data
+            prods: categProds.data,
+            clicked: false,
+            current: null
         })
     }
     changeColor(index){
@@ -59,16 +57,16 @@ class EditMenu extends Component {
                 clicked: true
             })
     }
-    deleteModal(id){
+    toggleDeleteProd(id){
         this.setState({
             this_prod: id,
             openDeleteModal: !this.state.openDeleteModal
         })
     }
-    addCateg(){
+    toggleAddCateg(){
         this.setState({openAddCateg: !this.state.openAddCateg})
     }
-    addProduct(){
+    toggleAddProd(){
         this.setState({openAddProd: !this.state.openAddProd})
     }
     handleChange(e){
@@ -89,7 +87,7 @@ class EditMenu extends Component {
         //console.log(data);
         Axios.post("http://localhost:3005/add-categ", data).then((response) => {
             console.log(response)
-            this.addCateg()
+            this.toggleAddCateg()
         })
     }
     addNewProd = e =>{
@@ -102,7 +100,7 @@ class EditMenu extends Component {
     deleteProd(){
         Axios.delete(`http://localhost:3005/delete-product/${this.state.this_prod}`).then((response) => {
             console.log(response)
-            this.deleteModal()
+            this.toggleDeleteProd()
         })
     }
 
@@ -117,7 +115,7 @@ class EditMenu extends Component {
                             <h2>Are you sure you want to remove this product from the menu?</h2>
                             <div className="buttons">
                                 <button className="delete" onClick={this.deleteProd}>Delete</button>
-                                <button onClick={this.deleteModal}>Cancel</button>
+                                <button onClick={this.toggleDeleteProd}>Cancel</button>
                             </div>
                         </CategModal>
                     </ModalContainer>
@@ -138,7 +136,7 @@ class EditMenu extends Component {
                                     onChange={this.handleChange.bind(this)}/>
                                 <div className="buttons">
                                     <button className="save">Save Changes</button>
-                                    <button onClick={this.addCateg}>Cancel</button>
+                                    <button onClick={this.toggleAddCateg}>Cancel</button>
                                 </div>
                             </form>
                         </CategModal>
@@ -167,10 +165,12 @@ class EditMenu extends Component {
                                     autoComplete="off"
                                     onChange={this.handleChange.bind(this)}/>
                                 <select>
-                                    <option selected value={this.state.prod_availability}>Available</option> 
+                                    <option selected>Select availability</option>
+                                    <option value={this.state.prod_availability}>Available</option> 
                                     <option value={!this.state.prod_availability}>Not Available</option>
                                 </select>
                                 <select>
+                                    <option selected>Select category</option>
                                     {this.state.all_categs.map((categ,index)=>{
                                         return (
                                             <option>{categ["name"]}</option>
@@ -187,7 +187,7 @@ class EditMenu extends Component {
                                     onChange={this.handleChange.bind(this)}/>
                                 <div className="buttons">
                                     <button className="save">Save Changes</button>
-                                    <button onClick={this.addProduct}>Cancel</button>
+                                    <button onClick={this.toggleAddProd}>Cancel</button>
                                 </div>
                             </form>
                         </ProdModal>
@@ -204,7 +204,7 @@ class EditMenu extends Component {
                     </Arrow>
                     <Nav>
                         <Categ mode={"edit"} categs={this.state.all_categs} onClick={this.showProducts}/>
-                        <AddCategButton size="50px" onClick={this.addCateg}/>
+                        <AddCategButton size="50px" onClick={this.toggleAddCateg}/>
                     </Nav>
                     <EditButton>
                         <Link to="/view-menu">
@@ -222,9 +222,9 @@ class EditMenu extends Component {
                                                     <div
                                                     onClick={()=>this.changeColor(index)}
                                                     className={(this.state.clicked && (this.state.current===index)) ? 'clicked' : 'unclicked'}>
-                                                            <DeleteButton size="50px" onClick={()=>this.deleteModal(prod["id"])}/>
+                                                            <DeleteButton size="50px" onClick={()=>this.toggleDeleteProd(prod["id"])}/>
                                                             <article>
-                                                                <h3><img className='image' src={prod["photo"]} alt={prod["product"]}/></h3>
+                                                                <h3><img className='image' src={prod["photo"]} alt="No image"/></h3>
                                                                 <h1>{prod["product"]}</h1>
                                                                 <h2>Php {prod["price"]}</h2>
                                                                 <h2>{prod["availability"]===1 ? "Available" : "Not Available"}</h2>
@@ -233,7 +233,7 @@ class EditMenu extends Component {
                                                 )
                                             })}
                                     {this.state.clicked ? <ProdDesc {...this.state.prods[this.state.current]} mode={"edit"}/> : null }
-                                    <AddButton size="100px" onClick={this.addProduct}/>
+                                    <AddButton size="100px" onClick={this.toggleAddProd}/>
                                 </section>
                         </ProdGrid>
                     }
