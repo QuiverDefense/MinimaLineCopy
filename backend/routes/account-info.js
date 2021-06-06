@@ -7,11 +7,10 @@ var app = express();
 var database = require('../config/database');
 
 
-//get data from account-info table (OK)
+//get data from account-info table 
 app.get('/account-info', (req,res) => {
-    let sql = 'SELECT * FROM account_info';
 
-    database.query(sql, (err, result) => {
+    database.query("SELECT user.id as id, user.username as username, user.email as email, user.role as role, store.store_name as store_name from account_info as user INNER JOIN store_info as store", (err, result) => {
         if (err) {
             res.status(400).send(err);
             return;
@@ -23,7 +22,7 @@ app.get('/account-info', (req,res) => {
     });
 });
 
-//to register user info in account_info table (OK [no validation])
+//to register user info in account_info table 
 app.post('/user-registration', [
     check('username')
     .notEmpty()

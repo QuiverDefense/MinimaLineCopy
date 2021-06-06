@@ -36,7 +36,7 @@ app.post('/upload', function (req, res) {
 */
 
 //Connect to database
-database.connect(function(err) {
+database.connect((err) => {
     if (err) throw err;
     
     //Sample code for Joining tables
