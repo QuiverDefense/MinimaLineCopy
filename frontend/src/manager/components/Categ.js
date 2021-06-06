@@ -5,27 +5,29 @@ import Modal from 'react-modal';
 import Axios from 'axios';
 
 class Categ extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = { // initial/default state is the first category on the list
             clicked: false,
             current: 0,
             default: true,
             openModal: false,
-            categ: [],
+            // categ: [],
             delete_this: null
         }
-        this.changeColor = this.changeColor.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
         this.deleteCateg = this.deleteCateg.bind(this);
     }
-    changeColor(index){
+    handleClick(index,categ_id){
+        // change color
         if(this.state.current !== index) // different category is clicked
             this.setState({
                 current: index,
                 clicked: true,
                 default: false
             })
+        this.props.onClick(categ_id)
     }
     toggleModal(id){
         this.setState({
@@ -40,24 +42,19 @@ class Categ extends Component {
             this.toggleModal()
         })
     }
-    async componentDidMount(){
-        let results = await Axios.get('http://localhost:3005/display-category');
-        this.setState({ categ: results.data })
-    }
 
     render() { 
         var modalStyle={overlay: {zIndex: 2}}
         return ( 
             <>
-            {!this.state.categ.length ? 
-                <div></div>
-            :
+            {!this.props.categs.length ? 
+                <div></div>:
                 <Container>
-                        {this.state.categ.map((categ,index)=>{
+                        {this.props.categs.map((categ,index)=>{
                         return(
                             <div
                                 className={((this.state.clicked || this.state.default) && (this.state.current===index)) ? 'clicked' : 'unclicked'}
-                                onClick={()=>this.changeColor(index)}>
+                                onClick={()=>this.handleClick(index,categ["id"])}>
                                 <div className="word">
                                     <h1>{categ["name"]}</h1>
                                 </div>

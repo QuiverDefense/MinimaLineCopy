@@ -3,7 +3,6 @@ import styled from "styled-components";
 import {Link} from 'react-router-dom';
 import { BiArrowBack } from "react-icons/bi";
 import Categ from "../../manager/components/Categ";
-// import ProdDesc from "./ProdDesc";
 import OrderSum from "./OrderSum";
 import Products from "../../manager/components/Products";
 import Modal from 'react-modal';
@@ -86,7 +85,6 @@ class ProdSelect extends Component {
                                     </div>
                                 )
                             })}
-                            {/* {this.state.clicked ? <ProdDesc {...Products[this.state.current]} mode={"view"}/> : null } */}  
                             {this.state.openProdModal ? <ProdModal {...Products[this.state.current]} mode={this.showModal}/> : null }
                             <OrderSum />
                         </section>
@@ -308,7 +306,6 @@ const ProdGrid = styled.div`
         }
         @media screen and (max-width: 1024px) {
             width: 70%;
-            /* padding: 1rem 2rem; */
         }
     }
     .image{

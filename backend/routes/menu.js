@@ -1,9 +1,16 @@
 var express = require('express');
 var app = express();
 var database = require('../config/database');
+const {check, validationResult} = require('express-validator');
 
 //Add categories to edit menu
-app.post('/add-categ', (req,res)=> {
+app.post('/add-categ', [
+    check('category')
+    .notEmpty()
+    .withMessage("Category cannot be empty")
+    .exists()
+    .withMessage("Category exists")
+    ], (req,res)=> {
     
     const {category} = req.body
     // console.log(category)
@@ -14,10 +21,9 @@ app.post('/add-categ', (req,res)=> {
     (err, result) => {
         if(!err)
             // console.log(result)
-            res.send(result)
+            res.status(201).send(result)
         }
     )
-    
 });
 
 //Delete categories 
@@ -30,7 +36,7 @@ app.delete('/delete-categ/:id', (req,res)=> {
     (err, result) => {
         if(!err)
             console.log(result)
-            res.send(result)
+            res.status(200).send(result)
         }
     )
     
@@ -45,29 +51,29 @@ app.get('/display-category', (req,res) => {
             res.status(400).send(err);
             return;
         }
-
         if (result.length) {
-            res.json(result);
+            res.status(200).json(result);
         }
-        else res.json({});
+        else res.status(200).json({});
     });
 });
 
+//get products by category ID
+app.get('/menu-info/:id', (req,res) => {
+    // let sql = 'SELECT * FROM menu_info';
+    const id = req.params.id
 
-//get menu-info from database (product name, price, availability, photo)
-app.get('/menu-info', (req,res) => {
-    let sql = 'SELECT * FROM menu_info';
-
-    database.query(sql, (err, result) => {
+    database.query("SELECT * FROM menu_info WHERE category_id = ?", id,
+    (err, result) => {
         if (err) {
             res.status(400).send(err);
             return;
         }
 
         if (result.length) {
-            res.json(result);
+            res.status(200).json(result);
         }
-        else res.json({});
+        else res.status(200).json({});
     });
 });
 
@@ -83,7 +89,7 @@ app.post('/add-product', (req,res)=> {
             database.query("INSERT INTO menu_info (product,price,availability) VALUES ('" + product + "','" + price + "','" + availability + "')",
                             (err, result) => {
                                 if(!err)
-                                    res.send(result)
+                                    res.status(201).send(result)
                                 }
                             );
             return res.status(500).send('Insert data into database, but no files were uploaded.');
@@ -104,9 +110,9 @@ app.post('/add-product', (req,res)=> {
                             database.query("INSERT INTO menu_info (product,price,availability,photo) VALUES ('" + product + "','" + price + "','" + availability + "','" + img_name + "')",
                             (err, result) => {
                                 if(!err)
-                                    res.send(result)
+                                    res.status(201).send(result)
                                 else
-                                    res.send("error")
+                                    res.status(400).send("error")
                             }
                             );
    
@@ -116,5 +122,44 @@ app.post('/add-product', (req,res)=> {
             }
      }
   });
+
+//Delete products
+app.delete('/delete-product/:id', (req,res)=> {
+    
+    const id = req.params.id
+    console.log(id)
+    
+    database.query("DELETE FROM menu_info WHERE id = ?", id,
+    (err, result) => {
+        if(!err){
+            //console.log(result)
+            res.send(result)
+        }
+        else{
+            res.status(400).send({message:"no account to delete"})
+        }
+    })
+});
+
+app.get('/edit-menu/:id', function(req, res, next) {
+    var id = req.params.id;
+    var sql = `SELECT * FROM menu_info WHERE id= ${id}`;
+    database.query(sql, function (err, data) {
+      if (err) throw err;
+        res.send(result)
+    });
+});
+
+app.post('/edit-menu/:id', function(req, res, next) {
+    var id= req.params.id;
+    var updateData=req.body;
+    var sql = "UPDATE menu_info SET ? WHERE id= ?";
+
+    database.query(sql, [updateData, id], function (err, data) {
+     if (err) throw err;
+        console.log(data.affectedRows + " record(s) updated");
+        res.status(200).send(result)
+    });
+});
 
 module.exports = app;
