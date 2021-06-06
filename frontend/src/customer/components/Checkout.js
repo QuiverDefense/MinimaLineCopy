@@ -98,30 +98,6 @@ class Checkout extends Component {
                             </div>
                             <td width="20%">Php 90.00</td>
                     </tr>
-                    {/* <tr>
-                        <td width="10%"><img src={burger_img}/></td>
-                        <td width="50%">McBurger</td>
-                        <div className="counter">
-                            <button>-</button>
-                                <span>
-                                <td width="20%">2</td>
-                                </span>
-                            <button>+</button>
-                        </div>
-                        <td width="20%">Php 300.00</td>
-                    </tr>
-                    <tr>
-                        <td width="10%"><img src={fries_img}/></td>
-                            <td width="50%">McFries</td>
-                            <div className="counter">
-                                <button>-</button>
-                                    <span>
-                                    <td width="20%">3</td>
-                                    </span>
-                                <button>+</button>
-                            </div>
-                            <td width="20%">Php 90.00</td>
-                    </tr>
                     <tr>
                         <td width="10%"><img src={burger_img}/></td>
                         <td width="50%">McBurger</td>
@@ -169,8 +145,31 @@ class Checkout extends Component {
                                 <button>+</button>
                             </div>
                             <td width="20%">Php 90.00</td>
-                    </tr> */}
-
+                    </tr>
+                    <tr>
+                        <td width="10%"><img src={burger_img}/></td>
+                        <td width="50%">McBurger</td>
+                        <div className="counter">
+                            <button>-</button>
+                                <span>
+                                <td width="20%">2</td>
+                                </span>
+                            <button>+</button>
+                        </div>
+                        <td width="20%">Php 300.00</td>
+                    </tr>
+                    <tr>
+                        <td width="10%"><img src={fries_img}/></td>
+                            <td width="50%">McFries</td>
+                            <div className="counter">
+                                <button>-</button>
+                                    <span>
+                                    <td width="20%">3</td>
+                                    </span>
+                                <button>+</button>
+                            </div>
+                            <td width="20%">Php 90.00</td>
+                    </tr>
                 </Table>
                 <hr/>
                 <div className="total-price">
@@ -289,7 +288,9 @@ const Table = styled.table`
     position: absolute;
     left: 50%;
     font-size: 30px;
+    display: block;
     overflow: auto;
+    height: 400px;
 
     .counter{
         display: flex;
