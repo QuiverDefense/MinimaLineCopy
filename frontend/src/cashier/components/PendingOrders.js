@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
 import {Link} from 'react-router-dom';
-// import {BsArrowRight} from "react-icons/bs";
 import {FaLongArrowAltRight} from "react-icons/fa";
-import {RiSearchLine} from "react-icons/ri";
+// import {RiSearchLine} from "react-icons/ri";
 import search from "../../assets/search.png";
 import burger_img from "../../assets/burger.png";
 import fries_img from "../../assets/fries.png";
+import Orders from "./Orders";
 
 class PendingOrders extends Component {
     constructor(props) {
@@ -19,6 +19,16 @@ class PendingOrders extends Component {
     }
 
     render() { 
+        const Order = (props) => {
+            const {order_num, type} = props.order;
+            return (
+                <article>
+                    <h1>{order_num}</h1>
+                    <h2>{type}</h2>
+                </article> 
+            );
+        };
+
         return ( 
             <Container>
                 <div className="left">
@@ -134,8 +144,19 @@ class PendingOrders extends Component {
                             </button>
                         </Search>
                     </div>
-                    <Link to="/customer">
-                    </Link>
+                    <OrderGrid>
+                        <section className='order-list'> 
+                        {Orders.map((order,index)=>{
+                                return (
+                                    <div
+                                        onClick={()=>this.changeColor(index)}
+                                        className={(this.state.clicked && (this.state.current===index)) ? 'clicked' : 'unclicked'}>
+                                        <Order key={index} order={order}></Order>
+                                    </div>
+                                )
+                            })}
+                        </section>
+                    </OrderGrid>
                 </div>
             </Container>
         );
@@ -162,7 +183,6 @@ const Container = styled.div`
         }
 
         p{
-            /* position: absolute; */
             text-align: left;
             margin-left: 30px;
         }
@@ -184,7 +204,7 @@ const Container = styled.div`
             box-shadow: 3px 6px 5px 3px #d6d6d6;
             border-radius: 30px;
             height: 100px;
-            width: 780px;
+            width: 770px;
             margin-top: 460px;
             margin-left: 40px;  
             padding: 5px;
@@ -220,7 +240,6 @@ const Container = styled.div`
             button{
                 margin-left: 10px;
                 margin-top: 100px;
-                /* margin-right: 50px; */
                 font-family: "Work Sans";
                 width: 300px;
                 height: 90px;
@@ -333,6 +352,79 @@ const Table = styled.table`
         width: 7vh;
         height: 5vh;
         margin-right: 15px;
+    }
+`;
+
+const OrderGrid = styled.div`
+    overflow-y: auto;
+    .order-list {
+        height: 600px;
+        position: absolute;
+        width: 93%;
+        margin-top: -10px;
+        margin-left: 60px;
+        display: grid;
+        gap: 2rem;
+        z-index: 0;
+        grid-template-columns: repeat(5, 150px);
+        overflow-y: auto;
+
+        @media screen and (max-width: 1024px) {
+            gap: 1.5rem;
+
+        }
+    }
+
+    .clicked{
+        background: #F9C91E;
+        border-radius: 1rem;
+        transition: all 0.2s ease-in;
+        text-align: center;
+
+        &:hover {
+            transform: translateY(-4px);
+            cursor: pointer;
+        }
+
+        h1{
+            margin-top: 0.5rem;
+        }
+
+        h2{
+            color: #617d98;
+            font-size: 0.9rem;
+            margin-top: -40px;
+        }
+
+        /* @media screen and (max-width: 1024px) {
+            width: 70%;
+        } */
+    }
+    .unclicked{
+        background: #f9c91e;
+        border-radius: 1rem;
+        transition: all 0.2s ease-in;
+        text-align: center;
+
+        &:hover {
+            transform: translateY(-4px);
+            background: #F3D9A4;
+            cursor: pointer;
+        }
+
+        h1{
+            margin-top: 0.5rem;
+        }
+
+        h2{
+            color: #617d98;
+            font-size: 0.9rem;
+            margin-top: -40px;
+        }
+
+        /* @media screen and (max-width: 1024px) {
+            width: 70%;
+        } */
     }
 `;
 

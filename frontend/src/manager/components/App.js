@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import bgImg from '../../assets/testing.png'
+import chicken from '../../assets/chicken.png'
+import glitter from '../../assets/glitter.png'
+import circle from '../../assets/circle.png'
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import Main from "./Main";
@@ -49,7 +51,7 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  background-image: url(${bgImg});
+  background-image: url(${chicken}), url(${glitter}), url(${circle});
   background-color: #f3d9a4; 
   background-position: center;
   background-size: cover;
@@ -57,6 +59,18 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
+
+  /* @keyframes fadeInY{
+    0% {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    100% { 
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+  animation: fadeInY 2s; */
 `;
 
 export default App;
