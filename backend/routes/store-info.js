@@ -59,49 +59,47 @@ app.post('/store-registration', [
         return res.status(400).json({errors: errors.array()});
     }
 
-    if(req.method == "POST"){
-        var post  = req.body;
-        var store_name = post.store_name;
-        var manager_name= post.manager_name;
-        var location= post.location;
+    const store_name = req.body.store_name;
+    const manager_name= req.body.manager_name;
+    const location= req.body.location;
+    const logo = req.body.logo;
 
-        if (!req.files){
-            database.query("INSERT INTO store_info (store_name,manager_name,location) VALUES ('" + store_name + "','" + manager_name + "','" + location + "')",
-                            (err, result) => {
-                                if(!err)
-                                    res.send(result)
-                                }
-                            );
-            return res.status(200).send('Insert data into database, but no files were uploaded.');
+    console.log(store_name, manager_name, location,logo)
+
+    if (!req.files){
+        database.query("INSERT INTO store_info (store_name,manager_name,location) VALUES ('" + store_name + "','" + manager_name + "','" + location + "')",
+            (err, result) => {
+                if(!err)
+                    return res.status(200).send(result);
+                });
         }
-          
-          var file = req.files.logo;
-          var img_name = file.name;
-          console.log("file uploaded:")
-          console.log(file)
+    
+    else{
+        console.log("hello")
+        var file = req.files.logo;
+        var img_name = file.name;
+        console.log("file uploaded:")
+        console.log(file)
 
-             if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"|| file.mimetype == "image/gif" || file.mimetype == "image/svg" || file.mimetype == "image/jpg"){
-                                   
-                file.mv('public/uploads'+ file.name , function(err) {
-                    //upload(res,req,function(err) {
-                               
-                    if (err)
-                        // console.log(err)
-                      return res.status(500).send(err);
-                            database.query("INSERT INTO store_info (store_name,manager_name,location,logo) VALUES ('" + store_name + "','" + manager_name + "','" + location + "','" + file + "')",
-                            (err, result) => {
-                                if(!err)
-                                    res.send(result)
-                                else
-                                    res.send("error")
-                            }
-                            );
-   
-                         });
-            } else {
-              console.log("This format is not allowed , please upload file with '.png','.gif','.jpg'");
-            }
-     }
+        if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"|| file.mimetype == "image/gif" || file.mimetype == "image/svg" || file.mimetype == "image/jpg"){
+            file.mv('public/uploads'+ file.name , function(err) {
+            //upload(res,req,function(err) {
+                if (err) 
+                    return res.status(500).send(err);
+                
+                database.query("INSERT INTO store_info (store_name,manager_name,location,logo) VALUES ('" + store_name + "','" + manager_name + "','" + location + "','" + img_name + "')",
+                    (err, result) => {
+                        if(!err)
+                            return res.status(200).send(result)
+                        else
+                            return res.status(400).send("error")
+                    });
+                });
+            } 
+                else {
+                    console.log("This format is not allowed , please upload file with '.png','.gif','.jpg'");
+                }
+    }
 });
     
 module.exports = app;
