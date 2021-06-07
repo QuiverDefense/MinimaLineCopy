@@ -40,7 +40,8 @@ class EditMenu extends Component {
         this.setState({
             all_categs: categs.data
         })
-        this.showProducts(this.state.all_categs[0]["id"])
+        if(categs)
+            this.showProducts(this.state.all_categs[0]["id"])
     }
     async showProducts(categ_id){
         let categProds = await Axios.get(`http://localhost:3005/menu-info/${categ_id}`);

@@ -40,9 +40,10 @@ class ViewMenu extends Component {
         let categs = await Axios.get('http://localhost:3005/display-category');
         this.setState({
             all_categs: categs.data,
-            curr_categ: this.state.all_categs[0]
+            // curr_categ: this.state.all_categs[0]
         })
-        this.showProducts(this.state.all_categs[0]["id"])
+        if(categs)
+            this.showProducts(this.state.all_categs[0]["id"])
     }
 
     render() {
