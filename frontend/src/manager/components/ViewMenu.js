@@ -28,17 +28,24 @@ class ViewMenu extends Component {
             })
     }
     async showProducts(categ_id){
-        let categProds = await Axios.get(`http://localhost:3005/menu-info/${categ_id}`);
-        this.setState({
-            prods: categProds.data,
-            clicked: false,
-            current: null
-        })
+        // let categProds = await Axios.get(`http://localhost:3005/menu-info/${categ_id}`);
+        if(categ_id!=="empty"){
+            let categProds = await Axios.get(`http://localhost:3005/menu-info/${categ_id}`);
+            this.setState({
+                prods: categProds.data,
+                clicked: false,
+                current: null
+            })
+        }
     }
     async componentDidMount(){
         document.title = "MinimaLine | View Menu"
         let categs = await Axios.get('http://localhost:3005/display-category');
-        if(categs){
+        if(JSON.stringify(categs.data)==='{}'){
+            this.showProducts("empty")
+        }
+        else{
+            console.log("hello")
             this.setState({
                 all_categs: categs.data
             })
