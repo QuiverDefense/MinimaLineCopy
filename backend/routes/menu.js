@@ -84,15 +84,16 @@ app.post('/add-product', (req,res)=> {
         var product= post.product;
         var price= post.price;
         var availability= post.availability;
+        var category = post.category;
 
         if (!req.files){
-            database.query("INSERT INTO menu_info (product,price,availability) VALUES ('" + product + "','" + price + "','" + availability + "')",
+            database.query("INSERT INTO menu_info (product,price,category_id,availability) VALUES ('" + product + "','" + price + "','" + category + "','" + availability + "')",
                             (err, result) => {
                                 if(!err)
-                                    res.status(201).send(result)
+                                    res.send(result)
                                 }
                             );
-            return res.status(500).send('Insert data into database, but no files were uploaded.');
+            return res.status(200).send('Insert data into database, but no files were uploaded.');
         }
           
           var file = req.files.photo;
@@ -107,12 +108,12 @@ app.post('/add-product', (req,res)=> {
                     if (err)
                         // console.log(err)
                       return res.status(500).send(err);
-                            database.query("INSERT INTO menu_info (product,price,availability,photo) VALUES ('" + product + "','" + price + "','" + availability + "','" + img_name + "')",
+                            database.query("INSERT INTO menu_info (product,price,category_id,availability,photo) VALUES ('" + product + "','" + price + "','" + category + "','" + availability + "','" + img_name + "')",
                             (err, result) => {
                                 if(!err)
-                                    res.status(201).send(result)
+                                    res.send(result)
                                 else
-                                    res.status(400).send("error")
+                                    res.send("error")
                             }
                             );
    

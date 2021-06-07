@@ -13,19 +13,20 @@ class EditMenu extends Component {
     constructor(){
         super();
         this.state = {
-            prods: [],
-            all_categs: [],
-            clicked: false,
-            current: null,
-            new_categ: '',
-            prod_name: '',
-            prod_price: '',
-            prod_availability: true,
-            prod_img: '',
-            openDeleteModal: false,
-            openAddCateg: false,
-            openAddProd: false,
-            this_prod: null
+            prods: [],      // list of all products in a category
+            all_categs: [],     // list of all categories in a store menu
+            clicked: false,     // whether or not a product is selected
+            current: null,      // index of selected product
+            new_categ: '',      // name of new category to be added
+            prod_name: '',      // name of new product to be added
+            prod_price: '',     // price of new product to be added
+            prod_availability: "-1",    // availability of new product to be added
+            prod_categ: 1,     // category of new product to be added
+            prod_img: '',       // image of new product to be added (not required)
+            openDeleteModal: false,     // open/close modal for delete product
+            openAddCateg: false,        // open/close modal for add category
+            openAddProd: false,     // open/close modal for add product
+            delete_this: null     // id of product to be deleted 
         }
         this.changeColor = this.changeColor.bind(this);
         this.toggleDeleteProd = this.toggleDeleteProd.bind(this);
@@ -33,15 +34,18 @@ class EditMenu extends Component {
         this.toggleAddProd = this.toggleAddProd.bind(this);
         this.deleteProd = this.deleteProd.bind(this);
         this.showProducts = this.showProducts.bind(this);
+        this.showCategs = this.showCategs.bind(this);
     }
     async componentDidMount(){
         document.title = "MinimaLine | Edit Menu";
+        this.showCategs();
+    }
+    async showCategs(){
         let categs = await Axios.get('http://localhost:3005/display-category');
         if(JSON.stringify(categs.data)==='{}'){
             this.showProducts("empty")
         }
         else{
-            console.log("hello")
             this.setState({
                 all_categs: categs.data
             })
@@ -58,6 +62,7 @@ class EditMenu extends Component {
             })
         }
     }
+    
     changeColor(index){
         if(this.state.current !== index)
             this.setState({
@@ -67,7 +72,7 @@ class EditMenu extends Component {
     }
     toggleDeleteProd(id){
         this.setState({
-            this_prod: id,
+            delete_this: id,
             openDeleteModal: !this.state.openDeleteModal
         })
     }
@@ -75,6 +80,7 @@ class EditMenu extends Component {
         this.setState({openAddCateg: !this.state.openAddCateg})
     }
     toggleAddProd(){
+        console.log("henlo")
         this.setState({openAddProd: !this.state.openAddProd})
     }
     handleChange(e){
@@ -92,22 +98,37 @@ class EditMenu extends Component {
             category: this.state.new_categ
         };
         e.preventDefault();
-        //console.log(data);
         Axios.post("http://localhost:3005/add-categ", data).then((response) => {
-            console.log(response)
             this.toggleAddCateg()
+            this.showCategs()
+            this.setState({new_categ: ''})
         })
     }
     addNewProd = e =>{
+        // console.log()
         e.preventDefault();
-        console.log(this.state.prod_name,
-                    this.state.prod_price,
-                    this.state.prod_availability,
-                    this.state.prod_img)
+        const data = {
+            product: this.state.prod_name,
+            price: this.state.prod_price,
+            availability: Number(this.state.prod_availability),
+            category: this.state.prod_categ,
+            photo: this.state.prod_image
+        };
+        Axios.post("http://localhost:3005/add-product", data).then((response) => {
+            console.log("new product")
+            this.toggleAddProd()
+            this.showCategs()
+            this.setState({
+                prod_name: '',
+                prod_price: '',
+                prod_availability: "-1",
+                prod_categ: 1,
+                prod_image: ''
+            })
+        })
     }
     deleteProd(){
-        Axios.delete(`http://localhost:3005/delete-product/${this.state.this_prod}`).then((response) => {
-            console.log(response)
+        Axios.delete(`http://localhost:3005/delete-product/${this.state.delete_this}`).then((response) => {
             this.toggleDeleteProd()
         })
     }
@@ -172,25 +193,27 @@ class EditMenu extends Component {
                                     required
                                     autoComplete="off"
                                     onChange={this.handleChange.bind(this)}/>
-                                <select>
-                                    <option selected>Select availability</option>
-                                    <option value={this.state.prod_availability}>Available</option> 
-                                    <option value={!this.state.prod_availability}>Not Available</option>
+                                <select
+                                    name="prod_availability"
+                                    value={this.state.prod_availability}
+                                    onChange={this.handleChange.bind(this)}>
+                                    <option value="-1">Select availability</option>
+                                    <option value="1">Available</option> 
+                                    <option value="0">Not Available</option>
                                 </select>
-                                <select>
-                                    <option selected>Select category</option>
+                                {/* <select>
+                                    <option>Select category</option>
                                     {this.state.all_categs.map((categ,index)=>{
-                                        return (
+                                        return(
                                             <option>{categ["name"]}</option>
                                         )
                                     })}
-                                </select>
+                                </select> */}
                                 <input
                                     type="file"
                                     placeholder="Product Image"
                                     name="prod_img"
                                     value={this.state.prod_img}
-                                    required
                                     autoComplete="off"
                                     onChange={this.handleChange.bind(this)}/>
                                 <div className="buttons">
@@ -221,7 +244,7 @@ class EditMenu extends Component {
                     </EditButton>
                     {!this.state.prods.length ? 
                         <div className="empty-grid">
-                            <AddButton size="100px" onClick={this.addProduct}/> 
+                            <AddButton size="100px" onClick={this.toggleAddProd}/> 
                         </div> :
                         <ProdGrid>
                                 <section className='productlist'> 

@@ -28,7 +28,6 @@ class ViewMenu extends Component {
             })
     }
     async showProducts(categ_id){
-        // let categProds = await Axios.get(`http://localhost:3005/menu-info/${categ_id}`);
         if(categ_id!=="empty"){
             let categProds = await Axios.get(`http://localhost:3005/menu-info/${categ_id}`);
             this.setState({
@@ -45,7 +44,6 @@ class ViewMenu extends Component {
             this.showProducts("empty")
         }
         else{
-            console.log("hello")
             this.setState({
                 all_categs: categs.data
             })
