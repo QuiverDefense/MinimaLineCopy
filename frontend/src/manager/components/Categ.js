@@ -7,24 +7,26 @@ import Axios from 'axios';
 class Categ extends Component {
     constructor(props){
         super(props);
-        this.state = { // initial/default state is the first category on the list
-            clicked: false,
-            current: 0,
-            default: true,
+        this.state = { 
+            isClicked: false,   // a category is selected
+            current: 0,         // index of selected category; default state is the first category on the list
+            default: true,      
             openModal: false,
-            // categ: [],
             delete_this: null
         }
         this.handleClick = this.handleClick.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
         this.deleteCateg = this.deleteCateg.bind(this);
     }
+    // componentDidMount(){
+    //     this.setState({current: this.props.curr })
+    // }
     handleClick(index,categ_id){
         // change color
         if(this.state.current !== index) // different category is clicked
             this.setState({
                 current: index,
-                clicked: true,
+                isClicked: true,
                 default: false
             })
         this.props.onClick(categ_id)
@@ -53,13 +55,13 @@ class Categ extends Component {
                         {this.props.categs.map((categ,index)=>{
                         return(
                             <div
-                                className={((this.state.clicked || this.state.default) && (this.state.current===index)) ? 'clicked' : 'unclicked'}
+                                className={((this.state.isClicked || this.state.default) && (this.state.current===index)) ? 'clicked' : 'unclicked'}
                                 onClick={()=>this.handleClick(index,categ["id"])}>
                                 <div className="word">
                                     <h1>{categ["name"]}</h1>
                                 </div>
                                 {this.props.mode==="edit" ? 
-                                    <DeleteButton size="25px"onClick={() => this.toggleModal(categ["id"])}/>
+                                    <DeleteButton size="25px" onClick={() => this.toggleModal(categ["id"])}/>
                                 : null}
                             </div>
                         )

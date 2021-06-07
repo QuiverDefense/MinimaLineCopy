@@ -85,42 +85,44 @@ app.post('/add-product', (req,res)=> {
         var price= post.price;
         var availability= post.availability;
         var category = post.category;
-
+        console.log(product, price, availability, category)
         if (!req.files){
             database.query("INSERT INTO menu_info (product,price,category_id,availability) VALUES ('" + product + "','" + price + "','" + category + "','" + availability + "')",
                             (err, result) => {
                                 if(!err)
-                                    res.send(result)
+                                    return res.status(200).send(result)
+                                else
+                                    return res.status(400).send("error")
                                 }
                             );
-            return res.status(200).send('Insert data into database, but no files were uploaded.');
+            // return res.status(200).send('Insert data into database, but no files were uploaded.');
         }
-          
-          var file = req.files.photo;
-          var img_name = file.name;
-          console.log("file uploaded:")
-          console.log(file)
+        else{
+            var file = req.files.photo;
+            var img_name = file.name;
+            console.log("file uploaded:")
+            console.log(file)
 
-             if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"|| file.mimetype == "image/gif" || file.mimetype == "image/svg" || file.mimetype == "image/jpg"){
-                                   
-                file.mv('public/uploads'+file.name, function(err) {
-                               
-                    if (err)
-                        // console.log(err)
-                      return res.status(500).send(err);
-                            database.query("INSERT INTO menu_info (product,price,category_id,availability,photo) VALUES ('" + product + "','" + price + "','" + category + "','" + availability + "','" + img_name + "')",
-                            (err, result) => {
-                                if(!err)
-                                    res.send(result)
-                                else
-                                    res.send("error")
-                            }
-                            );
-   
-                         });
+            if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"|| file.mimetype == "image/gif" || file.mimetype == "image/svg" || file.mimetype == "image/jpg"){
+                                
+            file.mv('public/uploads'+file.name, function(err) {         
+                if (err)
+                    return res.status(500).send(err);
+                        database.query("INSERT INTO menu_info (product,price,category_id,availability,photo) VALUES ('" + product + "','" + price + "','" + category + "','" + availability + "','" + img_name + "')",
+                        (err, result) => {
+                            if(!err)
+                                return res.status(200).send(result)
+                            else
+                                
+                                return res.status(400).send("error")
+                        }
+                        );
+
+                        });
             } else {
-              console.log("This format is not allowed , please upload file with '.png','.gif','.jpg'");
+                console.log("This format is not allowed , please upload file with '.png','.gif','.jpg'");
             }
+        }
      }
   });
 

@@ -15,13 +15,14 @@ class EditMenu extends Component {
         this.state = {
             prods: [],      // list of all products in a category
             all_categs: [],     // list of all categories in a store menu
-            clicked: false,     // whether or not a product is selected
-            current: null,      // index of selected product
+            isProdClicked: false,     // whether or not a product is selected
+            current_prod: null,      // index of selected product
+            current_categ: null,      // id of selected category
             new_categ: '',      // name of new category to be added
             prod_name: '',      // name of new product to be added
             prod_price: '',     // price of new product to be added
             prod_availability: "-1",    // availability of new product to be added
-            prod_categ: 1,     // category of new product to be added
+            // prod_categ: 0,     // category of new product to be added
             prod_img: '',       // image of new product to be added (not required)
             openDeleteModal: false,     // open/close modal for delete product
             openAddCateg: false,        // open/close modal for add category
@@ -38,18 +39,22 @@ class EditMenu extends Component {
     }
     async componentDidMount(){
         document.title = "MinimaLine | Edit Menu";
-        this.showCategs();
+        this.showCategs("first");
     }
-    async showCategs(){
+    async showCategs(id){
         let categs = await Axios.get('http://localhost:3005/display-category');
         if(JSON.stringify(categs.data)==='{}'){
             this.showProducts("empty")
         }
         else{
             this.setState({
-                all_categs: categs.data
+                all_categs: categs.data,
             })
-            this.showProducts(this.state.all_categs[0]["id"])
+            if(id==="first")
+                this.setState({
+                    current_categ: this.state.all_categs[0]["id"],
+                })
+            this.showProducts(this.state.current_categ)
         }
     }
     async showProducts(categ_id){
@@ -57,17 +62,18 @@ class EditMenu extends Component {
             let categProds = await Axios.get(`http://localhost:3005/menu-info/${categ_id}`);
             this.setState({
                 prods: categProds.data,
-                clicked: false,
-                current: null
+                isProdClicked: false,
+                current_prod: null,
+                current_categ: categ_id
             })
         }
     }
     
     changeColor(index){
-        if(this.state.current !== index)
+        if(this.state.current_prod !== index)
             this.setState({
-                current: index,
-                clicked: true
+                current_prod: index,
+                isProdClicked: true
             })
     }
     toggleDeleteProd(id){
@@ -99,30 +105,29 @@ class EditMenu extends Component {
         };
         e.preventDefault();
         Axios.post("http://localhost:3005/add-categ", data).then((response) => {
+            this.setState({new_categ: ''})
             this.toggleAddCateg()
             this.showCategs()
-            this.setState({new_categ: ''})
         })
     }
     addNewProd = e =>{
-        // console.log()
+        console.log(this.state.current_categ)
         e.preventDefault();
         const data = {
             product: this.state.prod_name,
             price: this.state.prod_price,
             availability: Number(this.state.prod_availability),
-            category: this.state.prod_categ,
+            category: this.state.current_categ,
             photo: this.state.prod_image
         };
         Axios.post("http://localhost:3005/add-product", data).then((response) => {
             console.log("new product")
             this.toggleAddProd()
-            this.showCategs()
+            this.showProducts(this.state.current_categ)
             this.setState({
                 prod_name: '',
                 prod_price: '',
                 prod_availability: "-1",
-                prod_categ: 1,
                 prod_image: ''
             })
         })
@@ -135,7 +140,6 @@ class EditMenu extends Component {
 
     render() {
         var modalStyle={overlay: {zIndex: 2}}
-
         return ( 
             <Container>
                 {this.state.openDeleteModal ?
@@ -201,14 +205,6 @@ class EditMenu extends Component {
                                     <option value="1">Available</option> 
                                     <option value="0">Not Available</option>
                                 </select>
-                                {/* <select>
-                                    <option>Select category</option>
-                                    {this.state.all_categs.map((categ,index)=>{
-                                        return(
-                                            <option>{categ["name"]}</option>
-                                        )
-                                    })}
-                                </select> */}
                                 <input
                                     type="file"
                                     placeholder="Product Image"
@@ -234,7 +230,7 @@ class EditMenu extends Component {
                         </ArrowWrapper>
                     </Arrow>
                     <Nav>
-                        <Categ mode={"edit"} categs={this.state.all_categs} onClick={this.showProducts}/>
+                        <Categ mode={"edit"} categs={this.state.all_categs} curr={this.state.current_categ} onClick={this.showProducts}/>
                         <AddCategButton size="50px" onClick={this.toggleAddCateg}/>
                     </Nav>
                     <EditButton>
@@ -252,7 +248,7 @@ class EditMenu extends Component {
                                                 return (
                                                     <div
                                                     onClick={()=>this.changeColor(index)}
-                                                    className={(this.state.clicked && (this.state.current===index)) ? 'clicked' : 'unclicked'}>
+                                                    className={(this.state.isProdClicked && (this.state.current_prod===index)) ? 'clicked' : 'unclicked'}>
                                                             <DeleteButton size="50px" onClick={()=>this.toggleDeleteProd(prod["id"])}/>
                                                             <article>
                                                                 <h3><img className='image' src={prod["photo"]} alt="No image"/></h3>
@@ -263,7 +259,7 @@ class EditMenu extends Component {
                                                     </div>
                                                 )
                                             })}
-                                    {this.state.clicked ? <ProdDesc {...this.state.prods[this.state.current]} mode={"edit"}/> : null }
+                                    {this.state.isProdClicked ? <ProdDesc {...this.state.prods[this.state.current_prod]} mode={"edit"}/> : null }
                                     <AddButton size="100px" onClick={this.toggleAddProd}/>
                                 </section>
                         </ProdGrid>
@@ -282,7 +278,7 @@ const ProdModal = styled(Modal)`
   background-color: white;
   box-shadow: 3px 6px 5px 3px #d6d6d6;
   border-radius: 8px;
-  height: 500px;
+  height: 450px;
   width: 400px;
   margin-top: -250px;
   margin-left: -200px;
@@ -295,7 +291,7 @@ const ProdModal = styled(Modal)`
 
   h2{
       text-align: center;
-      padding: 35px 50px 0px;
+      padding: 25px 50px 0px;
   }
   
   form{
@@ -558,10 +554,12 @@ const ProdGrid = styled.div`
         margin-top: 160px;
         display: flex;
         margin-left: 50px;
+        padding-bottom: 10px;
         display: grid;
         gap: 2rem;
         /* z-index: 0; */
-        grid-template-columns: repeat(auto-fit, minmax(177px, 1fr));
+        /* grid-template-columns: repeat(auto-fit, minmax(177px, 1fr)); */
+        grid-template-columns: repeat(4, 220px);
 
         @media screen and (max-width: 1024px) {
             gap: 1.5rem;
