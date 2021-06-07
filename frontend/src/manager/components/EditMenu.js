@@ -37,11 +37,12 @@ class EditMenu extends Component {
     async componentDidMount(){
         document.title = "MinimaLine | Edit Menu";
         let categs = await Axios.get('http://localhost:3005/display-category');
-        this.setState({
-            all_categs: categs.data
-        })
-        if(categs)
+        if(categs){
+            this.setState({
+                all_categs: categs.data
+            })
             this.showProducts(this.state.all_categs[0]["id"])
+        }
     }
     async showProducts(categ_id){
         let categProds = await Axios.get(`http://localhost:3005/menu-info/${categ_id}`);

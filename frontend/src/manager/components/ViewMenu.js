@@ -38,12 +38,12 @@ class ViewMenu extends Component {
     async componentDidMount(){
         document.title = "MinimaLine | View Menu"
         let categs = await Axios.get('http://localhost:3005/display-category');
-        this.setState({
-            all_categs: categs.data,
-            // curr_categ: this.state.all_categs[0]
-        })
-        if(categs)
+        if(categs){
+            this.setState({
+                all_categs: categs.data
+            })
             this.showProducts(this.state.all_categs[0]["id"])
+        }
     }
 
     render() {
