@@ -88,14 +88,13 @@ app.post('/add-product', (req,res)=> {
 
         if (!req.files){
             database.query("INSERT INTO menu_info (product,price,category_id,availability) VALUES ('" + product + "','" + price + "','" + category + "','" + availability + "')",
-                            (err, result) => {
-                                if(!err)
-                                    res.send(result)
-                                }
-                            );
-            return res.status(200).send('Insert data into database, but no files were uploaded.');
+                (err, result) => {
+                    if(!err)
+                        return res.status(200).send(result);
+                });
         }
-          
+        
+        else{
           var file = req.files.photo;
           var img_name = file.name;
           console.log("file uploaded:")
@@ -111,18 +110,17 @@ app.post('/add-product', (req,res)=> {
                             database.query("INSERT INTO menu_info (product,price,category_id,availability,photo) VALUES ('" + product + "','" + price + "','" + category + "','" + availability + "','" + img_name + "')",
                             (err, result) => {
                                 if(!err)
-                                    res.send(result)
+                                    return res.status(200).send(result)
                                 else
-                                    res.send("error")
-                            }
-                            );
-   
-                         });
+                                    return res.status(400).send("error")
+                            });
+                        });
             } else {
               console.log("This format is not allowed , please upload file with '.png','.gif','.jpg'");
             }
-     }
-  });
+        }
+    }
+});
 
 //Delete products
 app.delete('/delete-product/:id', (req,res)=> {
