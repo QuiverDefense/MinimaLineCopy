@@ -8,8 +8,10 @@ class Categ extends Component {
     constructor(props){
         super(props);
         this.state = { 
+            categs: [],
             isClicked: false,   // a category is selected
             current: 0,         // index of selected category; default state is the first category on the list
+            curr_categ: null,
             default: true,      
             openModal: false,
             delete_this: null
@@ -17,19 +19,34 @@ class Categ extends Component {
         this.handleClick = this.handleClick.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
         this.deleteCateg = this.deleteCateg.bind(this);
+        this.changeColor = this.changeColor.bind(this);
     }
     // componentDidMount(){
-    //     this.setState({current: this.props.curr })
+    //     this.setState({curr_categ: this.props.curr })
+    // }
+    // async componentDidMount(){
+    //     let categ
     // }
     handleClick(index,categ_id){
         // change color
+        // if(this.state.current !== index) // different category is clicked
+            // this.setState({
+            //     current: index,
+            //     isClicked: true,
+            //     // curr_categ: categ_id,
+            //     default: false
+            // })
+        this.changeColor(index)
+        this.props.onClick(categ_id)
+    }
+    changeColor(index){
         if(this.state.current !== index) // different category is clicked
             this.setState({
                 current: index,
                 isClicked: true,
+                // curr_categ: categ_id,
                 default: false
             })
-        this.props.onClick(categ_id)
     }
     toggleModal(id){
         this.setState({
@@ -43,6 +60,7 @@ class Categ extends Component {
             console.log(response)
             this.toggleModal()
         })
+        this.props.onClick("deleted")
     }
 
     render() { 
@@ -109,7 +127,7 @@ const Container = styled.div`
         background: #FFFFFF;
         margin-right: 10px;
         border-radius: 1rem;
-        transition: all 0.1s ease-in;
+        /* transition: all 0.1s ease-in; */
 
         &:hover {
             transform: translateY(-4px);
@@ -128,7 +146,7 @@ const Container = styled.div`
         background: #F9C91E;
         margin-right: 10px;
         border-radius: 1rem;
-        transition: all 0.1s ease-in;
+        /* transition: all 0.1s ease-in; */
         /* box-shadow: 0px 0px 10px 2px #858585; */
 
         &:hover {

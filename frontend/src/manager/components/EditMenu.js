@@ -36,6 +36,7 @@ class EditMenu extends Component {
         this.deleteProd = this.deleteProd.bind(this);
         this.showProducts = this.showProducts.bind(this);
         this.showCategs = this.showCategs.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
     async componentDidMount(){
         document.title = "MinimaLine | Edit Menu";
@@ -48,11 +49,19 @@ class EditMenu extends Component {
         }
         else{
             this.setState({
-                all_categs: categs.data,
+                all_categs: categs.data
             })
             if(id==="first")
                 this.setState({
                     current_categ: this.state.all_categs[0]["id"],
+                })
+            else if(id!=="added")
+                this.setState({
+                    current_categ: id,
+                })
+            else if(id==="deleted" || id==="added")
+                this.setState({
+                    current_categ: this.state.all_categs[this.state.all_categs.length-1]["id"],
                 })
             this.showProducts(this.state.current_categ)
         }
@@ -86,7 +95,6 @@ class EditMenu extends Component {
         this.setState({openAddCateg: !this.state.openAddCateg})
     }
     toggleAddProd(){
-        console.log("henlo")
         this.setState({openAddProd: !this.state.openAddProd})
     }
     handleChange(e){
@@ -107,7 +115,7 @@ class EditMenu extends Component {
         Axios.post("http://localhost:3005/add-categ", data).then((response) => {
             this.setState({new_categ: ''})
             this.toggleAddCateg()
-            this.showCategs()
+            this.showCategs("added")
         })
     }
     addNewProd = e =>{
@@ -136,6 +144,12 @@ class EditMenu extends Component {
         Axios.delete(`http://localhost:3005/delete-product/${this.state.delete_this}`).then((response) => {
             this.toggleDeleteProd()
         })
+    }
+    handleClick(id){
+        if(id==="deleted")
+            this.showCategs()
+        else
+            this.showProducts(id)
     }
 
     render() {
@@ -230,7 +244,7 @@ class EditMenu extends Component {
                         </ArrowWrapper>
                     </Arrow>
                     <Nav>
-                        <Categ mode={"edit"} categs={this.state.all_categs} curr={this.state.current_categ} onClick={this.showProducts}/>
+                        <Categ mode={"edit"} categs={this.state.all_categs} curr={this.state.current_categ} onClick={this.handleClick}/>
                         <AddCategButton size="50px" onClick={this.toggleAddCateg}/>
                     </Nav>
                     <EditButton>
@@ -571,7 +585,7 @@ const ProdGrid = styled.div`
         background: #F9C91E;
         border-radius: 1rem;
         padding: 1rem 2rem;
-        transition: all 0.2s ease-in;
+        /* transition: all 0.2s ease-in; */
 
         &:hover {
             transform: translateY(-4px);
@@ -595,7 +609,7 @@ const ProdGrid = styled.div`
         background: #fff;
         border-radius: 1rem;
         padding: 1rem 2rem;
-        transition: all 0.2s ease-in;
+        /* transition: all 0.2s ease-in; */
 
         &:hover {
             transform: translateY(-4px);
