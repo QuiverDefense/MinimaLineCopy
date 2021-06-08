@@ -14,7 +14,8 @@ class SignIn extends Component {
       password: '',
       redirect: false,
       login_error: false,
-      error_msg: null
+      error_msg: null,
+      userId: null
      }
   }
   componentDidMount(){
@@ -31,8 +32,12 @@ class SignIn extends Component {
     const data = this.state;
     Axios.post("http://localhost:3005/user-login", data).then((response) => {
       if(response.status!==400){
-        console.log(response)
-        this.setState({redirect:true})
+        console.log(response.data[0]["id"])
+        let userId = response.data[0]["id"]
+        this.setState({ 
+          userId: userId,
+          redirect:true
+        })
       }
       else{
         {throw new Error()}
@@ -46,7 +51,7 @@ class SignIn extends Component {
 
   render() { 
     if(this.state.redirect)
-      return <Redirect to="/dashboard"/>
+      return <Redirect to={{ pathname: "/dashboard", state: {userId: this.state.userId} }}/>
     return ( 
       <Container>
       <LogoWrapper>

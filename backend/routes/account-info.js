@@ -8,15 +8,18 @@ var database = require('../config/database');
 
 
 //get data from account-info table 
-app.get('/account-info', (req,res) => {
+app.get('/account-info/:id', (req,res) => {
+    const id = req.params.id
 
-    database.query("SELECT user.id as id, user.username as username, user.email as email, user.role as role, store.store_name as store_name from account_info as user INNER JOIN store_info as store", (err, result) => {
+    database.query("SELECT username FROM account_info WHERE id = ?", id,
+    (err, result) => {
         if (err) {
             res.status(400).send(err);
             return;
         }
+
         if (result.length) {
-            res.status(200).json(result);
+            res.status(200).send(result);
         }
         else res.status(200).json({});
     });
@@ -63,11 +66,14 @@ app.post('/user-registration', [
     [username, email, password,role], 
     (err, result) => {
         if(!err){
-            console.log(result)
+            console.log(result.insertId)
             res.status(201).send(result)   
         }
-        else
+        else{
+            console.log(err)
             res.status(400)
+        }
+            
     })
 });
 
@@ -112,7 +118,7 @@ app.post('/add-cashier', [
     [username, email, password,role], 
     (err, result) => {
         if(!err){
-            console.log(result)
+            console.log(result.insertId)
             res.status(201).send(result)   
         }
         else
@@ -125,14 +131,14 @@ app.post('/user-login', (req,res)=> {
 
     const {username,password}=req.body
     
-    database.query("SELECT * FROM account_info WHERE username = ? AND password = ?", 
+    database.query("SELECT id, username FROM account_info WHERE username = ? AND password = ?", 
     [username, password], 
     (err, result) => {
         if (result.length > 0) {
-            res.status(201).send(result)
+            return res.status(201).send(result)
         }
         else {
-            res.status(400).send({message: "Wrong username and/or password!"});
+            return res.status(400).send({message: "Wrong username and/or password!"});
         }
     });
 });

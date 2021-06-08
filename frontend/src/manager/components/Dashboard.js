@@ -5,17 +5,24 @@ import {MdRestaurantMenu, MdAccountCircle} from 'react-icons/md';
 import {AiOutlineUserSwitch} from 'react-icons/ai';
 import {Link} from 'react-router-dom';
 import Modal from 'react-modal';
+import Axios from 'axios';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      clicked: false
+      clicked: false,
+      username: null
      }
      this.handleClick = this.handleClick.bind(this);
   }
-  componentDidMount(){
+  async componentDidMount(){
     document.title = "MinimaLine | Dashboard"
+    let username = await Axios.get(`http://localhost:3005/account-info/${this.props.location.state.userId}`);
+    console.log(username.data[0]["username"])
+      this.setState({
+          username: username.data[0]["username"]
+      })
   }
 
   handleClick(){
@@ -27,7 +34,7 @@ class App extends Component {
       <Container>
         <div className="header">
           <HeaderBar>
-            <h1>Welcome, &lt;username&gt;.</h1>
+            <h1>Welcome, {this.state.username}.</h1>
           </HeaderBar>
           <HeaderCircle>
             <img src={logo}/>

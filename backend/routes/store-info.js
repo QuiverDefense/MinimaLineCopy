@@ -41,7 +41,7 @@ app.get('/store-info', (req,res) => {
 });
 
 //to register store into store_info table
-app.post('/store-registration', [
+app.post('/store-registration/:id', [
     check('store_name')
     .notEmpty()
     .withMessage('Store name cannot be empty'),
@@ -52,25 +52,27 @@ app.post('/store-registration', [
     .notEmpty()
     .withMessage('Location cannot be empty')
     ] , /*upload,*/ (req,res)=> {
-
+    
     const errors = validationResult(req);
     console.log(errors)
     if(!errors.isEmpty()){
         return res.status(400).json({errors: errors.array()});
     }
-
     const store_name = req.body.store_name;
     const manager_name= req.body.manager_name;
     const location= req.body.location;
     const logo = req.body.logo;
+    const id = req.params.id
 
     console.log(store_name, manager_name, location,logo)
 
     if (!req.files){
-        database.query("INSERT INTO store_info (store_name,manager_name,location) VALUES ('" + store_name + "','" + manager_name + "','" + location + "')",
+        database.query("UPDATE account_info SET store_name=?, manager_name=?, location=? WHERE id = ? ", [store_name, manager_name, location, id],
             (err, result) => {
                 if(!err)
                     return res.status(200).send(result);
+                else
+                    console.log(err)
                 });
         }
     
@@ -87,7 +89,7 @@ app.post('/store-registration', [
                 if (err) 
                     return res.status(500).send(err);
                 
-                database.query("INSERT INTO store_info (store_name,manager_name,location,logo) VALUES ('" + store_name + "','" + manager_name + "','" + location + "','" + img_name + "')",
+                database.query("INSERT INTO account_info (store_name,manager_name,location,logo) where id = ? VALUES ('" + store_name + "','" + manager_name + "','" + location + "','" + img_name + "')", id,
                     (err, result) => {
                         if(!err)
                             return res.status(200).send(result)
