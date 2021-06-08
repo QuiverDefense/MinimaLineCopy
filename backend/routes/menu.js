@@ -85,7 +85,7 @@ app.post('/add-product', (req,res)=> {
         var price= post.price;
         var availability= post.availability;
         var category = post.category;
-
+        console.log(product, price, availability, category)
         if (!req.files){
             database.query("INSERT INTO menu_info (product,price,category_id,availability) VALUES ('" + product + "','" + price + "','" + category + "','" + availability + "')",
                 (err, result) => {
@@ -116,7 +116,7 @@ app.post('/add-product', (req,res)=> {
                             });
                         });
             } else {
-              console.log("This format is not allowed , please upload file with '.png','.gif','.jpg'");
+                console.log("This format is not allowed , please upload file with '.png','.gif','.jpg'");
             }
         }
     }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
 import {Link} from 'react-router-dom';
-// import img from '../../assets/Lunch_Break_Isometric.svg'
 import img from '../../assets/confirm.png';
 
 class Confirmation extends Component {
@@ -9,6 +8,11 @@ class Confirmation extends Component {
         super(props);
         this.state = {  }
     }
+
+    componentDidMount(){
+        document.title = "MinimaLine | Confirm Order"
+    }
+
     render() { 
         return ( 
             <Container>
