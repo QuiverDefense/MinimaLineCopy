@@ -489,7 +489,7 @@ const Table = styled.table`
         overflow: auto;
     }
 
-    @media screen and (max-width: 1500px) {
+    @media screen and (max-width: 1300px) {
         table-layout: fixed;
         height: 265px;
         width: 90%;
@@ -539,7 +539,7 @@ const OrderGrid = styled.div`
             margin-top: 24px;
         }
 
-        @media screen and (max-width: 1500px) {
+        @media screen and (max-width: 1300px) {
             height: 420px;
             gap: 1rem;
             margin-left: 30px;
