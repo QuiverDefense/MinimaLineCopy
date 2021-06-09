@@ -67,7 +67,7 @@ const Container = styled.div`
     position: fixed;
     background: #fff;
     right: 0;
-    margin-top: 50px;
+    margin-top: 30px;
     margin-right: 30px;
     border-radius: 1rem;
     box-shadow: 0px 5px 10px -2px #858585;

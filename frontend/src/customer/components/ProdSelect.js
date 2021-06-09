@@ -65,11 +65,6 @@ class ProdSelect extends Component {
                             </Link>
                         </ArrowWrapper>
                     </Arrow>
-                    <CheckoutButton>
-                        <Link to='/checkout'>
-                            <button>Checkout</button>
-                        </Link>
-                    </CheckoutButton>
                     <Nav>
                         <Categ mode={"view"}/> 
                     </Nav>
@@ -89,6 +84,11 @@ class ProdSelect extends Component {
                             <OrderSum />
                         </section>
                     </ProdGrid>
+                    <CheckoutButton>
+                        <Link to='/checkout'>
+                            <button>Checkout</button>
+                        </Link>
+                    </CheckoutButton>
                 </Wrapper>
             </Container>
          );
@@ -96,17 +96,17 @@ class ProdSelect extends Component {
 }
 
 const CheckoutButton = styled.div`
-    right: 0;
+    right: 80px;
     display: flex;
     flex-direction: row;
-    height: 120px;
     position: fixed;
-    width: 12%;
     align-items: center;
-    background: white;
     z-index: 1;
+    margin-top: 750px;
 
     button{ 
+        width: 250px;
+        height: 200px;
         outline: none;
         border: none;
         color: black;
@@ -120,7 +120,7 @@ const CheckoutButton = styled.div`
         border-radius: 1rem;
         transition: all 0.1s ease-in;
         font-family: "Work Sans";
-        font-size: 90%;
+        font-size: 35px;
         font-weight: bold;
 
         &:hover {
@@ -213,7 +213,7 @@ const Nav = styled.div`
   overflow-x: auto;
   position: fixed;
   margin-left: 5%;
-  width: 83%;
+  width: 95%;
   align-items: center;
   background: white;
   z-index: 1;
