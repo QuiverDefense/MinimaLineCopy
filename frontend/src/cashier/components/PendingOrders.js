@@ -326,24 +326,10 @@ const Container = styled.div`
                     margin-left: 50px; 
                 }
 
-                /* @media screen and (max-width: 1300px) {
-                    border-radius: 40px;
-                    height: 40px;
-                    width: 410px;
-                    margin-top: 15px;
-                    margin-left: 50px;  */
-                }
-
                 h1{
                     position: absolute;
                     margin-top: 15px;
                     margin-left: 20px;
-/* 
-                    @media screen and (max-width: 1500px) {
-                        margin-top: 5px;
-                        margin-left: 20px;
-                        font-size: 25px;
-                    } */
 
                     @media screen and (max-width: 1470px) {
                         margin-top: 5px;
@@ -371,16 +357,6 @@ const Container = styled.div`
                 :hover{
                     transform: translateY(2px)
                 }
-/* 
-                @media screen and (max-width: 1500px) {
-                    margin-left: 10px;
-                    margin-top: 75px;
-                    width: 200px;
-                    height: 70px;
-                    border-radius: 30px;
-                    font-weight: 600;
-                    font-size: 25px;
-                } */
       
                 @media screen and (max-width: 1470px) {
                     margin-left: 10px;
@@ -416,8 +392,6 @@ const Container = styled.div`
 
         @media screen and (max-width: 1300px) {
             height: 590px;
-            /* width: 670px;
-            margin-top: -45px; */
             margin-left: 568px;
         }
 
@@ -425,10 +399,6 @@ const Container = styled.div`
             text-align: left;
             margin-left: 40px;
             font-size: 60px;  
-/* 
-            @media screen and (max-width: 1500px) {
-                font-size: 40px;  
-            } */
 
             @media screen and (max-width: 1470px) {
                 font-size: 40px;  
@@ -441,11 +411,6 @@ const Container = styled.div`
             margin-top: -180px;
             display: flex;
             flex-direction: row;
-/* 
-            @media screen and (max-width: 1500px) {
-                margin-left: 420px;
-                margin-top: -120px;
-            } */
   
             @media screen and (max-width: 1470px) {
                 margin-left: 420px;
@@ -455,10 +420,6 @@ const Container = styled.div`
             h2{
                 margin-top: -1px;
                 margin-right: 10px;
-
-                /* @media screen and (max-width: 1500px) {
-                    font-size: 21px;
-                } */
 
                 @media screen and (max-width: 1470px) {
                     font-size: 21px;
@@ -474,11 +435,6 @@ const Search = styled.div`
     margin-left: 590px;
     display: flex;
     flex-direction: row;
-
-    /* @media screen and (max-width: 1500px) {
-        margin-top: -80px;
-        margin-left: 280px;
-    } */
 
     @media screen and (max-width: 1470px) {
         margin-top: -80px;
