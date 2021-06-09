@@ -107,6 +107,24 @@ class PendingOrders extends Component {
                                     <td width="10%">3</td>
                                 <td width="30%">Php 90.00</td>
                         </tr>
+                                                <tr width="10%">
+                            <td><img src={fries_img}/></td>
+                                <td width="50%">McFries</td>
+                                    <td width="10%">3</td>
+                                <td width="30%">Php 90.00</td>
+                        </tr>
+                        <tr width="10%">
+                            <td><img src={burger_img}/></td>
+                            <td width="50%">McBurger</td>
+                                <td width="10%">2</td>
+                            <td width="30%">Php 1000.00</td>
+                        </tr>
+                        <tr width="10%">
+                            <td><img src={fries_img}/></td>
+                                <td width="50%">McFries</td>
+                                    <td width="10%">3</td>
+                                <td width="30%">Php 90.00</td>
+                        </tr>
                     </Table>
                     </div>
 
@@ -174,6 +192,13 @@ const Container = styled.div`
         h1{
             margin-left: 40px;
             font-size: 30px;  
+
+            @media screen and (max-width: 1470px) {
+                margin-left: 120px;
+            }
+            @media screen and (max-width: 1300px) {
+                margin-left: 40px;
+            }
         }
 
         h2{
@@ -198,7 +223,14 @@ const Container = styled.div`
             margin-top: -10px;
             margin-left: 40px;  
 
-            @media screen and (max-width: 1500px) {
+            @media screen and (max-width: 1470px) {
+                height: 440px;
+                width: 500px;
+                margin-top: -10px;
+                margin-left: 120px; 
+            }
+
+            @media screen and (max-width: 1300px) {
                 height: 266px;
                 width: 500px;
                 margin-top: -10px;
@@ -208,8 +240,14 @@ const Container = styled.div`
 
         .notes-container{
             h2{
-                @media screen and (max-width: 1500px) {
+                @media screen and (max-width: 1470px) {
+                    margin-top: 466px;
+                    margin-left: 120px;
+                }
+
+                @media screen and (max-width: 1300px) {
                     margin-top: 266px;
+                    margin-left: 40px;
                 }
             }
             .notes{
@@ -223,15 +261,24 @@ const Container = styled.div`
                 margin-left: 40px;  
                 padding: 5px;
 
-                @media screen and (max-width: 1500px) {
+                @media screen and (max-width: 1470px) {
+                    height: 70px;
+                    width: 490px;
+                    margin-top: 510px;
+                    margin-left: 120px;  
+                    padding: 5px;
+                    font-size: 13px;
+                }   
+
+                @media screen and (max-width: 1300px) {
                     height: 55px;
                     width: 490px;
                     margin-top: 302px;
                     margin-left: 37px;  
                     padding: 5px;
                     font-size: 13px;
-            }
-        }
+                }
+            }      
 
         }
 
@@ -245,7 +292,15 @@ const Container = styled.div`
             margin-top: 590px;
             margin-left: 40px; 
 
-            @media screen and (max-width: 1500px) {
+            @media screen and (max-width: 1470px) {
+                border-radius: 30px;
+                height: 160px;
+                width: 500px;
+                margin-top: 630px;
+                margin-left: 120px; 
+            }
+
+            @media screen and (max-width: 1300px) {
                 border-radius: 30px;
                 height: 160px;
                 width: 500px;
@@ -263,7 +318,7 @@ const Container = styled.div`
                 margin-top: 20px;
                 margin-left: 85px; 
 
-                @media screen and (max-width: 1500px) {
+                @media screen and (max-width: 1470px) {
                     border-radius: 40px;
                     height: 40px;
                     width: 410px;
@@ -271,12 +326,26 @@ const Container = styled.div`
                     margin-left: 50px; 
                 }
 
+                /* @media screen and (max-width: 1300px) {
+                    border-radius: 40px;
+                    height: 40px;
+                    width: 410px;
+                    margin-top: 15px;
+                    margin-left: 50px;  */
+                }
+
                 h1{
                     position: absolute;
                     margin-top: 15px;
                     margin-left: 20px;
-
+/* 
                     @media screen and (max-width: 1500px) {
+                        margin-top: 5px;
+                        margin-left: 20px;
+                        font-size: 25px;
+                    } */
+
+                    @media screen and (max-width: 1470px) {
                         margin-top: 5px;
                         margin-left: 20px;
                         font-size: 25px;
@@ -302,8 +371,18 @@ const Container = styled.div`
                 :hover{
                     transform: translateY(2px)
                 }
-
+/* 
                 @media screen and (max-width: 1500px) {
+                    margin-left: 10px;
+                    margin-top: 75px;
+                    width: 200px;
+                    height: 70px;
+                    border-radius: 30px;
+                    font-weight: 600;
+                    font-size: 25px;
+                } */
+      
+                @media screen and (max-width: 1470px) {
                     margin-left: 10px;
                     margin-top: 75px;
                     width: 200px;
@@ -327,10 +406,18 @@ const Container = styled.div`
         margin-top: -45px;
         margin-left: 870px;
 
-        @media screen and (max-width: 1500px) {
-            height: 590px;
+
+        @media screen and (max-width: 1470px) {
+            height: 840px;
             width: 670px;
             margin-top: -45px;
+            margin-left: 660px;
+        }
+
+        @media screen and (max-width: 1300px) {
+            height: 590px;
+            /* width: 670px;
+            margin-top: -45px; */
             margin-left: 568px;
         }
 
@@ -338,8 +425,12 @@ const Container = styled.div`
             text-align: left;
             margin-left: 40px;
             font-size: 60px;  
-
+/* 
             @media screen and (max-width: 1500px) {
+                font-size: 40px;  
+            } */
+
+            @media screen and (max-width: 1470px) {
                 font-size: 40px;  
             }
         }
@@ -350,8 +441,13 @@ const Container = styled.div`
             margin-top: -180px;
             display: flex;
             flex-direction: row;
-
+/* 
             @media screen and (max-width: 1500px) {
+                margin-left: 420px;
+                margin-top: -120px;
+            } */
+  
+            @media screen and (max-width: 1470px) {
                 margin-left: 420px;
                 margin-top: -120px;
             }
@@ -360,7 +456,11 @@ const Container = styled.div`
                 margin-top: -1px;
                 margin-right: 10px;
 
-                @media screen and (max-width: 1500px) {
+                /* @media screen and (max-width: 1500px) {
+                    font-size: 21px;
+                } */
+
+                @media screen and (max-width: 1470px) {
                     font-size: 21px;
                 }
             }
@@ -375,7 +475,12 @@ const Search = styled.div`
     display: flex;
     flex-direction: row;
 
-    @media screen and (max-width: 1500px) {
+    /* @media screen and (max-width: 1500px) {
+        margin-top: -80px;
+        margin-left: 280px;
+    } */
+
+    @media screen and (max-width: 1470px) {
         margin-top: -80px;
         margin-left: 280px;
     }
@@ -416,8 +521,9 @@ const Table = styled.table`
     overflow: auto;
     height: 400px;
     
-    @media screen and (max-width: 1500px) {
+    @media screen and (max-width: 1470px) {
         table-layout: fixed;
+        height: 437px;
         width: 90%;
         position: absolute;
         left: 50%;
@@ -425,7 +531,18 @@ const Table = styled.table`
         margin-left: -225px;
         display: block;
         overflow: auto;
+    }
+
+    @media screen and (max-width: 1500px) {
+        table-layout: fixed;
         height: 265px;
+        width: 90%;
+        position: absolute;
+        left: 50%;
+        font-size: 15px;
+        margin-left: -225px;
+        display: block;
+        overflow: auto;
     }
 
     td{
@@ -458,11 +575,20 @@ const OrderGrid = styled.div`
         grid-template-columns: repeat(5, 150px);
         overflow-y: auto;
 
+        @media screen and (max-width: 1470px) {
+            height: 620px;
+            gap: 1rem;
+            margin-left: 30px;
+            grid-template-columns: repeat(4, 140px);
+            margin-top: 24px;
+        }
+
         @media screen and (max-width: 1500px) {
             height: 420px;
             gap: 1rem;
             margin-left: 30px;
             grid-template-columns: repeat(4, 140px);
+            margin-top: -5px;
         }
     }
 
@@ -486,10 +612,9 @@ const OrderGrid = styled.div`
             font-size: 0.9rem;
             margin-top: -40px;
         }
-
-        /* @media screen and (max-width: 1024px) {
-            width: 70%;
-        } */
+        @media screen and (max-width: 1470px) {
+            height: 110px;
+        }
     }
     .unclicked{
         background: #f9c91e;
@@ -513,9 +638,9 @@ const OrderGrid = styled.div`
             margin-top: -40px;
         }
 
-        /* @media screen and (max-width: 1024px) {
-            width: 70%;
-        } */
+        @media screen and (max-width: 1470px) {
+            height: 110px;
+        }
     }
 `;
 
