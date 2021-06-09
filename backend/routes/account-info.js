@@ -1,11 +1,13 @@
 var express = require('express');
 var bcrypt = require('bcrypt');
-
+var cors = require("cors");
+const saltRounds = 10;
 const {check, validationResult} = require('express-validator');
-
 var app = express();
 var database = require('../config/database');
 
+app.use(express.json());
+app.use(cors());
 
 //get data from account-info table 
 app.get('/account-info/:id', (req,res) => {
@@ -58,22 +60,23 @@ app.post('/user-registration', [
     
     var role = "manager"
     const {username,email,password}=req.body
-    //hashPass = await bcrypt.hash(password,10)
-    //console.log(password+'\n'+hashPass)
-    //console.log(username, password, email) 
-
-    database.query("INSERT INTO account_info (username, email, password,role) VALUES (?,?,?,?)", 
-    [username, email, password,role], 
-    (err, result) => {
-        if(!err){
-            console.log(result.insertId)
-            res.status(201).send(result)   
-        }
-        else{
-            console.log(err)
-            res.status(400)
-        }
-            
+    
+    bcrypt.hash(password,saltRounds, (err, hash) => {
+        database.query(
+            "INSERT INTO account_info (username, email, password,role) VALUES (?,?,?,?)", 
+            [username, email, hash, role], 
+            (err, result) => {
+                if(err){
+                    console.log(err)
+                    res.status(400)
+                     
+                }
+                else{
+                    console.log(result.insertId)
+                    res.status(201).send(result)  
+            }
+                
+        })
     })
 });
 
@@ -129,19 +132,33 @@ app.post('/add-cashier', [
 //authentication for user-login 
 app.post('/user-login', (req,res)=> {
 
-    const {username,password}=req.body
+    const username = req.body.username;
+    const password = req.body.password;
     
-    database.query("SELECT id, username FROM account_info WHERE username = ? AND password = ?", 
-    [username, password], 
-    (err, result) => {
-        if (result.length > 0) {
-            return res.status(201).send(result)
-        }
-        else {
-            return res.status(400).send({message: "Wrong username and/or password!"});
-        }
+    database.query(
+        "SELECT * FROM account_info WHERE username = ?", 
+        username, 
+        (err, result) => {
+            if(err){
+                res.send({err: err});
+            }
+
+            console.log(password)
+            console.log(result[0].password)
+            if (result.length > 0) {
+                bcrypt.compare(password, result[0].password, (error,response) => {
+                    if(response){
+                        res.send(result)
+                    } else {
+                        res.send({message: "Wrong username and/or password!"});
+                    }
+                }); 
+            }
+            else {
+                return res.status(400).send({message: "User does not exist"});
+            }
+        });
     });
-});
 
 
 
