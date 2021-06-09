@@ -35,10 +35,14 @@ const Container = styled.div`
     background-color: white;
     box-shadow: 3px 6px 5px 3px #d6d6d6;
     border-radius: 70px;
-    height: 800px;
+    /* height: 800px;
     width: 800px;
     margin-top: -400px;
-    margin-left: -400px;
+    margin-left: -400px; */
+    height: 80vh;
+    width: 80vh;
+    margin-top: -40vh;
+    margin-left: -40vh;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -47,28 +51,37 @@ const Container = styled.div`
     text-align: center;
 
     h1{
-        margin-top: 85px;
+        margin-top: 5vh;
         font-weight: bolder;
-        font-size: 45px;
+        /* font-size: 45px; */
+        font-size: 4vh;
+
     }
 
     h2{
-        margin-top: -40px;
-        padding: 0px 70px;
+        /* margin-top: -40px;
+        padding: 0px 70px; */
+        margin-top: -1vh;
+        padding: -20vh 70px;
         font-weight: lighter;
     }
 
     img{
-        margin-top: -90px;
+        /* margin-top: -90px;
         width: 500px;
-        height: 500px;
+        height: 500px; */
+        margin-top: -10vh;
+        width: 50vh;
+        height: 50vh;
     }
 
     button{
         margin-top: 25px;
         font-family: "Work Sans";
-        width: 200px;
-        height: 90px;
+        /* width: 200px;
+        height: 90px; */
+        width: 20vh;
+        height: 10vh;
         border: none;
         box-shadow: 0px 10px 9px -15px rgba(0,0,0,0.25);
         border-radius: 20px;
