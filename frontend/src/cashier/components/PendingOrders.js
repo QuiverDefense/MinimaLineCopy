@@ -224,7 +224,7 @@ const Container = styled.div`
             margin-left: 40px;  
 
             @media screen and (max-width: 1470px) {
-                height: 440px;
+                height: 370px;
                 width: 500px;
                 margin-top: -10px;
                 margin-left: 120px; 
@@ -241,7 +241,7 @@ const Container = styled.div`
         .notes-container{
             h2{
                 @media screen and (max-width: 1470px) {
-                    margin-top: 466px;
+                    margin-top: 370px;
                     margin-left: 120px;
                 }
 
@@ -264,7 +264,7 @@ const Container = styled.div`
                 @media screen and (max-width: 1470px) {
                     height: 70px;
                     width: 490px;
-                    margin-top: 510px;
+                    margin-top: 410px;
                     margin-left: 120px;  
                     padding: 5px;
                     font-size: 13px;
@@ -296,7 +296,7 @@ const Container = styled.div`
                 border-radius: 30px;
                 height: 160px;
                 width: 500px;
-                margin-top: 630px;
+                margin-top: 510px;
                 margin-left: 120px; 
             }
 
@@ -384,7 +384,7 @@ const Container = styled.div`
 
 
         @media screen and (max-width: 1470px) {
-            height: 840px;
+            height: 720px;
             width: 670px;
             margin-top: -45px;
             margin-left: 660px;
@@ -479,7 +479,7 @@ const Table = styled.table`
     
     @media screen and (max-width: 1470px) {
         table-layout: fixed;
-        height: 437px;
+        height: 366px;
         width: 90%;
         position: absolute;
         left: 50%;
@@ -532,7 +532,7 @@ const OrderGrid = styled.div`
         overflow-y: auto;
 
         @media screen and (max-width: 1470px) {
-            height: 620px;
+            height: 520px;
             gap: 1rem;
             margin-left: 30px;
             grid-template-columns: repeat(4, 140px);
