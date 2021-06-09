@@ -198,61 +198,77 @@ const Container = styled.div`
     background-color: white;
     box-shadow: 3px 6px 5px 3px #d6d6d6;
     border-radius: 30px;
-    height: 850px;
-    width: 1800px;
-    margin-top: -425px;
-    margin-left: -900px;
+    /* height: 850px;
+    width: 1800px; */
+    /* margin-top: -425px;
+    margin-left: -900px; */
+    height: 86vh;
+    width: 180vh;
+    margin-top: -43vh;
+    margin-left: -90vh;
     position: absolute;
     top: 50%;
     left: 50%;
-    /* display: flex;
-    flex-direction: row; */
     align-items: center;
     justify-content: center;
 
     h1{
-        font-size: 55px;
-        margin-left: 120px;
-        margin-top: -10px;
+        /* font-size: 55px; */
+        /* margin-left: 120px; */
+        /* margin-top: -10px; */
+        font-size: 5vh;
+        margin-left: 10vh;
+        margin-top: -1vh;
     }
 
     hr{
+        /* margin-top: 450px; */
         color: #676666;
         width: 70%;
-        /* height: 850px; */
-        margin-top: 450px;
-        /* top: 50%; */
+        margin-top: 45vh;
     }
 
     .total-price{
+        /* margin-left: 1070px; */
+        /* margin-top: -20px; */
         display: flex;
         flex-direction: row;
-        margin-left: 1070px;
-        margin-top: -20px;
+        margin-left: 95vh;
+        margin-top: -1vh;
         
         h2{
-            margin-right: 40px;
-            font-size: 35px;
+            /* margin-right: 40px; */
+            /* font-size: 35px; */
+            margin-right: 5vh;
+            font-size: 3vh;
         }
     }
 
     .bottom{
-        margin-top: -95px;
-        margin-left: 300px;
-        font-size: 20px;
+        /* margin-top: -95px; */
+        /* margin-left: 300px; */
+        /* font-size: 20px; */
+        margin-top: -8vh;
+        margin-left: 27vh;
+        font-size: 2vh;
 
         button{
             position: absolute;
-            margin-top: 40px;
-            margin-left: 590px;
             font-family: "Work Sans";
-            width: 200px;
-            height: 90px;
+            /* margin-top: 40px; */
+            /* margin-left: 590px; */
+            /* width: 200px; */
+            /* height: 90px; */
+            /* font-size: 25px; */
+            margin-top: 2vh;
+            margin-left: 60vh;
+            width: 20vh;
+            height: 10vh;
             border: none;
             box-shadow: 0px 10px 9px -15px rgba(0,0,0,0.25);
             border-radius: 20px;
             font-weight: 600;
-            font-size: 25px;
+            font-size: 3vh;
             cursor: pointer;
             color: black;
             background-color: #f9c91e;
@@ -266,15 +282,18 @@ const Container = styled.div`
     textarea{
         outline: none;
         width: 80%;
-        max-width: 450px;
-        min-width: 350px;
-        height: 120px;
+        /* max-width: 450px; */
+        /* min-width: 350px; */
+        /* height: 120px; */
+        /* padding: 1 1rem; */
+        width: 45vh;
+        height: 11vh;
         border: none;
         margin: -0.5rem 0;
         background-color: #f5f5f5;
         box-shadow: 0px 14px 9px -15px rbga(0,0,0,0.25);
         border-radius: 8px;
-        padding: 1 1rem;
+        padding: 1vh 1vh;
         transition: all 0.2s ease-in;
         font-family: "Work Sans";
     }
@@ -282,27 +301,34 @@ const Container = styled.div`
 `;
 
 const Table = styled.table`
+    /* width: 1000px; */
+    /* height: 400px; */
+    /* margin-left: -500px; */
+    /* font-size: 30px; */
     table-layout: fixed;
-    width: 1000px;
-    margin-left: -500px;
+    width: 100vh;
+    margin-left: -50vh;
     position: absolute;
     left: 50%;
-    font-size: 30px;
+    font-size: 3vh;
     display: block;
     overflow: auto;
-    height: 400px;
+    height: 41vh;
 
     .counter{
+        /* margin-top: 15px; */
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        margin-top: 15px;
+        margin-top: 1vh;
 
         button{
+            /* width: 30px; */
+            /* height: 30px; */
             outline: none;
-            width: 30px;
-            height: 30px;   
+            width: 3vh;
+            height: 3vh;   
             color: black;
             border: none;
             background-color: #d6d6d6;
@@ -310,7 +336,8 @@ const Table = styled.table`
         }
 
         span{
-            margin: 0px 8px;
+            /* margin: 0px 8px; */
+            margin: 0vh 1vh;
         }
     }
 
@@ -321,8 +348,10 @@ const Table = styled.table`
 `;
 
 const ArrowWrapper = styled.div`
-    margin-top: 40px;
-    margin-left: 50px;
+    /* margin-top: 40px; */
+    /* margin-left: 50px; */
+    margin-top: 5vh;
+    margin-left: 5vh;
 `
 
 export default Checkout;
