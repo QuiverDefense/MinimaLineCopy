@@ -81,14 +81,16 @@ class ProdSelect extends Component {
                                 )
                             })}
                             {this.state.openProdModal ? <ProdModal {...Products[this.state.current]} mode={this.showModal}/> : null }
-                            <OrderSum />
+                            <RightContainer>
+                                <OrderSum />
+                                <CheckoutButton>
+                                    <Link to='/checkout'>
+                                        <button>Checkout</button>
+                                    </Link>         
+                                </CheckoutButton>
+                            </RightContainer>
                         </section>
                     </ProdGrid>
-                    <CheckoutButton>
-                        <Link to='/checkout'>
-                            <button>Checkout</button>
-                        </Link>
-                    </CheckoutButton>
                 </Wrapper>
             </Container>
          );
@@ -97,20 +99,25 @@ class ProdSelect extends Component {
 
 const CheckoutButton = styled.div`
     /* right: 80px; */
-    right: -4vh;
     display: flex;
     flex-direction: row;
-    position: fixed;
+    position: absolute;
+    /* right: 6vh; */
+    /* margin-top: 78vh; */
+    margin-top: 70vh;
+    /* right: -38vh; */
     align-items: center;
     z-index: 1;
     /* margin-top: 750px; */
-    margin-top: 78vh;
     width: 20%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
 
     button{ 
-        position: fixed;
+        /* position: absolute; */
         /* right: 0; */
-        margin-right: 11vh;
+        /* margin-right: 11vh; */
 
         /* width: 250px; */
         width: 25vh;
@@ -293,7 +300,6 @@ const ProdGrid = styled.div`
 
         @media screen and (max-width: 1024px) {
             width: 70%;
-            /* padding: 1rem 2rem; */
         }
     }
     .unclicked{
@@ -324,6 +330,21 @@ const ProdGrid = styled.div`
         width: 150px;
     }
 `;
+
+const RightContainer = styled.div`
+    width: 20%;
+    height: 50vh;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    margin-top: 4vh;
+    right: -38vh;
+    align-items: center;
+    z-index: 1;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+`
 
 const Wrapper = styled.div`
   width: 100%;
