@@ -96,31 +96,38 @@ class ProdSelect extends Component {
 }
 
 const CheckoutButton = styled.div`
-    right: 80px;
+    /* right: 80px; */
+    right: -4vh;
     display: flex;
     flex-direction: row;
     position: fixed;
     align-items: center;
     z-index: 1;
-    margin-top: 750px;
+    /* margin-top: 750px; */
+    margin-top: 78vh;
+    width: 20%;
 
     button{ 
-        width: 250px;
-        height: 200px;
+        /* width: 250px; */
+        width: 25vh;
+        /* height: 200px; */
+        height: 8vh;
         outline: none;
         border: none;
         color: black;
-        padding: 0rem 1rem;
-        margin: 0.1px 10px 0.1px 10px;
-        min-width: 110px;
-        height: 70px;
-        line-height: 70px;
+        /* padding: 0rem 1rem; */
+        padding: 0vh 1vh;
+        /* margin: 0.1px 10px 0.1px 10px; */
+        /* margin: 0.1vh 10vh 0.1vh 10vh; */
+        /* height: 70px; */
+        /* line-height: 70px; */
         text-align: center;
         background: #F9C91E;
         border-radius: 1rem;
         transition: all 0.1s ease-in;
         font-family: "Work Sans";
-        font-size: 35px;
+        /* font-size: 35px; */
+        font-size: 3vh;
         font-weight: bold;
 
         &:hover {

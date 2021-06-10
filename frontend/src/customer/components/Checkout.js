@@ -198,10 +198,6 @@ const Container = styled.div`
     background-color: white;
     box-shadow: 3px 6px 5px 3px #d6d6d6;
     border-radius: 30px;
-    /* height: 850px;
-    width: 1800px; */
-    /* margin-top: -425px;
-    margin-left: -900px; */
     height: 86vh;
     width: 180vh;
     margin-top: -43vh;
@@ -213,41 +209,30 @@ const Container = styled.div`
     justify-content: center;
 
     h1{
-        /* font-size: 55px; */
-        /* margin-left: 120px; */
-        /* margin-top: -10px; */
         font-size: 5vh;
         margin-left: 10vh;
         margin-top: -1vh;
     }
 
     hr{
-        /* margin-top: 450px; */
         color: #676666;
         width: 70%;
         margin-top: 45vh;
     }
 
     .total-price{
-        /* margin-left: 1070px; */
-        /* margin-top: -20px; */
         display: flex;
         flex-direction: row;
         margin-left: 95vh;
         margin-top: -1vh;
         
         h2{
-            /* margin-right: 40px; */
-            /* font-size: 35px; */
             margin-right: 5vh;
             font-size: 3vh;
         }
     }
 
     .bottom{
-        /* margin-top: -95px; */
-        /* margin-left: 300px; */
-        /* font-size: 20px; */
         margin-top: -8vh;
         margin-left: 27vh;
         font-size: 2vh;
@@ -255,11 +240,6 @@ const Container = styled.div`
         button{
             position: absolute;
             font-family: "Work Sans";
-            /* margin-top: 40px; */
-            /* margin-left: 590px; */
-            /* width: 200px; */
-            /* height: 90px; */
-            /* font-size: 25px; */
             margin-top: 2vh;
             margin-left: 60vh;
             width: 20vh;
@@ -272,7 +252,6 @@ const Container = styled.div`
             cursor: pointer;
             color: black;
             background-color: #f9c91e;
-            /* box-shadow: 0px 14px 9px -15px rgba(0,0,0,0.25); */
             :hover{
                 transform: translateY(2px)
             }
@@ -282,10 +261,6 @@ const Container = styled.div`
     textarea{
         outline: none;
         width: 80%;
-        /* max-width: 450px; */
-        /* min-width: 350px; */
-        /* height: 120px; */
-        /* padding: 1 1rem; */
         width: 45vh;
         height: 11vh;
         border: none;
@@ -301,10 +276,6 @@ const Container = styled.div`
 `;
 
 const Table = styled.table`
-    /* width: 1000px; */
-    /* height: 400px; */
-    /* margin-left: -500px; */
-    /* font-size: 30px; */
     table-layout: fixed;
     width: 100vh;
     margin-left: -50vh;
@@ -316,7 +287,6 @@ const Table = styled.table`
     height: 41vh;
 
     .counter{
-        /* margin-top: 15px; */
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -324,8 +294,6 @@ const Table = styled.table`
         margin-top: 1vh;
 
         button{
-            /* width: 30px; */
-            /* height: 30px; */
             outline: none;
             width: 3vh;
             height: 3vh;   
@@ -336,7 +304,6 @@ const Table = styled.table`
         }
 
         span{
-            /* margin: 0px 8px; */
             margin: 0vh 1vh;
         }
     }
@@ -348,8 +315,6 @@ const Table = styled.table`
 `;
 
 const ArrowWrapper = styled.div`
-    /* margin-top: 40px; */
-    /* margin-left: 50px; */
     margin-top: 5vh;
     margin-left: 5vh;
 `
