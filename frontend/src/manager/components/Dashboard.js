@@ -74,6 +74,7 @@ const Container = styled.div`
   position: absolute;
   overflow: hidden;
   background-color: #faf0e0;
+  /* background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%); */
   height: 100%;
   width: 100%;
 `;

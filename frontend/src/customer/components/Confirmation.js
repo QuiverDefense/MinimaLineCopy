@@ -15,21 +15,29 @@ class Confirmation extends Component {
 
     render() { 
         return ( 
-            <Container>
-                <div>
-                    <h1>Your order has been confirmed.</h1>
-                    <img src={img}/>
-                    <h2>Please claim your order ticket and proceed to the cashier for payment.</h2>
-                </div>
-                <Link to="/customer">
-                    <button>
-                        Okay
-                    </button>
-                </Link>
-            </Container>
+            <Background>
+                 <Container>
+                    <div>
+                        <h1>Your order has been confirmed.</h1>
+                        <img src={img}/>
+                        <h2>Please claim your order ticket and proceed to the cashier for payment.</h2>
+                    </div>
+                    <Link to="/customer">
+                        <button>
+                            Okay
+                        </button>
+                    </Link>
+                </Container>
+            </Background>
         );
     }
 }
+const Background = styled.div`
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+    /* background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%); */
+`;
 
 const Container = styled.div`
     background-color: white;
@@ -79,7 +87,7 @@ const Container = styled.div`
         color: black;
         background-color: #f9c91e;
         :hover{
-            transform: translateY(2px)
+            transform: translateY(2px);
         }
     }
 `

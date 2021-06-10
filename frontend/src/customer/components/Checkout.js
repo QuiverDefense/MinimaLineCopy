@@ -21,7 +21,7 @@ class Checkout extends Component {
             <Container>
                 <ArrowWrapper>
                     <Link to="/prod-select">
-                       <BiArrowBack size="40px" color="#676666"/>
+                    <BiArrowBack size="40px" color="#676666"/>
                     </Link>
                 </ArrowWrapper>
                 <h1>Checkout</h1>
