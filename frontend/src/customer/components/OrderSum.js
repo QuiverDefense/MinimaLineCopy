@@ -104,14 +104,24 @@ class OrderSum extends Component {
 }
 
 const Container = styled.div`
+    /* height: 500px; */
     height: 50vh;
+    /* width: 20%; */
     display: flex;
     flex-direction: column;
+    /* align-items: center; */
+    /* position: fixed;
+    margin-top: 5vh;
+    margin-right: 4vh; */
     position: fixed;
     margin-top: 4vh;
+    /* margin-right: -44vh;
+    right: 0; */
+    /* right: -45vh; */
     background: #fff;
     border-radius: 1rem;
     box-shadow: 0px 5px 10px -2px #858585;
+    
 
     h2{
         font-size: 2.5vh;
@@ -120,24 +130,31 @@ const Container = styled.div`
     .wrapper{
         display: flex;
         flex-direction: row;
+        /* margin-left: 20px; */
         margin-left: 2vh;
     }
 
     .list{
+        /* height: 310px; */
+        /* height: 350px; */
         height: 100vh;
         overflow: auto;
     }
 
     .order{
+        /* margin-left: 20px; */
         margin-left: 2vh;
+        /* margin-top: -20px; */
         margin-top: -2vh;
     }
 
     .name{
+        /* font-size: 20px; */
         font-size: 2vh;
     }
 
     .title{
+        /* height: 70px; */
         height: 10vh;
         display: flex;
         flex-direction: column;
@@ -147,18 +164,38 @@ const Container = styled.div`
     .price{
         display: flex;
         flex-direction: row;
+        /* margin-top: -30px; */
         margin-top: -5vh;
+        /* margin-left: 200px; */
         margin-left: 20vh;
         p{
+            /* margin-right: 10px; */
             margin-right: 1vh;
             font-size: 2vh;
         }
     }
 
     .total-price{
+        /* height: 50px; */
         height: 19vh;
+        /* margin-left: 40px; */
         margin-left: 4vh;
+        /* margin-top: 50px; */
+        /* margin-top: 0px; */
     }
+
+    /* img{
+        height: 200vh;
+        width: 200vh;
+        margin-top: -60px;
+    }
+    @media screen and (max-width: 1024px) {
+        margin-right: 27px;
+        img{
+            height: 180px;
+            width: 180px;
+        }
+    } */
 `;
 
 export default OrderSum;

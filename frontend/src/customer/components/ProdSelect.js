@@ -101,7 +101,7 @@ const CheckoutButton = styled.div`
     /* right: 80px; */
     display: flex;
     flex-direction: row;
-    position: absolute;
+    position: fixed;
     /* right: 6vh; */
     /* margin-top: 78vh; */
     margin-top: 70vh;
@@ -110,7 +110,7 @@ const CheckoutButton = styled.div`
     z-index: 1;
     /* margin-top: 750px; */
     width: 20%;
-    background-color: white;
+    /* background-color: white; */
     display: flex;
     justify-content: center;
 
