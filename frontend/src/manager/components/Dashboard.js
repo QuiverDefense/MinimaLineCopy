@@ -164,7 +164,7 @@ const StyledLink = styled(Link)`
   width: 270px;
   background-color: white;
   box-shadow: 3px 6px 5px 3px #d6d6d6;
-  border-radius: 8px;
+  border-radius: 50px;
   margin: 60px 70px;
   display: flex;
   flex-direction: column;
@@ -225,7 +225,7 @@ const Option = styled.div`
   width: 270px;
   background-color: white;
   box-shadow: 3px 6px 5px 3px #d6d6d6;
-  border-radius: 8px;
+  border-radius: 50px;
   margin: 60px 70px;
   display: flex;
   flex-direction: column;
