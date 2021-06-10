@@ -108,6 +108,10 @@ const CheckoutButton = styled.div`
     width: 20%;
 
     button{ 
+        position: fixed;
+        /* right: 0; */
+        margin-right: 11vh;
+
         /* width: 250px; */
         width: 25vh;
         /* height: 200px; */
