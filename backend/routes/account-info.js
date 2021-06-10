@@ -1,13 +1,24 @@
 var express = require('express');
 var bcrypt = require('bcrypt');
-var cors = require("cors");
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 const saltRounds = 10;
 const {check, validationResult} = require('express-validator');
 var app = express();
 var database = require('../config/database');
 
 app.use(express.json());
-app.use(cors());
+app.use(cookieParser());
+
+app.use(session({
+    key: "userId",
+    secret: "secret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 60
+    }
+}))
 
 //get data from account-info table 
 app.get('/account-info/:id', (req,res) => {
@@ -72,7 +83,7 @@ app.post('/user-registration', [
                      
                 }
                 else{
-                    console.log(result.insertId)
+                    //console.log(result.insertId)
                     res.status(201).send(result)  
             }
                 
@@ -121,13 +132,22 @@ app.post('/add-cashier', [
     [username, email, password,role], 
     (err, result) => {
         if(!err){
-            console.log(result.insertId)
+            //console.log(result.insertId)
             res.status(201).send(result)   
         }
         else
             res.status(400)
     })
 });
+
+//for login sessions
+app.get('/user-login', (req,res) => {
+    if(req.session.user){
+        res.send({loggedIn: true, user: req.session.user})
+    }else {
+        res.send({loggedIn: false, user: req.session.user})
+    }
+})
 
 //authentication for user-login 
 app.post('/user-login', (req,res)=> {
@@ -142,12 +162,13 @@ app.post('/user-login', (req,res)=> {
             if(err){
                 res.send({err: err});
             }
-
-            console.log(password)
-            console.log(result[0].password)
+            //console.log(password)
+            //console.log(result[0].password)
             if (result.length > 0) {
                 bcrypt.compare(password, result[0].password, (error,response) => {
                     if(response){
+                        req.session.user = result
+                        console.log(req.session.user)
                         res.send(result)
                     } else {
                         res.send({message: "Wrong username and/or password!"});

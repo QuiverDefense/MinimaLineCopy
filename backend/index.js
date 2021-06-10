@@ -1,13 +1,13 @@
 var express = require('express');
 var app = express();
 var bcrypt = require('bcrypt');
-//const multer = require('multer');
-//const path = require("path");
-//var moment = require('moment');
 var upload = require('express-fileupload');
 var cors = require("cors");
 var database = require('./config/database');
 var port = process.env.PORT || 3005;
+//const multer = require('multer');
+//const path = require("path");
+//var moment = require('moment');
 
 /*
 const storage = multer.diskStorage({

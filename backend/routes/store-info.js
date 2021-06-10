@@ -1,12 +1,13 @@
 var express = require('express');
 var app = express();
+var database = require('../config/database');
+//var moment = require('moment');
 //const multer = require('multer');
 //const path = require("path");
 
 const {check, validationResult} = require('express-validator');
 
-var database = require('../config/database');
-//var moment = require('moment');
+
 
 /*
 const storage = multer.diskStorage({
@@ -64,7 +65,7 @@ app.post('/store-registration/:id', [
     const logo = req.body.logo;
     const id = req.params.id
 
-    console.log(store_name, manager_name, location,logo)
+    //console.log(store_name, manager_name, location,logo)
 
     if (!req.files){
         database.query("UPDATE account_info SET store_name=?, manager_name=?, location=? WHERE id = ? ", [store_name, manager_name, location, id],
