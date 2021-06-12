@@ -30,9 +30,7 @@ app.post('/single', [
     const store_name = req.body.store_name;
     const manager_name = req.body.manager_name;
     const location = req.body.location;
-    const logo = req.file 
 
-    console.log(store_name,manager_name,location,logo)
 
     if(!req.file){
         console.log(store_name,manager_name,location)
@@ -40,7 +38,7 @@ app.post('/single', [
     }
     
     else{
-        console.log(store_name,manager_name,location,logo)
+        console.log(store_name,manager_name,location,req.file)
         res.send('Files uploaded')
         }
 });
