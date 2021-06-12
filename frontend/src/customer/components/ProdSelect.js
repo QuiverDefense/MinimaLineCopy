@@ -196,6 +196,7 @@ const CategModal = styled(Modal)`
     flex-direction: row;
     
     button{
+        outline: none;
         font-family: "Work Sans";
         margin: 30px 20px 0px;
         width: 150px;

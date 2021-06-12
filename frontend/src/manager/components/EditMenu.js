@@ -500,7 +500,6 @@ const ProdGrid = styled.div`
         margin-left: 50px;
         display: grid;
         gap: 2rem;
-        /* z-index: 0; */
         grid-template-columns: repeat(auto-fit, minmax(177px, 1fr));
 
         @media screen and (max-width: 1024px) {

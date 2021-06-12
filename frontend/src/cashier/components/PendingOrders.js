@@ -340,6 +340,7 @@ const Container = styled.div`
             } 
 
             button{
+                outline: none;
                 margin-left: 10px;
                 margin-top: 100px;
                 font-family: "Work Sans";
