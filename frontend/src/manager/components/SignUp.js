@@ -56,9 +56,8 @@ class SignUp extends Component{
       <Container>
         <LogoWrapper>
           {/* <img src={logo} alt="" /> */}
-          <h3>
-            Minima<span>Line</span>
-          </h3>
+          <h3>Minima</h3>
+          <h2>Line</h2>
         </LogoWrapper>
         <Form onSubmit={this.register}>
           <h3>Sign Up</h3>
@@ -164,6 +163,8 @@ const Form = styled.form`
 `;
 
 const LogoWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
     img{
         height: 6rem;
         margin-bottom: -20px;
@@ -174,11 +175,12 @@ const LogoWrapper = styled.div`
         color: #ec9736;
         font-size: 22px;
     }
-
-    span{
+    
+    h2{
         color: #568d33;
         font-weight: 300;
         font-size: 18px;
+        margin-top: 25px;
     }
 
 `;
