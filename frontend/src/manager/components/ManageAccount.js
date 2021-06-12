@@ -61,7 +61,7 @@ class ManageAccount extends Component {
       <Container>
         <Top>
           <div className="arrow">
-            <Link to='/dashboard'>
+            <Link to={{ pathname: "/dashboard", state: {userId: this.props.location.state.userId} }}>
                 <BiArrowBack size="50px" color="#676666"/>
             </Link>
           </div>

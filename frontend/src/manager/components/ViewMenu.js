@@ -14,7 +14,8 @@ class ViewMenu extends Component {
             current: null,
             prods: [],
             all_categs: [],
-            curr_categ: null
+            curr_categ: null,
+            // userId: null
         }
         this.changeColor = this.changeColor.bind(this);
         this.showProducts = this.showProducts.bind(this);
@@ -39,6 +40,7 @@ class ViewMenu extends Component {
     }
     async componentDidMount(){
         document.title = "MinimaLine | View Menu"
+        // this.setState({})
         let categs = await Axios.get('http://localhost:3005/display-category');
         if(JSON.stringify(categs.data)==='{}'){
             this.showProducts("empty")
@@ -57,13 +59,13 @@ class ViewMenu extends Component {
                 <Wrapper>
                     <Arrow>
                         <ArrowWrapper>
-                            <Link to="/dashboard">
+                            <Link to={{ pathname: "/dashboard", state: {userId: this.props.location.state.userId} }}>
                                 <BiArrowBack size="40px" color="#676666"/>
                             </Link>
                         </ArrowWrapper>
                     </Arrow>
                     <EditButton>
-                        <Link to='/edit-menu'>
+                        <Link to={{ pathname: "/edit-menu", state: {userId: this.props.location.state.userId} }}>
                             <button>Edit Menu</button>
                         </Link>
                     </EditButton>

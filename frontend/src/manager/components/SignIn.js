@@ -18,8 +18,21 @@ class SignIn extends Component {
       userId: null
      }
   }
-  componentDidMount(){
-    document.title = "MinimaLine | Sign In"
+  async componentDidMount(){
+    document.title = "MinimaLine | Sign In";
+    Axios.defaults.withCredentials = true;
+    await Axios.get("http://localhost:3005/user-login").then((response) => {
+      if(response.data.loggedIn==true){
+        console.log(response.data.user)
+        this.setState({
+          userId: response.data.user[0]["id"],
+          redirect: true
+        })
+        console.log(this.state.userId)
+      }
+      else 
+        console.log(response)
+    })
   }
   
   handleChange(e){
@@ -31,7 +44,13 @@ class SignIn extends Component {
     e.preventDefault();
     const data = this.state;
     Axios.post("http://localhost:3005/user-login", data).then((response) => {
-      if(response.status!==400){
+      if(response.data.message){
+        this.setState({
+          error_msg: response.data.message,
+          login_error: true
+        })
+      }
+      else{
         console.log(response.data[0]["id"])
         let userId = response.data[0]["id"]
         this.setState({ 
@@ -39,18 +58,11 @@ class SignIn extends Component {
           redirect:true
         })
       }
-      else{
-        {throw new Error()}
-      }
-    })
-    .catch((err) => {
-      this.setState({login_error:true})
-      console.log(this.state.login_error)
     })
   };
 
   render() { 
-    if(this.state.redirect)
+    if(this.state.redirect || this.state.userId)
       return <Redirect to={{ pathname: "/dashboard", state: {userId: this.state.userId} }}/>
     return ( 
       <Container>
@@ -63,7 +75,7 @@ class SignIn extends Component {
 
       <Form onSubmit={this.login}>
         <h3>Sign In</h3>
-        {this.state.login_error ? <p>Incorrect username/password!</p> : null}
+        {this.state.login_error ? <p>{this.state.error_msg}</p> : null}
         <InputContainer>
           <StyledInput 
             type="text" 

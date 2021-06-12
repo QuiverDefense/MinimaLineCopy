@@ -238,7 +238,7 @@ class EditMenu extends Component {
                 <Wrapper>
                     <Arrow>
                         <ArrowWrapper>
-                            <Link to="/dashboard">
+                            <Link to={{ pathname: "/dashboard", state: {userId: this.props.location.state.userId} }}>
                                 <BiArrowBack size="40px" color="#676666"/>
                             </Link>
                         </ArrowWrapper>
@@ -248,7 +248,7 @@ class EditMenu extends Component {
                         <AddCategButton size="50px" onClick={this.toggleAddCateg}/>
                     </Nav>
                     <EditButton>
-                        <Link to="/view-menu">
+                        <Link to={{ pathname: "/view-menu", state: {userId: this.props.location.state.userId} }}>
                             <button>Save</button>
                         </Link>
                     </EditButton>

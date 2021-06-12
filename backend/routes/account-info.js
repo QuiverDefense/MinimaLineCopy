@@ -16,7 +16,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        expires: 60
+        expires: 60*60*24
     }
 }))
 
@@ -144,8 +144,8 @@ app.post('/add-cashier', [
 app.get('/user-login', (req,res) => {
     if(req.session.user){
         res.send({loggedIn: true, user: req.session.user})
-    }else {
-        res.send({loggedIn: false, user: req.session.user})
+    } else{
+        res.send({loggedIn: false})
     }
 })
 
@@ -171,12 +171,12 @@ app.post('/user-login', (req,res)=> {
                         console.log(req.session.user)
                         res.send(result)
                     } else {
-                        res.send({message: "Wrong username and/or password!"});
+                        res.send({message: "Incorrect username and/or password!"});
                     }
                 }); 
             }
             else {
-                return res.status(400).send({message: "User does not exist"});
+                return res.send({message: "User does not exist!"});
             }
         });
     });

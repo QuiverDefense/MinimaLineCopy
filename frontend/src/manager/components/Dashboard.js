@@ -19,9 +19,8 @@ class App extends Component {
   async componentDidMount(){
     document.title = "MinimaLine | Dashboard"
     let username = await Axios.get(`http://localhost:3005/account-info/${this.props.location.state.userId}`);
-    console.log(username.data[0]["username"])
       this.setState({
-          username: username.data[0]["username"]
+        username: username.data[0]["username"]
       })
   }
 
@@ -35,6 +34,7 @@ class App extends Component {
         <div className="header">
           <HeaderBar>
             <h1>Welcome, {this.state.username}.</h1>
+            <button>logout</button>
           </HeaderBar>
           <HeaderCircle>
             <img src={logo}/>
@@ -42,12 +42,14 @@ class App extends Component {
         </div>
 
         <Body>
-          <StyledLink to="/view-menu" style={{textDecoration:'none'}}>
+          <StyledLink to={{ pathname: "/view-menu", state: {userId: this.props.location.state.userId} }}
+                      style={{textDecoration:'none'}}>
               <MdRestaurantMenu className="icon" size="90px"/>
               <h2>View Menu</h2>
               <p>View and edit the restaurant menu.</p>
           </StyledLink>
-          <StyledLink to="/account" style={{textDecoration:'none'}}>
+          <StyledLink to={{ pathname: "/account", state: {userId: this.props.location.state.userId} }}
+                      style={{textDecoration:'none'}}>
             <MdAccountCircle className="icon" size="90px"/>
             <h2>Account</h2>
             <p>Manage your account and store information.</p>
@@ -163,6 +165,9 @@ const HeaderBar = styled.div`
     }
   }
 
+  button{
+    margin-left: 300px;
+  }
   
 `;
 
