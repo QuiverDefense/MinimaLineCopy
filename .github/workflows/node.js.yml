@@ -33,4 +33,4 @@ jobs:
     - name: NPM start
       run: |
         cd frontend
-        npm start
+        npm test
