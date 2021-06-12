@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styled from "styled-components";
 import {Link} from 'react-router-dom';
 import {FaLongArrowAltRight} from "react-icons/fa";
-// import {RiSearchLine} from "react-icons/ri";
 import search from "../../assets/search.png";
 import burger_img from "../../assets/burger.png";
 import fries_img from "../../assets/fries.png";
@@ -217,7 +216,7 @@ const Container = styled.div`
         .orderlist{
             position: absolute;
             background-color: white;
-            box-shadow: 3px 6px 5px 3px #d6d6d6;
+            box-shadow: 0px 5px 10px -2px #858585;
             border-radius: 35px;
             height: 400px;
             width: 780px;
@@ -254,7 +253,7 @@ const Container = styled.div`
             .notes{
                 position: absolute;
                 background-color: white;
-                box-shadow: 3px 6px 5px 3px #d6d6d6;
+                box-shadow: 0px 5px 10px -2px #858585;
                 border-radius: 30px;
                 height: 100px;
                 width: 760px;
@@ -286,7 +285,7 @@ const Container = styled.div`
         .price{
             position: absolute;
             background-color: white;
-            box-shadow: 3px 6px 5px 3px #d6d6d6;
+            box-shadow: 0px 5px 10px -2px #858585;
             border-radius: 40px;
             height: 215px;
             width: 780px;
@@ -311,9 +310,8 @@ const Container = styled.div`
 
             .total-price{
                 position: absolute;
-                /* background-color: #f9c91e; */
                 background-color: #f5f5f5;
-                box-shadow: 3px 6px 5px 3px #d6d6d6;
+                box-shadow: 0px 5px 10px -4px #858585;
                 border-radius: 40px;
                 height: 60px;
                 width: 620px;
@@ -395,7 +393,7 @@ const Container = styled.div`
     .right{
         position: absolute;
         background-color: white;
-        box-shadow: 3px 6px 5px 3px #d6d6d6;
+        box-shadow: 0px 5px 10px -2px #858585;
         border-radius: 70px;
         height: 850px;
         width: 1000px;
@@ -573,6 +571,7 @@ const OrderGrid = styled.div`
         border-radius: 1rem;
         transition: all 0.2s ease-in;
         text-align: center;
+        box-shadow: 0px 5px 10px -4px #858585;
 
         &:hover {
             transform: translateY(-4px);
@@ -597,6 +596,7 @@ const OrderGrid = styled.div`
         border-radius: 1rem;
         transition: all 0.2s ease-in;
         text-align: center;
+        box-shadow: 0px 5px 10px -2px #858585;
 
         &:hover {
             transform: translateY(-4px);
