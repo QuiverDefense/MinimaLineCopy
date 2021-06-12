@@ -5,12 +5,13 @@ import { BiArrowBack } from "react-icons/bi";
 
 const Terms = () => {
   return (
-    <Container>
+    <Wrapper>
       <ArrowWrapper>
         <Link to="/sign-up" className="back">
           <BiArrowBack size="40px" color="black"/>
         </Link>
       </ArrowWrapper>
+    <Container>
       <Form>
             <h2>Privacy Policy and Terms of Service</h2>
             <h3><h4>1. Introduction</h4><br />
@@ -52,6 +53,7 @@ Please send your feedback, comments, requests for technical support by email: ds
 
         </Form>
     </Container>
+    </Wrapper>
   );
 };
 
@@ -112,11 +114,15 @@ const Form = styled.form`
 const ArrowWrapper = styled.div`
   margin-top: 50px;
   margin-left: 30px;
+  position: fixed;
+  z-index: 2;
 
   .back:hover{
     transform: translateY(-3px);
   }
 `;
+const Wrapper = styled.div`
+`
 
 const Container = styled.div`
 
@@ -134,6 +140,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-evenly;
   overflow: auto; 
+  padding-left: 80px;
 
   @media (max-width: 900px){
       width: 100vw;
