@@ -137,11 +137,12 @@ class PendingOrders extends Component {
                     <div className="price">
                         <div className="total-price">
                             <h1>Total Price</h1>
+                            <h3>Php 4,030.00</h3>
                         </div>
                         <button className="confirm">
                             Confirm
                         </button>
-                        <button>
+                        <button className="cancel">
                             Cancel
                         </button>
                     </div>
@@ -310,7 +311,8 @@ const Container = styled.div`
 
             .total-price{
                 position: absolute;
-                background-color: #f9c91e;
+                /* background-color: #f9c91e; */
+                background-color: #f5f5f5;
                 box-shadow: 3px 6px 5px 3px #d6d6d6;
                 border-radius: 40px;
                 height: 60px;
@@ -334,7 +336,20 @@ const Container = styled.div`
                     @media screen and (max-width: 1470px) {
                         margin-top: 5px;
                         margin-left: 20px;
-                        font-size: 25px;
+                        font-size: 23px;
+                    }
+                }
+
+                h3{
+                    font-size: 27px;
+                    position: absolute;
+                    margin-top: 15px;
+                    margin-left: 400px;
+
+                    @media screen and (max-width: 1470px) {
+                        margin-top: 5px;
+                        margin-left: 240px;
+                        font-size: 23px;
                     }
                 }
             } 
@@ -368,6 +383,10 @@ const Container = styled.div`
                     font-weight: 600;
                     font-size: 25px;
                 }
+            }
+            .cancel{
+                color: #fff;
+                background-color: #FF5C5C;
             }
         }
 
