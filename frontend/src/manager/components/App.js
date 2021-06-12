@@ -10,6 +10,7 @@ import Terms from "./Terms";
 import ViewMenu from "./ViewMenu";
 import EditMenu from "./EditMenu";
 import Dashboard from "./Dashboard";
+import ManageAccount from "./ManageAccount";
 import * as Customer from '../../customer/components';
 import * as Cashier from '../../cashier/components';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
@@ -29,7 +30,7 @@ const App = () => {
           <Route path="/view-menu" exact component={ViewMenu} />
           <Route path="/edit-menu" exact component={EditMenu} />
           <Route path="/dashboard" exact component={Dashboard} />
-          <Route path="/dashboard" exact component={Dashboard} />
+          <Route path="/account" exact component={ManageAccount} />
           <Route path="/customer" exact component={Customer.App} />
           <Route path="/cashier" exact component={Cashier.App} />
         </Switch>

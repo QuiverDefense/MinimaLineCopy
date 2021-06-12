@@ -13,7 +13,8 @@ class SignUp extends Component{
       email: '',
       password: '',
       redirect: false,
-      error: false
+      error: false,
+      newUserId: null
     }
     // this.register = this.register.bind(this);
   }
@@ -38,14 +39,19 @@ class SignUp extends Component{
       console.log(response)
       if(response.data=="username/email already used")
         this.setState({error:true})
-      else
-        this.setState({redirect:true})
+      else{
+        console.log("hello")
+        this.setState({
+          newUserId: response.data.insertId,
+          redirect: true
+        })
+      }
     })
   };
 
   render(){
     if(this.state.redirect)
-      return <Redirect to="/store-reg"/>
+      return <Redirect to={{ pathname: "/store-reg", state: {userId: this.state.newUserId} }}/>
     return (
       <Container>
         <LogoWrapper>
@@ -64,8 +70,8 @@ class SignUp extends Component{
                 name="username"
                 value={this.state.username} 
                 required
-                minLength="3"
-                maxLength="255"
+                minLength="4"
+                maxLength="20"
                 autoComplete="off"
                 onChange={this.handleChange.bind(this)}/>
               <Status />
