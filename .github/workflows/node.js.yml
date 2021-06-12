@@ -32,4 +32,5 @@ jobs:
         npm install
     - name: NPM start
       run: |
+        cd frontend
         npm start
