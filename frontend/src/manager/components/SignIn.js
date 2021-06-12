@@ -186,6 +186,10 @@ const Container = styled.div`
           cursor: pointer;
       }
   }
+  span:hover{
+    transform: translateY(-3px);
+    color: #ec9736;
+  }
 `;
 const StyledInput = styled.input`
     width: 80%;
