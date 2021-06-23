@@ -8,9 +8,5 @@ class SelectMode extends Component {
      );
   }
 }
-it('renders welcome message', () => {
-  render(<App />);
-  expect(screen.getByText('Learn React')).toBeInTheDocument();
-});
  
 export default SelectMode;
