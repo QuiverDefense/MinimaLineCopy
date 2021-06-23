@@ -30,8 +30,8 @@ jobs:
       run: |
         cd frontend
         npm install
-    - name: Build
-    - run: |
+    - name: NPM build 
+      run: |
         cd frontend
         npm run build --if-present
     - name: NPM test 
